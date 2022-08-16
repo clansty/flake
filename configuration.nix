@@ -8,9 +8,8 @@
             ./network.nix
             ./environment.nix
             ./services.nix
-            ./desktop.nix
+            ./graphic/index.nix
             ./i18n.nix
-            ./fonts.nix
             ./virtualisation.nix
             ./users.nix
         ];

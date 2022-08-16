@@ -2,7 +2,7 @@
 
 {
     nix = {
-        binaryCaches = [ 
+        settings.substituters = [ 
             "https://mirrors.bfsu.edu.cn/nix-channels/store" 
         ];
         package = pkgs.nixFlakes;
@@ -15,21 +15,15 @@
     nixpkgs.overlays = [ inputs.sauricat.overlays.sauricat ];
 
     environment.systemPackages = with pkgs; [
-        tdesktop
         neovim 
         wget
-        vscode
         jdk
         git
-        ark
-        kleopatra
         nodejs
         unrar
         unzip
-        google-chrome
         exa
         duf
-        gnome.gnome-tweaks
         direnv
         hyfetch
     ];
