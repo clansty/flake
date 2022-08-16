@@ -2,15 +2,16 @@
 
 {
     networking = {
-        hostName = "PROGYNOVA";
-        useDHCP = false;
-        interfaces.enp7s0.useDHCP = true;
-        extraHosts = "192.168.31.154  proxy
-                      192.168.31.154  lwrpi";
-        proxy={
-            default = "http://proxy:7890/";
-            noProxy = "127.0.0.1,localhost,internal.domain";
+        hostName = "clansty-nixos";
+        enableIPv6 = true;
+        interfaces.enp0s31f6 = {
+            ipv4.addresses = [{
+                address = "172.16.0.80";
+                prefixLength = 24;
+            }];
         };
+        defaultGateway = "172.16.0.2";
+        nameservers = ["172.16.0.2"];
         firewall.enable = false;
     };
 }

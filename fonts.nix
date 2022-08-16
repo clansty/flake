@@ -13,6 +13,7 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
+      nerdfonts
       hack-font
       inter
       liberation_ttf
