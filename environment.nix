@@ -21,19 +21,5 @@
         flake.overlays.clansty
     ];
 
-    environment.systemPackages = with pkgs; [
-        neovim 
-        wget
-        jdk
-        git
-        nodejs
-        unrar
-        unzip
-        exa
-        duf
-        direnv
-        hyfetch
-    ];
-
     system.stateVersion = "22.05";
 }
