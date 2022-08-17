@@ -16,13 +16,13 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
-      options = [ "subvol=@nixos/@" ];
+      options = [ "subvol=@nixos/@" "compress=zstd:3" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
-      options = [ "subvol=@nixos/@home" ];
+      options = [ "subvol=@nixos/@home" "compress=zstd:3" ];
     };
 
   fileSystems."/boot" =
@@ -30,7 +30,11 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [ 
+    { 
+      device = "/dev/disk/by-uuid/f3a145c4-67e3-4eef-a226-bea8e4dd168f";
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

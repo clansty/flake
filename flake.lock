@@ -325,6 +325,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1660682421,
+        "narHash": "sha256-qFHwcg6Fzcdf+4NZncEsB0jcUSS+n1pMMyXGfqBktg8=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "971f6a971264830c64950a7c96284bab611c3ffc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "nvfetcher": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -368,6 +383,7 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "nur": "nur",
         "sauricat": "sauricat"
       }
     },
