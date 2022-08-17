@@ -9,5 +9,6 @@
         kleopatra
         google-chrome
         yesplaymusic
+        jetbrains.webstorm
     ];
 }

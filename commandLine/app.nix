@@ -26,5 +26,9 @@
         duf
         direnv
         hyfetch
+        android-tools
+        nmap
+        nali
+        rclone
     ];
 }

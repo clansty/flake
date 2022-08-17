@@ -17,6 +17,7 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        ./machines/x1c6.nix
         nur.nixosModules.nur
       ];
       specialArgs = { 
