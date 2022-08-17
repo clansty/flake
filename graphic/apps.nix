@@ -10,5 +10,6 @@
         google-chrome
         yesplaymusic
         jetbrains.webstorm
+        red-alert2
     ];
 }
