@@ -7,5 +7,6 @@
         vscode
         kleopatra
         google-chrome
+        yesplaymusic
     ];
 }
