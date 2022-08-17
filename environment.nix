@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, inputs, ... }:
+{ config, pkgs, lib, modulesPath, inputs, flake, ... }:
 
 {
     nix = {
@@ -17,7 +17,8 @@
 
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [ 
-        inputs.sauricat.overlays.sauricat 
+        inputs.sauricat.overlays.sauricat
+        flake.overlays.clansty
     ];
 
     environment.systemPackages = with pkgs; [

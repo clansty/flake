@@ -6,7 +6,7 @@
   };
 
   outputs = { self, nixpkgs, nur, ... }@inputs: {
-    overlays.default = let
+    overlays.clansty = self: super: let
         dirContents = builtins.readDir ./packages;
         genPackage = name: {
           inherit name;
@@ -19,7 +19,10 @@
         ./configuration.nix
         nur.nixosModules.nur
       ];
-      specialArgs = { inherit inputs; };
+      specialArgs = { 
+        inherit inputs; 
+        flake = self;
+      };
     };
   };
 }

@@ -6,9 +6,9 @@
     fontconfig = {
       enable = true;
       defaultFonts.emoji = [ "Twemoji" "Noto Color Emoji" ];
-      defaultFonts.monospace = [ "Monaco" "Hack" "Sarasa Mono SC" ];
-      defaultFonts.sansSerif = [ "Inter" "Liberation Sans" "Soruce Han Sans SC" ];
-      defaultFonts.serif = [ "Liberation Serif" "Source Han Serif SC" ];
+      defaultFonts.monospace = [ "SF Mono" "PingFang SC" "PingFang HK" "PingFang TC" ];
+      defaultFonts.sansSerif = [ "SF Pro Text" "PingFang SC" "PingFang HK" "PingFang TC" ];
+      defaultFonts.serif = [ "Noto Serif" "Noto Serif CJK SC" "Noto Serif CJK TC" "Noto Serif CJK JP" ];
     };
     fontDir.enable = true;
     enableGhostscriptFonts = true;
@@ -18,7 +18,11 @@
       inter
       liberation_ttf
       twemoji-color-font
+      noto-fonts
       noto-fonts-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-extra
       roboto
       sarasa-gothic
       source-han-mono
@@ -28,6 +32,7 @@
       source-han-serif-simplified-chinese
       wqy_microhei
       wqy_zenhei
+      san-francisco
     ];
   };
 }
