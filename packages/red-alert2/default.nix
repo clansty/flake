@@ -42,10 +42,10 @@ let
   '';
 
   desktopIcon = makeDesktopItem {
-    name = "Red Alert 2";
+    name = "red-alert2";
     exec = startScript;
     comment = "Command & Conquer: Red Alert 2 is a real-time strategy video game.";
-    desktopName = "red-alert2";
+    desktopName = "Red Alert 2";
     categories = [ "Game" ];
     icon = "${ra2files}/red-alert2.png";
   };
