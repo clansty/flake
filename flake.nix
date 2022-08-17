@@ -6,13 +6,16 @@
   };
 
   outputs = { self, nixpkgs, nur, ... }@inputs: {
-    overlays.clansty = self: super: let
+    overlays.clansty = self: super:
+      let
         dirContents = builtins.readDir ./packages;
         genPackage = name: {
           inherit name;
-          value = self.callPackage (./packages + "/${name}") { }; };
+          value = self.callPackage (./packages + "/${name}") { };
+        };
         names = builtins.attrNames dirContents;
-      in builtins.listToAttrs (map genPackage names);
+      in
+      builtins.listToAttrs (map genPackage names);
     nixosConfigurations.clansty-nixos = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -20,8 +23,8 @@
         ./machines/x1c6.nix
         nur.nixosModules.nur
       ];
-      specialArgs = { 
-        inherit inputs; 
+      specialArgs = {
+        inherit inputs;
         flake = self;
       };
     };

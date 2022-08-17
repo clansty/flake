@@ -39,12 +39,14 @@ stdenv.mkDerivation rec {
     runHook postInstall
   '';
 
-  desktopItems = [ (makeDesktopItem {
-    name = "yesplaymusic";
-    exec = "yesplaymusic";
-    comment = "A third party music application for Netease Music.";
-    desktopName = "YesPlayMusic";
-    categories = [ "AudioVideo" "Audio" "Music" ];
-    icon = "yesplaymusic";
-  }) ];
+  desktopItems = [
+    (makeDesktopItem {
+      name = "yesplaymusic";
+      exec = "yesplaymusic";
+      comment = "A third party music application for Netease Music.";
+      desktopName = "YesPlayMusic";
+      categories = [ "AudioVideo" "Audio" "Music" ];
+      icon = "yesplaymusic";
+    })
+  ];
 }

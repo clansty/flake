@@ -19,7 +19,7 @@ let
       sha256 = "n0XfgkTnmbVgdW+W+LZJq9huh1zM8OUzj36IJ9tT8K0=";
     };
     unpackPhase = ''
-        ${zstd}/bin/zstd -dc ${src} | tar -xf -
+      ${zstd}/bin/zstd -dc ${src} | tar -xf -
     '';
     installPhase = ''
       mkdir -p $out
