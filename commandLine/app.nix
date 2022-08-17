@@ -31,5 +31,6 @@
     nali
     rclone
     rnix-lsp
+    htop
   ];
 }
