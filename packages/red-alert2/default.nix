@@ -36,7 +36,8 @@ let
     mkdir -p $RW_DATADIR $WINEPREFIX
 
     ln -sf "${ra2files}"/{Rmcache,Taunts,*.dll,*.mmx,*.doc,*.tlb,*.nfo,*.mix,*.bmp,*.exe,*.txt,*.ico,*.dat,*.dsk,*.lcf,*.sys,*.pif} "$RW_DATADIR/"
-    cp -rf "${ra2files}"/{*.ini,*.key,*.INI} "$RW_DATADIR/"
+    cp -rn "${ra2files}"/{*.ini,*.key,*.INI} "$RW_DATADIR/"
+    chmod -R +w $RW_DATADIR/*
     export WINEDLLOVERRIDES="ddraw=n,b"
     ${wine}/bin/wine "$RW_DATADIR/Ra2.exe"
   '';

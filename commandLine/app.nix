@@ -32,5 +32,6 @@
     rclone
     rnix-lsp
     htop
+    gdu
   ];
 }
