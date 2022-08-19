@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./zsh.nix
+      ./shell.nix
       ./app.nix
       ./ssh.nix
     ];

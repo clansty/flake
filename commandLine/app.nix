@@ -19,19 +19,13 @@
   };
   environment.systemPackages = with pkgs; [
     neovim
-    wget
+    wget file htop
     nodejs
-    unrar
-    unzip
-    exa
-    duf
-    direnv
+    unrar unzip
+    exa duf gdu
     hyfetch
-    nmap
-    nali
+    nmap nali
     rclone
     rnix-lsp
-    htop
-    gdu
   ];
 }
