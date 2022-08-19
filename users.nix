@@ -14,6 +14,7 @@
       "input"
       "tty"
       "libvirt"
+      "adbusers"
     ];
     shell = pkgs.zsh;
   };

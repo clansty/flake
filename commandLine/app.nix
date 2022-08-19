@@ -15,6 +15,7 @@
         pull.rebase = false;
       };
     };
+    adb.enable = true;
   };
   environment.systemPackages = with pkgs; [
     neovim
@@ -26,13 +27,11 @@
     duf
     direnv
     hyfetch
-    android-tools
     nmap
     nali
     rclone
     rnix-lsp
     htop
     gdu
-    gparted
   ];
 }

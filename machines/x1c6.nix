@@ -5,45 +5,59 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "uas" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "wl" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
+    {
+      device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
       options = [ "subvol=@nixos/@" "compress=zstd:3" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
+    {
+      device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
       options = [ "subvol=@nixos/@home" "compress=zstd:3" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2E93-31E6";
+    {
+      device = "/dev/disk/by-uuid/2E93-31E6";
       fsType = "vfat";
     };
 
   fileSystems."/mnt/root" =
-    { device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
+    {
+      device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
       options = [ "compress=zstd:3" ];
     };
 
-  swapDevices = [ 
-    { 
+  swapDevices = [
+    {
       device = "/dev/disk/by-uuid/35133c6f-72a8-40c6-9265-dd7a94fae6d7";
     }
   ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
+
+
+  boot.loader.systemd-boot.extraEntries = { 
+    "archlinux.conf" = ''
+      title          Arch Linux
+      linux          /vmlinuz-linux-mainline
+      initrd         /intel-ucode.img
+      initrd         /initramfs-linux-mainline.img
+      options        root=UUID=e63aab1d-0a59-4c43-9fb6-ab92dd897378 rootflags=subvol=@,compress=zstd:3 rw loglevel=3 quiet splash systemd.show_status=1
+    '';
+  };
 }

@@ -10,6 +10,8 @@
     jetbrains.webstorm
     red-alert2
     cncnet-yr-mo
+    gparted
+    ulauncher
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";

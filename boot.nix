@@ -4,6 +4,8 @@
   boot.tmpOnTmpfs = true;
   boot.loader = {
     systemd-boot.enable = true;
-    efi.canTouchEfiVariables = false;
+    systemd-boot.consoleMode = "max";
+    systemd-boot.configurationLimit = 3;
+    efi.canTouchEfiVariables = true;
   };
 }
