@@ -33,5 +33,6 @@
     rnix-lsp
     htop
     gdu
+    gparted
   ];
 }
