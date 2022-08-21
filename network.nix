@@ -2,7 +2,6 @@
 
 {
   networking = {
-    hostName = "clansty-nixos";
     firewall.enable = false;
   };
 }

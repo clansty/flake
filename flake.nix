@@ -16,12 +16,13 @@
         names = builtins.attrNames dirContents;
       in
       builtins.listToAttrs (map genPackage names);
-    nixosConfigurations.clansty-nixos = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations.clansty-x1c = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         ./machines/x1c6.nix
         nur.nixosModules.nur
+        { networking.hostName = "clansty-x1c"; }
       ];
       specialArgs = {
         inherit inputs;

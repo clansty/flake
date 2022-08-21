@@ -11,7 +11,8 @@
     red-alert2
     cncnet-yr-mo
     gparted
-    ulauncher
+    arduino libusb1 libusb-compat-0_1
+    remmina
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";
@@ -24,4 +25,5 @@
       };
     }))
   ];
+  services.udev.packages = [ pkgs.micronucleus-udev-rules ];
 }
