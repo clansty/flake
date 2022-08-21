@@ -13,7 +13,6 @@
     promptInit = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${../dotfiles/p10k.zsh}
-      export SSH_AUTH_SOCK=/run/user/$UID/gnupg/S.gpg-agent.ssh
       bindkey '^[[1;3D' backward-word
       bindkey '^[[1;3C' forward-word
     '';
