@@ -4,7 +4,7 @@
   imports =
     [
       ./shell.nix
-      ./app.nix
+      ./apps.nix
       ./ssh.nix
     ];
 }

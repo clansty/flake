@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   programs = {
-    java.enable = true;
     git = {
       enable = true;
       config = {
@@ -16,6 +15,10 @@
       };
     };
     adb.enable = true;
+    java = { 
+      enable = true; 
+      package = pkgs.jdk11; 
+    };
   };
   environment.systemPackages = with pkgs; [
     neovim
@@ -27,5 +30,7 @@
     nmap nali
     rclone
     rnix-lsp
+    minicom
+    direnv
   ];
 }

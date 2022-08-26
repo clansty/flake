@@ -15,6 +15,7 @@
       source ${../dotfiles/p10k.zsh}
       bindkey '^[[1;3D' backward-word
       bindkey '^[[1;3C' forward-word
+      eval "$(direnv hook zsh)"
     '';
     syntaxHighlighting.enable = true;
   };

@@ -10,9 +10,11 @@
     jetbrains.webstorm
     red-alert2
     cncnet-yr-mo
-    gparted
+    gparted etcher
     arduino libusb1 libusb-compat-0_1
     remmina
+    krita gimp inkscape
+    libreoffice-fresh
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";
@@ -26,4 +28,8 @@
     }))
   ];
   services.udev.packages = [ pkgs.micronucleus-udev-rules ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-12.2.3"
+    "electron-9.4.4"
+  ];
 }

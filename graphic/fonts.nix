@@ -12,7 +12,7 @@
     };
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    fonts = (with pkgs; [
       nerdfonts
       hack-font
       inter
@@ -33,6 +33,9 @@
       wqy_microhei
       wqy_zenhei
       san-francisco
-    ];
+      meslo-lg
+    ]) ++ (with config.nur.repos; [
+      rewine.ttf-ms-win10
+    ]);
   };
 }
