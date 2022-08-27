@@ -7,6 +7,7 @@
             ./desktop.nix
             ./apps.nix
             ./fonts.nix
+            ./nur.nix
         ];
 }
 

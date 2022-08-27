@@ -12,13 +12,25 @@
       '';
       extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
     };
+    excludePackages = with pkgs; [
+      xterm
+      gnome-connections
+      eolie
+    ];
   };
 
-  environment.systemPackages = with pkgs.gnomeExtensions; [
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+
+  environment.systemPackages = (with pkgs.gnomeExtensions; [
     tray-icons-reloaded
-    dock-from-dash
-  ];
+    dash-to-dock
+    system-monitor
+  ]) ++ (with pkgs; [
+    arc-theme
+    tela-icon-theme
+  ]);
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  qt5.platformTheme = "gnome";
 }

@@ -23,7 +23,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget file htop
-    nodejs
     unrar unzip
     exa duf gdu
     hyfetch
@@ -32,5 +31,8 @@
     rnix-lsp
     minicom
     direnv
+    nodePackages.http-server
+    azure-cli wrangler
+    python310Packages.ipython
   ];
 }

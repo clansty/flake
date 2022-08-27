@@ -12,7 +12,6 @@
       ./i18n.nix
       ./virtualisation.nix
       ./users.nix
-      ./nur.nix
       ./nfsClient.nix
     ];
 }

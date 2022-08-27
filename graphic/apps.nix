@@ -5,15 +5,15 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     vscode
-    google-chrome
+    google-chrome microsoft-edge
     yesplaymusic
-    jetbrains.webstorm
+    jetbrains.webstorm jetbrains.idea-ultimate jupyter
     red-alert2
     cncnet-yr-mo
     gparted etcher
     arduino libusb1 libusb-compat-0_1
     remmina
-    krita gimp inkscape
+    krita gimp inkscape gwenview
     libreoffice-fresh
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
