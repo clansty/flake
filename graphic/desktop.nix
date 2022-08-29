@@ -25,6 +25,7 @@
     tray-icons-reloaded
     dash-to-dock
     system-monitor
+    xremap
   ]) ++ (with pkgs; [
     arc-theme
     tela-icon-theme

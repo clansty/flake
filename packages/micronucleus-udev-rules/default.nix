@@ -21,6 +21,5 @@ stdenv.mkDerivation rec {
     homepage = "http://digistump.com/wiki/digispark/tutorials/linuxtroubleshooting";
     description = "UDEV Rules for Micronucleus boards including the Digispark.";
     platforms = platforms.linux;
-    license = licenses.gpl3Plus;
   };
 }

@@ -34,6 +34,7 @@
       wqy_zenhei
       san-francisco
       meslo-lg
+      sarasa-gothic
     ]) ++ (with config.nur.repos; [
       rewine.ttf-ms-win10
     ]);

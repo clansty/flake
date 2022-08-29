@@ -4,16 +4,15 @@
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
-    vscode
+    vscode postman
     google-chrome microsoft-edge
     yesplaymusic
     jetbrains.webstorm jetbrains.idea-ultimate jupyter
-    red-alert2
-    cncnet-yr-mo
+    red-alert2 cncnet-yr-mo minecraft
     gparted etcher
     arduino libusb1 libusb-compat-0_1
     remmina
-    krita gimp inkscape gwenview
+    krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
@@ -27,7 +26,10 @@
       };
     }))
   ];
-  services.udev.packages = [ pkgs.micronucleus-udev-rules ];
+  services.udev.packages = [ 
+    pkgs.micronucleus-udev-rules 
+    pkgs.xremap-udev-rules
+  ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"
     "electron-9.4.4"

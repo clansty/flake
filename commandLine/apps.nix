@@ -31,8 +31,9 @@
     rnix-lsp
     minicom
     direnv
-    nodePackages.http-server
+    nodePackages.http-server nodePackages.asar
     azure-cli wrangler
     python310Packages.ipython
+    pdftk
   ];
 }
