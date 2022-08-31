@@ -22,7 +22,7 @@
   };
   environment.systemPackages = with pkgs; [
     neovim
-    wget file htop
+    wget file htop usbutils
     unrar unzip
     exa duf gdu
     hyfetch
@@ -30,7 +30,6 @@
     rclone
     rnix-lsp
     minicom
-    direnv
     nodePackages.http-server nodePackages.asar
     azure-cli wrangler
     python310Packages.ipython
