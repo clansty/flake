@@ -279,11 +279,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1661361016,
-        "narHash": "sha256-Bjf6ZDnDc6glTwIIItvwfcaeJ5zWFM6GYfPajSArdUY=",
+        "lastModified": 1661931183,
+        "narHash": "sha256-0+2KzcexiJCB3Il5t7cZAM2RXNRfm5/gMCwhcZJxLuQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b784c5ae63dd288375af1b4d37b8a27dd8061887",
+        "rev": "97747d3209efde533f7b1b28f1be11619f556a06",
         "type": "github"
       },
       "original": {
@@ -327,11 +327,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1661567534,
-        "narHash": "sha256-xfU5A6k1gzmKLWG4+RT0hRqmRztoaU4vaOv7BrwTYQc=",
+        "lastModified": 1662012752,
+        "narHash": "sha256-W6f/lga3jZo/R6sI4WtYeVGuhOF5Y+QqfdGebLy2YdM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7df270a9c4e019210f145a002a11cd1cd807c0b0",
+        "rev": "5328552bccf15658866d76e6280447746f764f1a",
         "type": "github"
       },
       "original": {
@@ -433,11 +433,11 @@
         "tree-sitter-nix-oxa": "tree-sitter-nix-oxa"
       },
       "locked": {
-        "lastModified": 1661112810,
-        "narHash": "sha256-CRZefmhY+jdaiB2gg6hSOEl5XAA7Umu5zcEh+M6oxiI=",
+        "lastModified": 1661962842,
+        "narHash": "sha256-lBCHLc+6MPcgR/db2LeVlwi9t3uQ5+8/73lwkkJoJro=",
         "owner": "sauricat",
         "repo": "flakes",
-        "rev": "3aa381e176c9f3b018419a1bba58e2a097f36345",
+        "rev": "8886bc87c093835fd46377dc9fd4f8c90add9b87",
         "type": "github"
       },
       "original": {

@@ -29,7 +29,7 @@
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/2E93-31E6";
+      device = "/dev/disk/by-uuid/09C1-B27D";
       fsType = "vfat";
     };
 
@@ -38,6 +38,13 @@
       device = "/dev/disk/by-uuid/e63aab1d-0a59-4c43-9fb6-ab92dd897378";
       fsType = "btrfs";
       options = [ "compress=zstd:3" ];
+    };
+
+  fileSystems."/mnt/windows" =
+    {
+      device = "/dev/disk/by-uuid/5884008A84006D36";
+      fsType = "ntfs";
+      options = [ ];
     };
 
   swapDevices = [
@@ -58,6 +65,10 @@
       initrd         /intel-ucode.img
       initrd         /initramfs-linux-mainline.img
       options        root=UUID=e63aab1d-0a59-4c43-9fb6-ab92dd897378 rootflags=subvol=@,compress=zstd:3 rw loglevel=3 quiet splash systemd.show_status=1
+    '';
+    "quibble.conf" = ''
+      title          Quibble
+      efi            /EFI/quibble/quibble.efi
     '';
   };
 }
