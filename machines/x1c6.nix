@@ -42,9 +42,9 @@
 
   fileSystems."/mnt/windows" =
     {
-      device = "/dev/disk/by-uuid/5884008A84006D36";
+      device = "/dev/nvme0n1p4";
       fsType = "ntfs";
-      options = [ ];
+      options = [ "nofail" ];
     };
 
   swapDevices = [
