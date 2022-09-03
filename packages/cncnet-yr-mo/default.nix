@@ -8,6 +8,7 @@
 , makeDesktopItem
 , copyDesktopItems
 , zstd
+, symlinkJoin
 , ...
 }:
 
@@ -91,20 +92,8 @@ let
     icon = "${yrFiles}/ra2yr-cncnet.png";
   };
 in
-stdenv.mkDerivation {
-  pname = "cncnet-yr-mo";
-  version = "1";
-  nativeBuildInputs = [ copyDesktopItems ];
-  desktopItems = [ moIcon yrIcon ];
-  phases = [ "installPhase" ];
-  installPhase = ''
-    runHook preInstall
-    runHook postInstall
-  '';
-
-  meta = with lib; {
-    description = "CNC Net Mental Omega and Yuri's Revenge";
-    platforms = [ "x86_64-linux" ];
-    license = licenses.unfreeRedistributable;
-  };
+symlinkJoin
+{
+  name = "cncnet-yr-mo";
+  paths = [ moIcon yrIcon ];
 }

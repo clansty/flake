@@ -41,30 +41,12 @@ let
     export WINEDLLOVERRIDES="ddraw=n,b"
     ${wine}/bin/wine "$RW_DATADIR/Ra2.exe"
   '';
-
-  desktopIcon = makeDesktopItem {
-    name = "red-alert2";
-    exec = startScript;
-    comment = "Command & Conquer: Red Alert 2 is a real-time strategy video game.";
-    desktopName = "Red Alert 2";
-    categories = [ "Game" ];
-    icon = "${ra2files}/red-alert2.png";
-  };
 in
-stdenv.mkDerivation {
-  pname = "red-alert2";
-  inherit version;
-  nativeBuildInputs = [ copyDesktopItems ];
-  desktopItems = [ desktopIcon ];
-  phases = [ "installPhase" ];
-  installPhase = ''
-    runHook preInstall
-    runHook postInstall
-  '';
-
-  meta = with lib; {
-    description = "Command & Conquer: Red Alert 2 is a real-time strategy video game.";
-    platforms = [ "x86_64-linux" ];
-    license = licenses.unfreeRedistributable;
-  };
+makeDesktopItem {
+  name = "red-alert2";
+  exec = startScript;
+  comment = "Command & Conquer: Red Alert 2 is a real-time strategy video game.";
+  desktopName = "Red Alert 2";
+  categories = [ "Game" ];
+  icon = "${ra2files}/red-alert2.png";
 }
