@@ -11,9 +11,10 @@
     red-alert2 cncnet-yr-mo minecraft
     gparted etcher
     arduino libusb1 libusb-compat-0_1
-    remmina
+    remmina navicat
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
+    vlc mpv
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";

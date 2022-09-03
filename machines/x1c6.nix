@@ -40,13 +40,6 @@
       options = [ "compress=zstd:3" ];
     };
 
-  fileSystems."/mnt/windows" =
-    {
-      device = "/dev/nvme0n1p4";
-      fsType = "ntfs";
-      options = [ "nofail" ];
-    };
-
   swapDevices = [
     {
       device = "/dev/disk/by-uuid/35133c6f-72a8-40c6-9265-dd7a94fae6d7";

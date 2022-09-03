@@ -22,11 +22,11 @@
   };
   environment.systemPackages = with pkgs; [
     neovim
-    wget file htop usbutils
+    wget file tree htop usbutils pciutils
     unrar unzip
     exa duf gdu
     hyfetch
-    nmap nali
+    nmap nali traceroute
     rclone
     rnix-lsp
     minicom
