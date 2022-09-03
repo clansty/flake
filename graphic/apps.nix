@@ -6,7 +6,7 @@
     gnome.gnome-tweaks
     vscode postman
     google-chrome microsoft-edge
-    yesplaymusic
+    cosbrowser
     jetbrains.webstorm jetbrains.idea-ultimate jupyter
     red-alert2 cncnet-yr-mo minecraft
     gparted etcher
@@ -14,7 +14,7 @@
     remmina navicat
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
-    vlc mpv
+    vlc mpv yesplaymusic
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";
