@@ -27,7 +27,7 @@
     exa duf gdu
     hyfetch
     nmap nali traceroute
-    rclone
+    rclone clansty-pb
     rnix-lsp
     minicom
     nodePackages.http-server nodePackages.asar
@@ -35,5 +35,6 @@
     python310Packages.ipython
     pdftk
     ntfs2btrfs
+    nrb gacp
   ];
 }
