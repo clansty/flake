@@ -14,7 +14,7 @@
     remmina navicat
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
-    vlc mpv yesplaymusic
+    vlc mpv yesplaymusic obs-studio
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";

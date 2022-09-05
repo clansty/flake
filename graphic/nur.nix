@@ -9,7 +9,7 @@
     linyinfeng.clash-for-windows
     rewine.aliyunpan
     (xddxdd.wine-wechat.override {
-      sha256 = "0QLki+wjGt+sy0ZAAy/M6TDe4w/JUQPiCqxmipeDbUA=";
+      sha256 = "E0ZGFVp9h42G3iMzJ26P7WiASSgRdgnTHUTSRouFQYw=";
     })
   ];
 }

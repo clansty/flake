@@ -29,7 +29,7 @@
     nmap nali traceroute
     rclone clansty-pb
     rnix-lsp
-    minicom
+    picocom
     nodePackages.http-server nodePackages.asar
     azure-cli wrangler
     python310Packages.ipython
