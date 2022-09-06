@@ -21,7 +21,7 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    neovim
+    neovim direnv
     wget file tree htop usbutils pciutils
     unrar unzip
     exa duf gdu

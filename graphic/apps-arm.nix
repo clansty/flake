@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    chromium
+    geekbench-aarch64
     (jetbrains.webstorm.overrideAttrs (attrs: {
       prePatch = ''
         echo hack fsnotifier nya~

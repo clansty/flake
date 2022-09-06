@@ -14,10 +14,16 @@
     };
     excludePackages = with pkgs; [
       xterm
-      gnome-connections
-      eolie
     ];
   };
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+    gnome-connections
+    eolie
+  ]) ++ (with pkgs.gnome; [
+    epiphany
+  ]);
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 

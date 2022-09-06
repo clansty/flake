@@ -2,6 +2,7 @@
 
 {
   # boot.tmpOnTmpfs = true;
+  boot.kernelParams = [ "systemd.show_status=1" ];
   boot.loader = {
     systemd-boot.enable = true;
     systemd-boot.consoleMode = "max";

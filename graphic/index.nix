@@ -7,6 +7,7 @@
             ./desktop.nix
             ./apps.nix
             ./fonts.nix
+            ./ime.nix
         ] ++ (
             if arch == "x86_64" then [
                 ./apps-x86.nix

@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     vscode jupyter
-    chromium
     gparted
     arduino libusb1 libusb-compat-0_1
     remmina
