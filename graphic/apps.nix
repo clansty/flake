@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
-    vscode #jetbrains.webstorm jupyter
+    vscode jupyter
     chromium
     gparted
     arduino libusb1 libusb-compat-0_1

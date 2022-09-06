@@ -3,6 +3,7 @@
 {
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
+    jetbrains.webstorm
     postman
     google-chrome microsoft-edge
     cosbrowser

@@ -10,7 +10,7 @@
       ./graphic/index.nix
       ./commandLine/index.nix
       ./i18n.nix
-      # ./virtualisation.nix
+      ./virtualisation.nix
       ./users.nix
       ./nfsClient.nix
     ];

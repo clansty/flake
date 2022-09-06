@@ -24,7 +24,7 @@
     }).drivers;
   };
 
-  nix.settings.cores = 4;
+  nix.settings.cores = 12;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f3fec70f-aa77-4350-9cd0-37c83452f429";
@@ -52,7 +52,15 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/e357e8ab-ea6d-4d6a-973e-67c5cf4d3bca"; }
     ];
+    
+  # boot.kernelPackages = pkgs.linuxPackages_5_10;
 
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  boot.kernelPatches = [ {
+    name = "kunpen-fix";
+    patch = null;
+    extraConfig = ''
+        HISI_PMU n
+      '';
+    } ];
 
 }
