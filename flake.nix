@@ -16,6 +16,20 @@
         names = builtins.attrNames dirContents;
       in
       builtins.listToAttrs (map genPackage names);
+    nixosConfigurations.clansty-w510 = inputs.nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        ./configuration.nix
+        ./machines/w510.nix
+        nur.nixosModules.nur
+        { networking.hostName = "clansty-w510"; }
+      ];
+      specialArgs = {
+        inherit inputs;
+        flake = self;
+        arch = "aarch64";
+      };
+    };
     nixosConfigurations.clansty-x1c = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -27,6 +41,7 @@
       specialArgs = {
         inherit inputs;
         flake = self;
+        arch = "x86_64";
       };
     };
   };

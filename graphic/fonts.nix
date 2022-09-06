@@ -13,7 +13,9 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = (with pkgs; [
-      nerdfonts
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "Hack" ];
+      })
       hack-font
       inter
       liberation_ttf

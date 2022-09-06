@@ -6,6 +6,6 @@
     systemd-boot.enable = true;
     systemd-boot.consoleMode = "max";
     systemd-boot.configurationLimit = 3;
-    efi.canTouchEfiVariables = true;
+    efi.canTouchEfiVariables = false;
   };
 }

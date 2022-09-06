@@ -1,17 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
-    vscode postman
-    google-chrome microsoft-edge
-    cosbrowser
-    jetbrains.webstorm jetbrains.idea-ultimate jupyter
-    red-alert2 cncnet-yr-mo minecraft
-    gparted etcher
+    vscode #jetbrains.webstorm jupyter
+    chromium
+    gparted
     arduino libusb1 libusb-compat-0_1
-    remmina navicat
+    remmina
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
     vlc mpv yesplaymusic obs-studio

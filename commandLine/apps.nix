@@ -34,7 +34,6 @@
     azure-cli wrangler
     python310Packages.ipython
     pdftk
-    ntfs2btrfs
     nrb gacp
   ];
 }
