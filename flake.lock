@@ -211,6 +211,25 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1659610603,
+        "narHash": "sha256-LYgASYSPYo7O71WfeUOaEUzYfzuXm8c8eavJcel+pfI=",
+        "owner": "nmattia",
+        "repo": "naersk",
+        "rev": "c6a45e4277fa58abd524681466d3450f896dc094",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmattia",
+        "ref": "master",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nixos-cn": {
       "inputs": {
         "flake-utils": [
@@ -325,6 +344,36 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1661353537,
+        "narHash": "sha256-1E2IGPajOsrkR49mM5h55OtYnU0dGyre6gl60NXKITE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0e304ff0d9db453a4b230e9386418fd974d5804a",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1661353537,
+        "narHash": "sha256-1E2IGPajOsrkR49mM5h55OtYnU0dGyre6gl60NXKITE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0e304ff0d9db453a4b230e9386418fd974d5804a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1662469431,
@@ -384,7 +433,8 @@
       "inputs": {
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "sauricat": "sauricat"
+        "sauricat": "sauricat",
+        "xremap-flake": "xremap-flake"
       }
     },
     "rust-overlay": {
@@ -460,6 +510,43 @@
       "original": {
         "owner": "oxalica",
         "repo": "tree-sitter-nix",
+        "type": "github"
+      }
+    },
+    "xremap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661313481,
+        "narHash": "sha256-pRq3MCmmi28hZ96QEg5iZiV6J6umf3BcvUaSRY8aOlw=",
+        "owner": "k0kubun",
+        "repo": "xremap",
+        "rev": "bc38537496800c47b9cd85d7e4ad529824668d3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "k0kubun",
+        "ref": "v0.7.5",
+        "repo": "xremap",
+        "type": "github"
+      }
+    },
+    "xremap-flake": {
+      "inputs": {
+        "naersk": "naersk",
+        "nixpkgs": "nixpkgs_4",
+        "xremap": "xremap"
+      },
+      "locked": {
+        "lastModified": 1662524316,
+        "narHash": "sha256-bfQYnPu6K6S99zAWmVN5ajeIMBCa0Q9W7iHs/6CvCWw=",
+        "owner": "clansty",
+        "repo": "xremap-nix-flake",
+        "rev": "66f46c9088ab5b1f1e20ccbe3ff7d733b80d0657",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clansty",
+        "repo": "xremap-nix-flake",
         "type": "github"
       }
     }

@@ -9,6 +9,5 @@
     cosbrowser
     red-alert2 cncnet-yr-mo minecraft
     navicat
-    etcher
   ];
 }

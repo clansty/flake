@@ -3,9 +3,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     sauricat.url = "github:sauricat/flakes/main";
     nur.url = github:nix-community/NUR;
+    xremap-flake.url = "github:clansty/xremap-nix-flake";
   };
 
-  outputs = { self, nixpkgs, nur, ... }@inputs: {
+  outputs = { self, nixpkgs, nur, xremap-flake, ... }@inputs: {
     overlays.clansty = self: super:
       let
         dirContents = builtins.readDir ./packages;
@@ -22,6 +23,8 @@
         ./configuration.nix
         ./machines/w510.nix
         nur.nixosModules.nur
+        xremap-flake.nixosModules.default
+        ./graphic/xremap.nix
         { networking.hostName = "clansty-w510"; }
       ];
       specialArgs = {

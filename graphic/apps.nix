@@ -10,6 +10,7 @@
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
     vlc mpv yesplaymusic obs-studio
+    balena-etcher
     (tdesktop.overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";
@@ -24,7 +25,6 @@
   ];
   services.udev.packages = [ 
     pkgs.micronucleus-udev-rules 
-    pkgs.xremap-udev-rules
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"

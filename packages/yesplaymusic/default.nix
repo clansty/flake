@@ -21,8 +21,7 @@ stdenv.mkDerivation rec {
     tar -xf ${src}
   '';
 
-  buildInputs = [ makeWrapper ];
-  nativeBuildInputs = [ copyDesktopItems ];
+  nativeBuildInputs = [ copyDesktopItems makeWrapper ];
 
   installPhase = ''
     runHook preInstall
