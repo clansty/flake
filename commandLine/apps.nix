@@ -22,7 +22,7 @@
   };
   environment.systemPackages = with pkgs; [
     neovim direnv
-    wget file tree htop usbutils pciutils
+    wget file tree htop usbutils pciutils binutils
     unrar unzip
     exa duf gdu
     hyfetch
