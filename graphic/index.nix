@@ -11,7 +11,6 @@
         ] ++ (
             if arch == "x86_64" then [
                 ./apps-x86.nix
-                ./nur.nix
             ] else []
         ) ++ (
             if arch == "aarch64" then [

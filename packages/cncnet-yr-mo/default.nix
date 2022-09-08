@@ -10,6 +10,8 @@
 , zstd
 , symlinkJoin
 , coreutils
+, gnutar
+, gzip
 , ...
 }:
 
@@ -74,6 +76,7 @@ let
     source ${commonInit}
     RW_DATADIR="$APPDIR/ra2yr-cncnet"
     if [ ! -f "$RW_DATADIR/CnCNetYRLauncher.exe" ]; then
+      PATH=$PATH:${gnutar}/bin:${gzip}/bin
       tar -xvf ${yrFiles}/ra2yr-cncnet.tar.gz -C $APPDIR
     fi
 
