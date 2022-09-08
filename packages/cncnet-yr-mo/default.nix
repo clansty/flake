@@ -9,10 +9,13 @@
 , copyDesktopItems
 , zstd
 , symlinkJoin
+, coreutils
 , ...
 }:
 
 let
+  winetricks_ = winetricks.override { zenity = null; };
+
   moFiles = fetchzip {
     url = "https://repo.nya.fish/mental-omega.tar";
     sha256 = "cI2fFD3XU4keu6kxWPCI/4IGOOaXVIAZvKNOGttdopk=";
@@ -36,6 +39,8 @@ let
   };
 
   commonInit = writeShellScript "init" ''
+    export PATH=${coreutils}/bin
+    
     APPDIR="$HOME/.cncnet"
     export WINEPREFIX="$APPDIR/wine"
 
@@ -44,8 +49,8 @@ let
     export WINEARCH=win32
 
     if [ ! -f "$APPDIR/xna_installed" ]; then
-      PATH=${wine}/bin:$PATH ${winetricks}/bin/winetricks xna40
-      PATH=${wine}/bin:$PATH ${winetricks}/bin/winetricks winxp
+      PATH=${wine}/bin:$PATH ${winetricks_}/bin/winetricks xna40
+      PATH=${wine}/bin:$PATH ${winetricks_}/bin/winetricks winxp
       touch "$APPDIR/xna_installed"
     fi
 

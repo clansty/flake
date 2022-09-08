@@ -376,11 +376,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1662469431,
-        "narHash": "sha256-R10JlBNmOJdJsW8t6z0uL7arOoxZYtYoh9g1ADfnmVQ=",
+        "lastModified": 1662545195,
+        "narHash": "sha256-eiQO1jaEBHSHnEfWG+UP4Fpd9+YDTDhslBiRNcaUtAA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "baf66ddb4e1c079ad3629e98e8e1928a2b986eb3",
+        "rev": "ac09047f0ae9b9490107966f2b2b065c843a2453",
         "type": "github"
       },
       "original": {
@@ -483,11 +483,11 @@
         "tree-sitter-nix-oxa": "tree-sitter-nix-oxa"
       },
       "locked": {
-        "lastModified": 1662426572,
-        "narHash": "sha256-alJl1g1zpMLnP775JpOLwkDlx2F2XzEoMj2/QB37dr0=",
+        "lastModified": 1662555484,
+        "narHash": "sha256-3ZmGUjGQScsQCjO8VhskwgciCGS9Lvagr5dtOJTu+kA=",
         "owner": "sauricat",
         "repo": "flakes",
-        "rev": "468ba87a04aec0cdde7ba3f329360396a1d0bae2",
+        "rev": "3c2bf3d9f878a119b9f2719c0673fbd0372dfd08",
         "type": "github"
       },
       "original": {

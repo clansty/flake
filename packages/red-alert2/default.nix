@@ -6,6 +6,7 @@
 , makeDesktopItem
 , copyDesktopItems
 , zstd
+, coreutils
 , ...
 }:
 
@@ -29,6 +30,7 @@ let
   };
 
   startScript = writeShellScript "red-alert2" ''
+    export PATH=${coreutils}/bin
     APPDIR="$HOME/.ra2"
     RW_DATADIR="$APPDIR/game"
     export WINEARCH=win32

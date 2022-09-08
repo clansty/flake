@@ -6,7 +6,7 @@
     xremap-flake.url = "github:clansty/xremap-nix-flake";
   };
 
-  outputs = { self, nixpkgs, nur, xremap-flake, ... }@inputs: {
+  outputs = { self, nixpkgs, xremap-flake, ... }@inputs: {
     overlays.clansty = self: super:
       let
         dirContents = builtins.readDir ./packages;
@@ -22,9 +22,11 @@
       modules = [
         ./configuration.nix
         ./machines/w510.nix
-        nur.nixosModules.nur
+        inputs.nur.nixosModules.nur
         xremap-flake.nixosModules.default
         ./graphic/xremap.nix
+        ./services/code-server.nix
+        ./binfmt.nix
         { networking.hostName = "clansty-w510"; }
       ];
       specialArgs = {
@@ -38,7 +40,7 @@
       modules = [
         ./configuration.nix
         ./machines/x1c6.nix
-        nur.nixosModules.nur
+        inputs.nur.nixosModules.nur
         { networking.hostName = "clansty-x1c"; }
       ];
       specialArgs = {
