@@ -14,8 +14,5 @@
         rm $out/libexec/**/fsnotifier*
       '';
     }))
-  ]) ++ (
-    [
-    ]
-  );
+  ]);
 }

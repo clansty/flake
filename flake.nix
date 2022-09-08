@@ -26,7 +26,6 @@
         xremap-flake.nixosModules.default
         ./graphic/xremap.nix
         ./services/code-server.nix
-        ./binfmt.nix
         { networking.hostName = "clansty-w510"; }
       ];
       specialArgs = {

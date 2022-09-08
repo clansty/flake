@@ -1,16 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  foreignArch = import ../utils/foreignArch.nix { inherit pkgs lib; };
-
-  nurCombined = pkgs.fetchFromGitHub {
-    owner = "nix-community";
-    repo = "nur-combined";
-    rev = "397b2002b61ed26721a091a159aa642145471b48";
-    fetchSubmodules = true;
-    sha256 = "YHT6o1/cg4qemTzCoHTc2DAfMMf785/WiLFY/mctsgA=";
-  };
-in
 {
   environment.systemPackages = (with pkgs; [
     gnome.gnome-tweaks
@@ -37,20 +26,6 @@ in
   ]) ++ (with config.nur.repos; [
     rewine.landrop
     rewine.aliyunpan
-  ]) ++ ([
-    ((foreignArch.callPackageX86 "${nurCombined}/repos/xddxdd/pkgs/wine-wechat" {
-      sha256 = "E0ZGFVp9h42G3iMzJ26P7WiASSgRdgnTHUTSRouFQYw=";
-      winetricks = foreignArch.pkgsX86.winetricks.override { zenity = null; };
-      wine = foreignArch.pkgsX86.wine.overrideAttrs (attrs: {
-        preConfigure = (attrs.preConfigure or "") + ''
-          echo qwq
-          substituteInPlace ./configure \
-            --replace '/bin/sh' '${foreignArch.pkgsX86.bash}/bin/sh'
-        '';
-      });
-    }).overrideAttrs (attrs: {
-      meta.platforms = [ "i686-linux" ];
-    }))
   ]);
   services.udev.packages = [ 
     pkgs.micronucleus-udev-rules 
