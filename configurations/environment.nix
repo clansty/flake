@@ -13,13 +13,13 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
 
-  time.timeZone = "Asia/Shanghai";
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     inputs.sauricat.overlays.sauricat
     flake.overlays.clansty
   ];
 
-  system.stateVersion = "22.05";
+  networking.firewall.enable = false;
+
+  system.stateVersion = "22.11";
 }
