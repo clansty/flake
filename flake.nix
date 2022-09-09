@@ -4,6 +4,7 @@
     sauricat.url = "github:sauricat/flakes/main";
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:clansty/xremap-nix-flake";
+    superstar-checkin.url = "github:clansty/superstar-checkin";
   };
 
   outputs = inputs:

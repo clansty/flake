@@ -213,7 +213,7 @@
     },
     "naersk": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1659610603,
@@ -346,6 +346,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1662096612,
+        "narHash": "sha256-R+Q8l5JuyJryRPdiIaYpO5O3A55rT+/pItBrKcy7LM4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "21de2b973f9fee595a7a1ac4693efff791245c34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1661353537,
         "narHash": "sha256-1E2IGPajOsrkR49mM5h55OtYnU0dGyre6gl60NXKITE=",
         "owner": "NixOS",
@@ -358,7 +374,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1661353537,
         "narHash": "sha256-1E2IGPajOsrkR49mM5h55OtYnU0dGyre6gl60NXKITE=",
@@ -434,6 +450,7 @@
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "sauricat": "sauricat",
+        "superstar-checkin": "superstar-checkin",
         "xremap-flake": "xremap-flake"
       }
     },
@@ -497,6 +514,24 @@
         "type": "github"
       }
     },
+    "superstar-checkin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1662714474,
+        "narHash": "sha256-8yUpT9zflnZD8HFrl+rsOAfMtwi6zMLGU2o2GWbBZzQ=",
+        "owner": "clansty",
+        "repo": "superstar-checkin",
+        "rev": "5dd62cb7dbf95ca05e53461b905b7fea99188a07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clansty",
+        "repo": "superstar-checkin",
+        "type": "github"
+      }
+    },
     "tree-sitter-nix-oxa": {
       "flake": false,
       "locked": {
@@ -533,7 +568,7 @@
     "xremap-flake": {
       "inputs": {
         "naersk": "naersk",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "xremap": "xremap"
       },
       "locked": {

@@ -50,6 +50,7 @@ in
       name = "nixserver";
       extraModules = [
         ./services/postgres.nix
+        ./services/superstar-checkin.nix
       ];
     }
   ]);
