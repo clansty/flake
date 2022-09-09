@@ -27,7 +27,7 @@
     [{ device = "/dev/disk/by-uuid/4c416bc0-624f-48f6-919e-9982d431011b"; }];
 
   networking = {
-    dhcpcd.enable = fales;
+    dhcpcd.enable = false;
     interfaces.enp6s18.ipv4.addresses = [{
       address = "172.16.0.72";
       prefixLength = 24;
