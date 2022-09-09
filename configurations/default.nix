@@ -46,6 +46,12 @@ in
       name = "x1c";
       desktop = true;
     }
+    {
+      name = "nixserver";
+      extraModules = [
+        ./services/postgres.nix
+      ];
+    }
   ]);
   darwin = { };
 }

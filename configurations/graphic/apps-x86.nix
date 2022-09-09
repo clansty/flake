@@ -13,6 +13,8 @@
     rewine.typora-legacy
     linyinfeng.clash-for-windows
     linyinfeng.wemeet
-    xddxdd.wine-wechat
+    (xddxdd.wine-wechat.override {
+      sha256 = "1321hn5ldlj43p9hjxhi514q0s7dixp2fcr3vs38v1vxb8alcihk";
+    })
   ]);
 }
