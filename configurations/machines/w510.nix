@@ -24,7 +24,7 @@
     }).drivers;
   };
 
-  nix.settings.cores = 12;
+  nix.settings.cores = 23;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f3fec70f-aa77-4350-9cd0-37c83452f429";
@@ -63,4 +63,8 @@
       '';
     } ];
 
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 }
