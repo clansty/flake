@@ -5,6 +5,7 @@
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:clansty/xremap-nix-flake";
     superstar-checkin.url = "github:clansty/superstar-checkin";
+    q2tg.url = "path:/home/clansty/Projects/Q2TG";
   };
 
   outputs = inputs:

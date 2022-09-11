@@ -66,5 +66,6 @@
     pdftk
     nrb
     gacp
+    tgs-to-gif
   ];
 }
