@@ -466,11 +466,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1662913722,
-        "narHash": "sha256-2Sr/l9NoDe7XWE56NbV6AUYxUaxeo1PYNTR2op8plIM=",
+        "lastModified": 1662975618,
+        "narHash": "sha256-Ng0U8gpLKPyvi68RKaZRX4fnIuzVYo2mbi6UyEohd6Q=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "f24401343391a76bfd650c65e82eb8f0ce911290",
+        "rev": "88d541c03ddf55ea8688d41c190afc46c0fc6c2d",
         "type": "github"
       },
       "original": {
