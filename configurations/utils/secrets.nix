@@ -1,4 +1,4 @@
 import (builtins.fetchGit {
   url = "ssh://git@github.com/clansty/nix-secrets.git";
-  rev = "6dceafc9aa2c7e913caf5fc364e79ce4fd43cd09";
+  rev = "9695e9e716cbb4be59db578142a926fb6914104c";
 })
