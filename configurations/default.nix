@@ -40,6 +40,7 @@ in
       extraModules = [
         ./graphic/xremap.nix
         ./services/code-server.nix
+        ./services/nginx-pc.nix
       ];
     }
     {
