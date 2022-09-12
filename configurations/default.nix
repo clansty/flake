@@ -51,6 +51,7 @@ in
       extraModules = [
         ./services/postgres.nix
         ./services/superstar-checkin.nix
+        ./services/q2tg.nix
       ];
     }
   ]);

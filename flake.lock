@@ -466,14 +466,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-MVOl0y2XM9YWIM+tPZSdhHIEPBhIzfUnTi/1r15OxcU=",
-        "path": "/home/clansty/Projects/Q2TG",
-        "type": "path"
+        "lastModified": 1662913722,
+        "narHash": "sha256-2Sr/l9NoDe7XWE56NbV6AUYxUaxeo1PYNTR2op8plIM=",
+        "owner": "clansty",
+        "repo": "Q2TG",
+        "rev": "f24401343391a76bfd650c65e82eb8f0ce911290",
+        "type": "github"
       },
       "original": {
-        "path": "/home/clansty/Projects/Q2TG",
-        "type": "path"
+        "owner": "clansty",
+        "repo": "Q2TG",
+        "type": "github"
       }
     },
     "root": {
