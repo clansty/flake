@@ -12,10 +12,35 @@
         {
           name = "Global";
           remap = {
-            CapsLock = "Ctrl_L";
             Alt_L = "Win_L";
             Win_L = "Alt_L";
           };
+        }
+        {
+          name = "CapsLock in apps other then terminal";
+          remap.CapsLock = "Ctrl_L";
+          application.not = "org.gnome.Console";
+        }
+      ];
+      virtual_modifiers = [ "CapsLock" ];
+      keymap = [
+        {
+          name = "Terminal";
+          remap = {
+            CapsLock-c = "Ctrl-Shift-c";
+            CapsLock-v = "Ctrl-Shift-v";
+            CapsLock-t = "Ctrl-Shift-t";
+            CapsLock-w = "Ctrl-Shift-w";
+            CapsLock-f = "Ctrl-Shift-f";
+            CapsLock-1 = "Alt-1";
+            CapsLock-2 = "Alt-2";
+            CapsLock-3 = "Alt-3";
+            CapsLock-4 = "Alt-4";
+            CapsLock-5 = "Alt-5";
+            CapsLock-6 = "Alt-6";
+            CapsLock-7 = "Alt-7";
+          };
+          application.only = "org.gnome.Console";
         }
       ];
     };

@@ -11,4 +11,10 @@
     fsType = "nfs";
     options = [ "nfsvers=4.2" "nofail" ];
   };
+
+  fileSystems."/run/media/clansty/saeziae" = {
+    device = "172.22.2.1:/srv/nfs4/shares";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" "nofail" ];
+  };
 }
