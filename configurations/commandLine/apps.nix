@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  boot.binfmt.emulatedSystems = [ "riscv64-linux" ];
   programs = {
     git = {
       enable = true;
@@ -36,35 +35,19 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    neovim
-    direnv
-    wget
-    file
-    tree
-    htop
-    usbutils
-    pciutils
-    binutils
-    unrar
-    unzip
-    exa
-    duf
-    gdu
+    neovim direnv
+    wget file tree htop usbutils pciutils binutils
+    unrar unzip
+    exa duf gdu
     hyfetch
-    nmap
-    nali
-    traceroute
-    rclone
-    clansty-pb
+    nmap nali traceroute
+    rclone clansty-pb
     rnix-lsp
     picocom
-    nodePackages.http-server
-    nodePackages.asar
-    azure-cli
-    wrangler
+    nodePackages.http-server nodePackages.asar
+    azure-cli wrangler
     python310Packages.ipython
     pdftk
-    nrb
-    gacp
+    nrb gacp
   ];
 }

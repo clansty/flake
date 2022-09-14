@@ -129,6 +129,21 @@
     },
     "flake-utils": {
       "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "locked": {
         "lastModified": 1649676176,
         "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
@@ -142,7 +157,7 @@
         "type": "github"
       }
     },
-    "flake-utils_2": {
+    "flake-utils_3": {
       "locked": {
         "lastModified": 1659877975,
         "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
@@ -424,7 +439,7 @@
     "nvfetcher": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "sauricat",
           "berberman",
@@ -463,14 +478,15 @@
     },
     "q2tg": {
       "inputs": {
+        "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1662989374,
-        "narHash": "sha256-64mryTwHrB+iXgksgq1b0ZOYewvpYP+Oejd1faWSC94=",
+        "lastModified": 1663167590,
+        "narHash": "sha256-80LEDytqeAPFDF/FeAe0S4/W1WKtfY9JdQlEAiqMSvg=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "786e079f864fa5e4cad00a3f194afefb3f49f9a3",
+        "rev": "35754366cee634e129289778bf24f841fd4d9450",
         "type": "github"
       },
       "original": {
@@ -522,7 +538,7 @@
         "epkgs-ligature": "epkgs-ligature",
         "epkgs-toggle-one-window": "epkgs-toggle-one-window",
         "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "home-manager": "home-manager",
         "lsp-nil": "lsp-nil",
         "nixos-cn": "nixos-cn",

@@ -9,10 +9,12 @@
     remmina
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
-    vlc mpv yesplaymusic obs-studio
+    vlc yesplaymusic obs-studio
     balena-etcher
     icalingua-pp
-    (tdesktop.overrideAttrs (oldAttrs: {
+    ((tdesktop.override {
+      qtwayland = null;
+    }).overrideAttrs (oldAttrs: {
       pname = "t64";
       version = "1.0.44";
       src = fetchFromGitHub {
@@ -22,6 +24,9 @@
         fetchSubmodules = true;
         sha256 = "hrbdSl1ymwMzVnQri47D41ui8fPLHgD9wN9veQ2ifDM=";
       };
+      cmakeFlags = oldAttrs.cmakeFlags ++ [
+        "-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON"
+      ];
     }))
   ]) ++ (with config.nur.repos; [
     rewine.landrop

@@ -41,6 +41,7 @@ in
         ./graphic/xremap.nix
         ./services/code-server.nix
         ./services/nginx-pc.nix
+        ./emulation/riscv.nix
       ];
     }
     {

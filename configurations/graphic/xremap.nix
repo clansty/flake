@@ -42,6 +42,13 @@
           };
           application.only = "org.gnome.Console";
         }
+        {
+          name = "Applications launch shortcut";
+          remap = {
+            Win-e.launch = [ "nautilus" ];
+            Win-c.launch = [ "telegram-desktop" ];
+          };
+        }
       ];
     };
   };
