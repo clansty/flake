@@ -476,30 +476,10 @@
         "type": "github"
       }
     },
-    "q2tg": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1663167590,
-        "narHash": "sha256-80LEDytqeAPFDF/FeAe0S4/W1WKtfY9JdQlEAiqMSvg=",
-        "owner": "clansty",
-        "repo": "Q2TG",
-        "rev": "35754366cee634e129289778bf24f841fd4d9450",
-        "type": "github"
-      },
-      "original": {
-        "owner": "clansty",
-        "repo": "Q2TG",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "q2tg": "q2tg",
         "sauricat": "sauricat",
         "superstar-checkin": "superstar-checkin",
         "xremap-flake": "xremap-flake"
