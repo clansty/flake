@@ -313,11 +313,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1662911228,
-        "narHash": "sha256-oJOrB2lEeBLaO8g1DKG5PK9a1zyOWypkscrEfxxEj8A=",
+        "lastModified": 1662996720,
+        "narHash": "sha256-XvLQ3SuXnDMJMpM1sv1ifPjBuRytiDYhB12H/BNTjgY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c97e777ff06fcb8d37dcdf5e21e9eff1f34f0e90",
+        "rev": "5f326e2a403e1cebaec378e72ceaf5725983376d",
         "type": "github"
       },
       "original": {
@@ -423,11 +423,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1662986835,
-        "narHash": "sha256-lCJqySeJ+EOMxBc4mhGNu+w8CLSvuhXKKOk8K8vR8wc=",
+        "lastModified": 1663169719,
+        "narHash": "sha256-qVcQ4mCIjb0ytbnXjqeYovNU3CecLNzEjyqhgTNRmsw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "0e14f4ae7cd2101be263e3ddc3740b0a07b26071",
+        "rev": "3bbdde74d4b8fffbd4aafb28a4935fd03fd56fb4",
         "type": "github"
       },
       "original": {
@@ -476,10 +476,30 @@
         "type": "github"
       }
     },
+    "q2tg": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1663169404,
+        "narHash": "sha256-tU284nbxa8UI+A3gnIhwUInXOI/8RUonrr4MW1/Dl44=",
+        "owner": "clansty",
+        "repo": "Q2TG",
+        "rev": "49a55087080adf1f8e146092e737e574092b7ac7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clansty",
+        "repo": "Q2TG",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
         "nur": "nur",
+        "q2tg": "q2tg",
         "sauricat": "sauricat",
         "superstar-checkin": "superstar-checkin",
         "xremap-flake": "xremap-flake"
@@ -550,11 +570,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1662714474,
-        "narHash": "sha256-8yUpT9zflnZD8HFrl+rsOAfMtwi6zMLGU2o2GWbBZzQ=",
+        "lastModified": 1663060032,
+        "narHash": "sha256-bJdy9rpVHw0g/3ygUbL/qho4zhpE7cxcUpNJjtn5cdw=",
         "owner": "clansty",
         "repo": "superstar-checkin",
-        "rev": "5dd62cb7dbf95ca05e53461b905b7fea99188a07",
+        "rev": "5cd9f42b78ed1408a3d7a5a44aaf54948e2f9c65",
         "type": "github"
       },
       "original": {

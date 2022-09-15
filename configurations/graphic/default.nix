@@ -8,6 +8,7 @@
             ./apps.nix
             ./fonts.nix
             ./ime.nix
+            ./fingerprint.nix
         ] ++ (
             if arch == "x86_64" then [
                 ./apps-x86.nix

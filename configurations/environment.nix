@@ -20,6 +20,7 @@
   ];
 
   networking.firewall.enable = false;
+  hardware.usbWwan.enable = true;
 
   system.stateVersion = "22.11";
 }
