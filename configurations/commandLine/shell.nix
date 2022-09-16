@@ -11,13 +11,13 @@
       async = true;
     };
     promptInit = ''
+      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${../dotfiles/p10k.zsh}
       bindkey '^[[1;3D' backward-word
       bindkey '^[[1;3C' forward-word
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
     '';
-    syntaxHighlighting.enable = true;
   };
 
   programs.fish.enable = true;

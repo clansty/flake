@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  users.defaultUserShell = pkgs.zsh;
   users.users.clansty = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "Clansty Icaria";
     extraGroups = [
