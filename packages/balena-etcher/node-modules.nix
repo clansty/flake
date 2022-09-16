@@ -2,7 +2,7 @@
     inherit system;
   }
 , system ? builtins.currentSystem
-, nodejs ? pkgs.nodejs
+, nodejs ? pkgs.nodejs-16_x
 }:
 
 let
@@ -14,7 +14,7 @@ let
 in
 {
   development = import ./node-packages-dev.nix {
-    inherit (pkgs) fetchurl nix-gitignore stdenv lib fetchgit fetchFromGitHub;
+    inherit (pkgs) fetchurl nix-gitignore stdenv lib fetchFromGitHub;
     inherit nodeEnv;
   };
 }

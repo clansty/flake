@@ -2,7 +2,7 @@
 , stdenv
 , fetchFromGitHub
 , fetchurl
-, nodejs
+, nodejs-16_x
 , nodePackages
 , electron_12
 , makeDesktopItem
@@ -15,16 +15,6 @@
 }:
 
 let
-  # bp = callPackage
-  #   (fetchFromGitHub ({
-  #     owner = "serokell";
-  #     repo = "nix-npm-buildpackage";
-  #     rev = "ec9a825ad4a6f1fb2d6bb8371be827c9c8bf5b80";
-  #     fetchSubmodules = true;
-  #     sha256 = "53wPtqRsiaR8e3njRHZbO4lPX1W9hHdTarHEx6gE/s0=";
-  #   }))
-  #   { };
-
   src = fetchFromGitHub ({
     owner = "balena-io";
     repo = "etcher";
@@ -57,17 +47,13 @@ let
     pname = "balena-etcher-app";
     version = "1.7.9";
 
-    # src = bp.buildNpmPackage {
-    #   src = patchedSrc;
-    # };
-
     src = "${nodeModules.development.package}/lib/node_modules/balena-etcher";
 
     dontConfigure = true;
     dontStrip = true;
     dontPatchELF = true;
 
-    nativeBuildInputs = [ nodejs python3 ];
+    nativeBuildInputs = [ nodejs-16_x python3 ];
 
     buildPhase = ''
       runHook preBuild
@@ -75,6 +61,7 @@ let
       tar -xf ${nodeHeaders} -C /build/.node-gyp/12.2.3
       mv /build/.node-gyp/12.2.3/*/include /build/.node-gyp/12.2.3
       echo 9 > /build/.node-gyp/12.2.3/installVersion
+      sed -i -e "s|#!/usr/bin/env node|#! ${nodejs-16_x}/bin/node|" node_modules/webpack/bin/webpack.js
       echo rebuild nya~
       export ELECTRON_SKIP_BINARY_DOWNLOAD=1
       export ELECTRON_OVERRIDE_DIST_PATH="${electron_12}/bin"
