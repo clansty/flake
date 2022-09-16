@@ -10,7 +10,7 @@
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     libreoffice-fresh
     vlc yesplaymusic obs-studio
-    balena-etcher
+    # balena-etcher
     icalingua-pp
     ((tdesktop.override {
       qtwayland = null;
