@@ -7,16 +7,15 @@ let
     ./commandLine
     ./i18n.nix
     ./virtualisation.nix
-    ./users.nix
+    ./users
     ./nfsClient.nix
-    ./security.nix
   ];
 
   darwinModules = [
     ./environment.nix
     ./commandLine
     ./darwin
-    ./users.nix
+    ./users
     ./graphic/fonts.nix
   ];
 
