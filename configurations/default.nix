@@ -16,6 +16,7 @@ let
     ./commandLine
     ./darwin
     ./users.nix
+    ./graphic/fonts.nix
   ];
 
   desktopModules = [

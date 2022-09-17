@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, isLinux, ... }:
 
 {
   fonts = {
@@ -14,7 +14,7 @@
     enableGhostscriptFonts = true;
     fonts = (with pkgs; [
       (nerdfonts.override {
-        fonts = [ "FiraCode" "Hack" ];
+        # fonts = [ "FiraCode" "Hack" ];
       })
       hack-font
       inter
@@ -34,11 +34,12 @@
       source-han-serif-simplified-chinese
       wqy_microhei
       wqy_zenhei
-      san-francisco
-      meslo-lg
       sarasa-gothic
     ]) ++ (with config.nur.repos; [
       rewine.ttf-ms-win10
-    ]);
+    ]) ++ (pkgs.lib.lists.optionals isLinux (with pkgs; [
+      san-francisco
+      meslo-lg
+    ]));
   };
 }
