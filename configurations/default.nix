@@ -15,6 +15,7 @@ let
     ./environment.nix
     ./commandLine
     ./users.nix
+    ./graphic/fonts.nix
   ];
 
   desktopModules = [
