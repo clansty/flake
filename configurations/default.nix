@@ -49,7 +49,7 @@ let
           networking.localHostName = "clansty-${name}";
           services.nix-daemon.enable = true;
         }
-      ] ++ basicModules ++ (if desktop then desktopModules else [ ]) ++ extraModules;
+      ] ++ darwinModules ++ extraModules;
       specialArgs = {
         inherit inputs arch;
         flake = inputs.self;
