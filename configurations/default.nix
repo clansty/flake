@@ -9,6 +9,7 @@ let
     ./virtualisation.nix
     ./users.nix
     ./nfsClient.nix
+    ./security.nix
   ];
 
   darwinModules = [

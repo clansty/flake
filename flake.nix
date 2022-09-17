@@ -9,7 +9,7 @@
     superstar-checkin.url = "github:clansty/superstar-checkin";
     q2tg.url = "github:clansty/Q2TG";
     darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:Enzime/nix-darwin/karabiner-elements";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

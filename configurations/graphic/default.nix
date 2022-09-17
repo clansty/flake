@@ -1,23 +1,19 @@
-{ arch, ... }:
+{ arch, lib, ... }:
 
 {
-    imports =
-        [ 
-            ./displayManager.nix
-            ./desktop.nix
-            ./apps.nix
-            ./fonts.nix
-            ./ime.nix
-            ./fingerprint.nix
-        ] ++ (
-            if arch == "x86_64" then [
-                ./apps-x86.nix
-            ] else []
-        ) ++ (
-            if arch == "aarch64" then [
-                ./apps-arm.nix
-                ./google-keys.nix
-            ] else []
-        );
+  imports =
+    [
+      ./displayManager.nix
+      ./desktop.nix
+      ./apps.nix
+      ./fonts.nix
+      ./ime.nix
+      ./fingerprint.nix
+    ] ++ (lib.lists.optionals arch == "x86_64" [
+      ./apps-x86.nix
+    ]) ++ (lib.lists.optionals arch == "aarch64" [
+      ./apps-arm.nix
+      ./google-keys.nix
+    ]);
 }
 

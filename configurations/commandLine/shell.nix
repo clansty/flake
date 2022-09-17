@@ -23,8 +23,6 @@
   programs.fish.enable = true;
 
   environment = {
-    #localBinInPath = true;
-    #homeBinInPath = true;
     variables = {
       EDITOR = "nvim";
       HYPHEN_INSENSITIVE = "true";
