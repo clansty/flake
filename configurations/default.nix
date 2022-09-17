@@ -30,6 +30,7 @@ let
       modules = [
         ./machines/${name}.nix
         inputs.nur.nixosModules.nur
+        inputs.home-manager.nixosModules.home-manager
         { networking.hostName = "clansty-${name}"; }
       ] ++ basicModules ++ (if desktop then desktopModules else [ ]) ++ extraModules;
       specialArgs = {
@@ -46,6 +47,7 @@ let
       system = "${arch}-darwin";
       modules = [
         inputs.nur.nixosModules.nur
+        inputs.home-manager.darwinModules.home-manager
         {
           networking.hostName = "clansty-${name}";
           networking.localHostName = "clansty-${name}";

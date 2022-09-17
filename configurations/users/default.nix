@@ -1,5 +1,8 @@
 { lib, isLinux, ... }:
 {
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  
   imports = [
     ./clansty
   ] ++

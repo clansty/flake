@@ -12,5 +12,7 @@
     tdesktop-mac
     typora-crack
     qspace-pro
+    iproute2mac
+    pkgs.jdk11
   ];
 }

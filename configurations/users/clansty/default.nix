@@ -1,6 +1,12 @@
 { config, pkgs, lib, isLinux, ... }:
 
 {
+  imports = [
+    ./git.nix
+    ./ssh.nix
+  ];
+  home-manager.users.clansty.home.stateVersion = "22.11";
+
   users.users.clansty = {
     shell = pkgs.zsh;
     description = "Clansty Icaria";

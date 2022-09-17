@@ -211,6 +211,27 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1663328500,
+        "narHash": "sha256-7n+J/exp8ky4dmk02y5a9R7CGmJvHpzrHMzfEkMtSWA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5427f3d1f0ea4357cd4af0bffee7248d640c6ffc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
           "sauricat",
           "nixpkgs"
         ],
@@ -534,6 +555,7 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
+        "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "q2tg": "q2tg",
@@ -576,7 +598,7 @@
         "epkgs-toggle-one-window": "epkgs-toggle-one-window",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_3",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "lsp-nil": "lsp-nil",
         "nixos-cn": "nixos-cn",
         "nixos-guix": "nixos-guix",
@@ -634,6 +656,21 @@
       "original": {
         "owner": "oxalica",
         "repo": "tree-sitter-nix",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
