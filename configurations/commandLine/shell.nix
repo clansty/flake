@@ -2,14 +2,14 @@
 {
   programs.zsh = {
     enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "sudo" ];
-    };
-    autosuggestions = {
-      enable = true;
-      async = true;
-    };
+    #ohMyZsh = {
+    #  enable = true;
+    #  plugins = [ "git" "sudo" ];
+    #};
+    #autosuggestions = {
+    #  enable = true;
+    #  async = true;
+    #};
     promptInit = ''
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
@@ -23,8 +23,8 @@
   programs.fish.enable = true;
 
   environment = {
-    localBinInPath = true;
-    homeBinInPath = true;
+    #localBinInPath = true;
+    #homeBinInPath = true;
     variables = {
       EDITOR = "nvim";
       HYPHEN_INSENSITIVE = "true";

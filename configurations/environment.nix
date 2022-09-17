@@ -18,8 +18,9 @@
     inputs.sauricat.overlays.sauricat
     flake.overlays.clansty
   ];
+  nixpkgs.config.allowBroken = true;
 
-  networking.firewall.enable = false;
+  #networking.firewall.enable = false;
 
   system.stateVersion = if isLinux then "22.11" else 4;
 }

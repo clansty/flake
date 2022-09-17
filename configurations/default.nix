@@ -14,6 +14,7 @@ let
   darwinModules = [
     ./environment.nix
     ./commandLine
+    ./darwin
     ./users.nix
   ];
 
