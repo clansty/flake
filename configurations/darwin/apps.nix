@@ -5,5 +5,7 @@
     vscode
     iterm2
     jetbrains.webstorm
+    gimp inkscape
+    postman
   ];
 }
