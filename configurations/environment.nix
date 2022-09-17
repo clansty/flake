@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, inputs, flake, ... }:
+{ config, pkgs, lib, modulesPath, inputs, flake, isLinux, ... }:
 
 {
   nix = {
@@ -20,7 +20,6 @@
   ];
 
   networking.firewall.enable = false;
-  hardware.usbWwan.enable = true;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = if isLinux then "22.11" else 4;
 }

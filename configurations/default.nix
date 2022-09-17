@@ -11,6 +11,12 @@ let
     ./nfsClient.nix
   ];
 
+  darwinModules = [
+    ./environment.nix
+    ./commandLine
+    ./users.nix
+  ];
+
   desktopModules = [
     ./graphic
   ];
@@ -27,6 +33,27 @@ let
       specialArgs = {
         inherit inputs arch;
         flake = inputs.self;
+        isLinux = true;
+      };
+    };
+  };
+
+  mkDarwin = { name, arch ? "aarch64", extraModules ? [ ] }: {
+    name = "clansty-${name}";
+    value = inputs.darwin.lib.darwinSystem {
+      system = "${arch}-darwin";
+      modules = [
+        inputs.nur.nixosModules.nur
+        {
+          networking.hostName = "clansty-${name}";
+          networking.localHostName = "clansty-${name}";
+          services.nix-daemon.enable = true;
+        }
+      ] ++ basicModules ++ (if desktop then desktopModules else [ ]) ++ extraModules;
+      specialArgs = {
+        inherit inputs arch;
+        flake = inputs.self;
+        isLinux = false;
       };
     };
   };
@@ -57,5 +84,10 @@ in
       ];
     }
   ]);
-  darwin = { };
+  darwin = builtins.listToAttrs (map mkDarwin [
+    {
+      name = "m1";
+      extraModules = [ ];
+    }
+  ]);
 }
