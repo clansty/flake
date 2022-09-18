@@ -7,6 +7,7 @@
       package = pkgs.jdk11;
     };
   };
+  virtualisation.docker.enable = true;
   environment.systemPackages = with pkgs; [
     usbutils pciutils binutils
     traceroute

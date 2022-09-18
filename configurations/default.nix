@@ -6,7 +6,6 @@ let
     ./services/openssh.nix
     ./commandLine
     ./i18n.nix
-    ./virtualisation.nix
     ./users
     ./nfsClient.nix
   ];

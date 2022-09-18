@@ -6,5 +6,5 @@
   imports = [
     ./clansty
   ] ++
-  (lib.lists.optionals isLinux ./security.nix);
+  (lib.lists.optional isLinux ./security.nix);
 }
