@@ -8,6 +8,7 @@ let
     ./i18n.nix
     ./users
     ./nfsClient.nix
+    ./networking.nix
   ];
 
   darwinModules = [

@@ -39,6 +39,7 @@
             CapsLock-5 = "Alt-5";
             CapsLock-6 = "Alt-6";
             CapsLock-7 = "Alt-7";
+            CapsLock-Shift-s = "Ctrl-Shift-s";
           };
           application.only = "org.gnome.Console";
         }

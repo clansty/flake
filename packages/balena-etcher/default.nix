@@ -12,9 +12,12 @@
 , python3
 , bash
 , util-linux
+, darwinHelper
 }:
 
 let
+  version = "1.7.9";
+
   src = fetchFromGitHub ({
     owner = "balena-io";
     repo = "etcher";
@@ -45,7 +48,7 @@ let
 
   app = stdenv.mkDerivation rec {
     pname = "balena-etcher-app";
-    version = "1.7.9";
+    inherit version;
 
     src = "${nodeModules.development.package}/lib/node_modules/balena-etcher";
 
@@ -85,11 +88,24 @@ let
     '';
   };
 in
-makeDesktopItem {
-  name = "balena-etcher";
-  exec = "${electron_12}/bin/electron ${app}";
-  comment = "Flash OS images to SD cards and USB drives, safely and easily.";
-  desktopName = "BalenaEtcher";
-  categories = [ "Utility" ];
-  icon = "${app}/assets/icon.png";
-}
+if stdenv.isLinux then
+  makeDesktopItem
+  {
+    name = "balena-etcher";
+    exec = "${electron_12}/bin/electron ${app}";
+    comment = "Flash OS images to SD cards and USB drives, safely and easily.";
+    desktopName = "BalenaEtcher";
+    categories = [ "Utility" ];
+    icon = "${app}/assets/icon.png";
+  }
+else
+  darwinHelper.packCommonMacApp {
+    inherit pname version;
+    src = darwinHelper.fetchdmg {
+      url = "https://github.com/balena-io/etcher/releases/download/v${version}/balenaEtcher-${version}.dmg";
+      sha256 = "08vc3lc8w342pk9m34cqwi66vflxy8k0r84nqhydyqqpyp1syla6";
+    };
+    meta = with lib; {
+      platforms = [ "x86_64-darwin" "aarch64-darwin" ];
+    };
+  }
