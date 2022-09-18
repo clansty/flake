@@ -100,7 +100,8 @@ if stdenv.isLinux then
   }
 else
   darwinHelper.packCommonMacApp {
-    inherit pname version;
+    inherit version;
+    pname = "balena-etcher";
     src = darwinHelper.fetchdmg {
       url = "https://github.com/balena-io/etcher/releases/download/v${version}/balenaEtcher-${version}.dmg";
       sha256 = "08vc3lc8w342pk9m34cqwi66vflxy8k0r84nqhydyqqpyp1syla6";

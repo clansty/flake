@@ -7,12 +7,13 @@
     iterm2
     jetbrains.webstorm
     inkscape
-    postman
+    postman navicat
     stats alt-tab
     tdesktop-mac
     typora-crack
     qspace-pro
     iproute2mac
     pkgs.jdk11
+    balena-etcher
   ];
 }

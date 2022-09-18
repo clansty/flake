@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages = with pkgs; with config.nur.repos; [
     gnome.gnome-tweaks
     vscode jupyter
     gparted
@@ -13,10 +13,9 @@
     balena-etcher
     icalingua-pp
     tdesktop-x64
-  ]) ++ (with config.nur.repos; [
     rewine.landrop
     rewine.aliyunpan
-  ]);
+  ];
   services.udev.packages = [ 
     pkgs.micronucleus-udev-rules 
   ];
