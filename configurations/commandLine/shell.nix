@@ -2,7 +2,7 @@
 {
   programs.zsh = {
     enable = true;
-    promptInit = ''
+    interactiveShellInit = ''
       plugins=(git sudo)
       source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
