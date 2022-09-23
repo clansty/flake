@@ -1,6 +1,6 @@
 { darwinHelper, lib, stdenvNoCC, tdesktop, fetchFromGitHub }:
 let
-  version = "1.0.44";
+  version = "1.0.46";
   pname = "TDesktop-x64";
 in
 if stdenvNoCC.isLinux then
@@ -14,7 +14,7 @@ if stdenvNoCC.isLinux then
         repo = "tdesktop";
         rev = "v${version}";
         fetchSubmodules = true;
-        sha256 = "hrbdSl1ymwMzVnQri47D41ui8fPLHgD9wN9veQ2ifDM=";
+        sha256 = "iu8CaAElieots6I676FRFv5JR5tFo5cXvyB9mcvrMdg=";
       };
       cmakeFlags = oldAttrs.cmakeFlags ++ [
         "-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON"
@@ -25,7 +25,7 @@ else
     inherit pname version;
     src = darwinHelper.fetchdmg {
       url = "https://github.com/TDesktop-x64/tdesktop/releases/download/v${version}/64Gram_${version}_mac.dmg";
-      sha256 = "1daj8lqps25ph9j5sam0yzga1h5zir6w81g2r2c40712s44c2cg0";
+      sha256 = "0xi8kkzfdcp30iy02hj96xmpqfca9xrsahx7vxl0mz9ckhbs48a1";
     };
     meta = with lib; {
       homepage = "https://github.com/TDesktop-x64/tdesktop";
