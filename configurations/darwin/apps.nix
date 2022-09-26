@@ -5,7 +5,7 @@
     openssh
     vscode
     iterm2
-    jetbrains.webstorm
+    jetbrains.webstorm jetbrains.idea-ultimate
     inkscape
     postman navicat
     stats alt-tab
@@ -15,5 +15,6 @@
     iproute2mac
     pkgs.jdk11
     balena-etcher
+    yesplaymusic
   ];
 }
