@@ -4,7 +4,7 @@
     neovim direnv
     wget file tree htop
     unrar unzip
-    exa duf gdu
+    duf gdu
     hyfetch
     nmap nali
     rclone clansty-pb
