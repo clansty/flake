@@ -28,6 +28,7 @@
     shellAliases = {
       ":q" = "exit";
       ":wq" = "exit";
+      ls = "${pkgs.exa}/bin/exa --color-scale --group-directories-first --time-style iso -bH";
       l = "ls -l";
       ll = "l";
       la = "l -a";
