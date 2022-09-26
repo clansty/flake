@@ -4,7 +4,9 @@
   fonts = {
     fontDir.enable = true;
     fonts = (with pkgs; [
-      nerdfonts
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "Hack" "JetBrainsMono" "UbuntuMono" ];
+      })
       hack-font
       inter
       liberation_ttf
@@ -16,9 +18,9 @@
       noto-fonts-extra
       roboto
       sarasa-gothic
+      source-han-sans
+      source-han-serif
       source-han-mono
-      source-han-sans-simplified-chinese
-      source-han-serif-simplified-chinese
       wqy_microhei
       wqy_zenhei
     ]) ++ (with config.nur.repos; [

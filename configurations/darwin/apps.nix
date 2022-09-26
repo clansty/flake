@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   services.karabiner-elements.enable = true;
+  programs.nix-index.enable = true;
+  programs.man.enable = true;
   environment.systemPackages = with pkgs; [
     openssh
     vscode
