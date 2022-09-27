@@ -13,13 +13,13 @@
         host all all 172.16.0.0/12 md5
       '';
     };
-    pgadmin = {
-      enable = true;
-      initialEmail = "i@gao4.pw";
-      initialPasswordFile = pkgs.writeText "qwq" "password";
-      settings = {
-        DEFAULT_SERVER = "0.0.0.0";
-      };
-    };
+    # pgadmin = {
+    #   enable = true;
+    #   initialEmail = "i@gao4.pw";
+    #   initialPasswordFile = pkgs.writeText "qwq" "password";
+    #   settings = {
+    #     DEFAULT_SERVER = "0.0.0.0";
+    #   };
+    # };
   };
 }

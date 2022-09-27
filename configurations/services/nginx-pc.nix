@@ -23,17 +23,21 @@ in
       '';
       locations."/maimai-xck/".alias = builtins.fetchGit {
         url = "ssh://git@github.com/clansty/maimai-xck.git";
-        rev = "d1dd34ac25fc3914cedb23ea48fd6b68938a822d";
+        rev = "d7e0c82166f396c8e42904d2bd14ec5138517a21";
       } + "/";
       locations."/ariang/".alias = pkgs.fetchzip {
         url = "https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip";
         sha256 = "TID8r5M4bCLg3d7J8nb7/hDRMj1U1FbGjccu1PdKJRg=";
         stripRoot = false;
       } + "/";
-      locations."/adminer/"={
+      locations."/adminer/" = {
         alias = pkgs.adminer + "/";
         extraConfig = enablePhp;
       };
+      locations."/nuist/".alias = builtins.fetchGit {
+        url = "https://github.com/clansty/nuist-goout-v2.git";
+        rev = "280c0ccac197b83c133423413b9637ea22877b51";
+      } + "/";
     };
   };
   services.phpfpm.pools.mypool = {
