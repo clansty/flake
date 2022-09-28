@@ -10,6 +10,7 @@ let
       fastcgi_param SCRIPT_FILENAME $request_filename;
     }
   '';
+  secrets = import ../utils/secrets.nix;
 in
 {
   services.nginx = {
@@ -21,9 +22,12 @@ in
         autoindex_exact_size off;
         autoindex_localtime on;
       '';
+      addSSL = true;
+      sslCertificate = pkgs.concatText "caBundle" [ ../dotfiles/w510.crt ../dotfiles/ca.crt ];
+      sslCertificateKey = secrets.w510Key;
       locations."/maimai-xck/".alias = builtins.fetchGit {
         url = "ssh://git@github.com/clansty/maimai-xck.git";
-        rev = "d7e0c82166f396c8e42904d2bd14ec5138517a21";
+        rev = "685f2a3fd1424ad4d5cb39a0bea89f897092de96";
       } + "/";
       locations."/ariang/".alias = pkgs.fetchzip {
         url = "https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip";
