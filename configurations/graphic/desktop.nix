@@ -28,7 +28,7 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
   environment.systemPackages = (with pkgs.gnomeExtensions; [
-    tray-icons-reloaded
+    appindicator
     dash-to-dock
     system-monitor
     xremap

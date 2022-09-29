@@ -10,6 +10,7 @@ let
       fastcgi_param SCRIPT_FILENAME $request_filename;
     }
   '';
+  secrets = import ../utils/secrets.nix;
 in
 {
   services.nginx = {
@@ -21,19 +22,26 @@ in
         autoindex_exact_size off;
         autoindex_localtime on;
       '';
+      addSSL = true;
+      sslCertificate = pkgs.concatText "caBundle" [ ../dotfiles/w510.crt ../dotfiles/ca.crt ];
+      sslCertificateKey = secrets.w510Key;
       locations."/maimai-xck/".alias = builtins.fetchGit {
         url = "ssh://git@github.com/clansty/maimai-xck.git";
-        rev = "d1dd34ac25fc3914cedb23ea48fd6b68938a822d";
+        rev = "43337d74b538b323f21aeec10370ecd1c75b59db";
       } + "/";
       locations."/ariang/".alias = pkgs.fetchzip {
         url = "https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip";
         sha256 = "TID8r5M4bCLg3d7J8nb7/hDRMj1U1FbGjccu1PdKJRg=";
         stripRoot = false;
       } + "/";
-      locations."/adminer/"={
+      locations."/adminer/" = {
         alias = pkgs.adminer + "/";
         extraConfig = enablePhp;
       };
+      locations."/nuist/".alias = builtins.fetchGit {
+        url = "https://github.com/clansty/nuist-goout-v2.git";
+        rev = "280c0ccac197b83c133423413b9637ea22877b51";
+      } + "/";
     };
   };
   services.phpfpm.pools.mypool = {
