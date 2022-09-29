@@ -19,8 +19,4 @@
   services.udev.packages = [ 
     pkgs.micronucleus-udev-rules 
   ];
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-12.2.3"
-    "electron-9.4.4"
-  ];
 }

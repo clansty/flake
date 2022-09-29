@@ -21,4 +21,9 @@
   nixpkgs.config.allowBroken = true;
 
   system.stateVersion = if isLinux then "22.11" else 4;
+
+    nixpkgs.config.permittedInsecurePackages = [
+    "electron-12.2.3"
+    "electron-9.4.4"
+  ];
 }
