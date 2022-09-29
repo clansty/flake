@@ -9,7 +9,6 @@
     settings.trusted-public-keys = [
       config.nur.repos.xddxdd._binaryCache.publicKey
     ];
-    package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
   };
 
