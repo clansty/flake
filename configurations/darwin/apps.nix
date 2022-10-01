@@ -8,7 +8,7 @@
     vscode
     iterm2
     jetbrains.webstorm jetbrains.idea-ultimate
-    inkscape
+    inkscape-icon
     postman navicat
     stats alt-tab
     tdesktop-mac
