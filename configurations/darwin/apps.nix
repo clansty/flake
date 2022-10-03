@@ -17,6 +17,7 @@
     iproute2mac
     pkgs.jdk11
     balena-etcher
-    yesplaymusic
+    yesplaymusic discord-electron
+    zstd
   ];
 }
