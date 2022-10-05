@@ -27,7 +27,7 @@ in
       sslCertificateKey = secrets.w510Key;
       locations."/maimai-xck/".alias = builtins.fetchGit {
         url = "ssh://git@github.com/clansty/maimai-xck.git";
-        rev = "338cc09855049f89628713a62faa79a544936543";
+        rev = "46b5f3e3c426f954e906959c7f708999ed30ca08";
       } + "/";
       locations."/ariang/".alias = pkgs.fetchzip {
         url = "https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip";
