@@ -5,6 +5,7 @@
   
   imports = [
     ./clansty
+    ./luoling8192
   ] ++
   (lib.lists.optional isLinux ./security.nix);
 }
