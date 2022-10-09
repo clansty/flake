@@ -1,9 +1,9 @@
 { config, pkgs, lib, isLinux, ... }:
 
 {
-  home-manager.users.clansty.home.stateVersion = "22.11";
+  home-manager.users.luoling8192.home.stateVersion = "22.11";
 
-  users.users.clansty = {
+  users.users.luoling8192 = {
     shell = pkgs.zsh;
     description = "RainbowBird";
   } // lib.attrsets.optionalAttrs isLinux {

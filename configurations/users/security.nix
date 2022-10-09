@@ -2,7 +2,7 @@
 {
   security.sudo.extraRules = [
     {
-      users = [ "clansty" ];
+      users = [ "clansty" "luoling8192" ];
       commands = [
         {
           command = "ALL";
