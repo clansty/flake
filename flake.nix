@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     sauricat.url = "github:sauricat/flakes/main";
     nur.url = github:nix-community/NUR;
-    xremap-flake.url = "github:clansty/xremap-nix-flake";
+    xremap-flake.url = "github:xremap/nix-flake/aarch64";
     superstar-checkin.url = "github:clansty/superstar-checkin";
     q2tg.url = "github:clansty/Q2TG";
     darwin = {
