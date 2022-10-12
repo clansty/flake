@@ -1,6 +1,6 @@
 { darwinHelper, lib, stdenvNoCC, tdesktop, fetchFromGitHub }:
 let
-  version = "1.0.46";
+  version = "1.0.48";
   pname = "TDesktop-x64";
 in
 if stdenvNoCC.isLinux then
@@ -14,7 +14,7 @@ if stdenvNoCC.isLinux then
         repo = "tdesktop";
         rev = "v${version}";
         fetchSubmodules = true;
-        sha256 = "iu8CaAElieots6I676FRFv5JR5tFo5cXvyB9mcvrMdg=";
+        sha256 = "ZBlvnKvwSpaSCV1tTLhxsh0XJf/mhZISaHxETtiPI7I=";
       };
       cmakeFlags = oldAttrs.cmakeFlags ++ [
         "-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON"

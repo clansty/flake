@@ -6,11 +6,6 @@
     layout = "us";
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['scale-monitor-framebuffer' 'x11-randr-fractional-scaling']
-      '';
-      extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
     };
     excludePackages = with pkgs; [
       xterm

@@ -215,11 +215,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664286632,
-        "narHash": "sha256-fKENvLanhmBENlIbmDAVB8SKSbwdLLBYKu6B7oJ0rLc=",
+        "lastModified": 1665271265,
+        "narHash": "sha256-4Nn0T5YoR3bBLFnPy6Tkc8zzmzMTBjSGZq05c5hKhEI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6dc8a43f397c92afbc3f771385ac803d96d5eeb5",
+        "rev": "e1f1160284198a68ea8c7fffbbb1436f99e46ef9",
         "type": "github"
       },
       "original": {
@@ -369,11 +369,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1664370076,
-        "narHash": "sha256-NDnIo0nxJozLwEw0VPM+RApMA90uTfbvaNNtC5eB7Os=",
+        "lastModified": 1665296151,
+        "narHash": "sha256-uOB0oxqxN9K7XGF1hcnY+PQnlQJ+3bP2vCn/+Ru/bbc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "854fdc68881791812eddd33b2fed94b954979a8e",
+        "rev": "14ccaaedd95a488dd7ae142757884d8e125b3363",
         "type": "github"
       },
       "original": {
@@ -479,11 +479,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1664400119,
-        "narHash": "sha256-G6gKRK9uOk7kt1uWCzmyuLB/qdQtGO8mxjs/dtTIr9A=",
+        "lastModified": 1665383489,
+        "narHash": "sha256-iC8rqf/AnOAj6q6C06xgk235BQe3HUwoOpnGZON0lAI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "e378da2e2cd205a55a0203b91162fefba04087e6",
+        "rev": "1288804127a95c9bdf86a44848a73a1a79fd47ed",
         "type": "github"
       },
       "original": {
@@ -538,11 +538,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1663338729,
-        "narHash": "sha256-HuY+f86SGdr1pOgoquyMLPWHw4gDkZPleHP9Ev7M8hg=",
+        "lastModified": 1664866797,
+        "narHash": "sha256-EV6cZ15V2ogpDqH9Ewu9+e4OvZNxazcy7SPmOA1CquQ=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "d604166c97c712951fca0d068d936e2d5b63a0f4",
+        "rev": "5565f3e6e0fc763ec6499553fdf5b078d79bab21",
         "type": "github"
       },
       "original": {
@@ -609,11 +609,11 @@
         "tree-sitter-nix-oxa": "tree-sitter-nix-oxa"
       },
       "locked": {
-        "lastModified": 1664223677,
-        "narHash": "sha256-xQ3lv6HvBKpY0xZmHhD/oarvt+w9awtIihsivxE9YmE=",
+        "lastModified": 1664635936,
+        "narHash": "sha256-sOLpc0Ws5Bifui8fE5Xf030ttyFYj1NPXQ5MkmBXQwo=",
         "owner": "sauricat",
         "repo": "flakes",
-        "rev": "e1278f37ba25ba9306e2e9e59542985f0d89c526",
+        "rev": "27e7968208e06370b48e5d1cd738e940462d4f46",
         "type": "github"
       },
       "original": {
