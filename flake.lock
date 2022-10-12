@@ -538,11 +538,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1664866797,
-        "narHash": "sha256-EV6cZ15V2ogpDqH9Ewu9+e4OvZNxazcy7SPmOA1CquQ=",
+        "lastModified": 1665556457,
+        "narHash": "sha256-Etm6sYgIGEn9iqUiUBqygvHIpaiFvXp9xXWHZuhvCf8=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "5565f3e6e0fc763ec6499553fdf5b078d79bab21",
+        "rev": "82dae9d0306e444495884ab72e6bd87049ad503c",
         "type": "github"
       },
       "original": {
@@ -629,11 +629,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1663334349,
-        "narHash": "sha256-xcsVoFZIQEJxDYOXXxgsdQmSE3WX4GMENolqgaL4mF8=",
+        "lastModified": 1665546016,
+        "narHash": "sha256-zagWStmzVP8mCbp2U81+XgFMSJsliLqEnyjd55iVU3o=",
         "owner": "clansty",
         "repo": "superstar-checkin",
-        "rev": "a0f7d1df1de659f7ca278fcfa63f537cc110399a",
+        "rev": "75eb89325abb437cfef8c44035933c138eafa291",
         "type": "github"
       },
       "original": {
