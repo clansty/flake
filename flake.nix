@@ -5,9 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     sauricat.url = "github:sauricat/flakes/main";
     nur.url = github:nix-community/NUR;
-    xremap-flake.url = "github:xremap/nix-flake/aarch64";
+    xremap-flake.url = "github:xremap/nix-flake";
     superstar-checkin.url = "github:clansty/superstar-checkin";
-    q2tg.url = "github:clansty/Q2TG/b15ffc0d732ea5a116c4650e7233ed1c2f7e2fa5";
+    q2tg.url = "github:clansty/Q2TG/f1fb1275c8e8c06867ec44b4e71dcd3e3c4234d4";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";

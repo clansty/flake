@@ -4,6 +4,7 @@
 , stdenvNoCC
 , darwinHelper
 , lib
+, fetchzip
 , ...
 } @ args:
 
@@ -29,9 +30,10 @@ else
   darwinHelper.packCommonMacApp {
     pname = "navicat";
     version = "16.1.1";
-    src = darwinHelper.fetchdmg {
-      url = "https://mac.qdrayst.com/02/Navicat%20Premium%2016.1.1_zh-CN_macwk.com.dmg";
-      sha256 = "sha256-BnLlVXB6wqw+rFDech833XB4i66z8SRz3fkkTNp4dYk=";
+    src = fetchzip {
+      url = "https://dl.lwqwq.com/d/应用/服务器/Navicat%20Premium.app.zip";
+      sha256 = "sha256-Xv3V4X9m8D1/1WR7WgXSAPsYgKQXLJos7RrN9wOzGDg";
+      stripRoot = false;
     };
     meta = with lib; {
       platforms = [ "x86_64-darwin" "aarch64-darwin" ];

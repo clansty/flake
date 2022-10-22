@@ -34,7 +34,7 @@
       la = "l -a";
       vi = "nvim";
       svi = "sudo nvim";
-      nrbu = "nrb --upgrade-all --recreate-lock-file";
+      nrbu = "nrb --recreate-lock-file";
     };
   };
 }

@@ -1,13 +1,13 @@
 { fetchzip, darwinHelper, lib }:
 let
-  version = "6.46.1";
+  version = "6.47.0";
 in
 darwinHelper.packCommonMacApp {
   inherit version;
   pname = "AltTab";
   src = fetchzip {
     url = "https://github.com/lwouis/alt-tab-macos/releases/download/v${version}/AltTab-${version}.zip";
-    sha256 = "jUioj2/DLxjMDa6+SNHPvYlrybsEUufSXNOpErNlYfE=";
+    sha256 = "sha256-CifPjT0LjbLk4LU1XHJ2Y5dRnNEzK7VFej3yy8+FU14=";
   };
   meta = with lib; {
     description = "Windows alt-tab on macOS";

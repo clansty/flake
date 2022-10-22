@@ -1,13 +1,14 @@
-{ darwinHelper, lib }:
+{ darwinHelper, lib, fetchzip }:
 let
   version = "1.4.3";
 in
 darwinHelper.packCommonMacApp {
   inherit version;
   pname = "Typora";
-  src = darwinHelper.fetchdmg {
-    url = "https://mac.qdrayst.com/02/Typora_${version}_macwk.com.dmg";
-    sha256 = "HOur7izaQ0+kXfEQKMLYEJ4zZmTsAfCWqRG1TfKyv0I=";
+  src = fetchzip {
+    url = "https://dl.lwqwq.com/d/应用/文档/Typora.app.zip";
+    sha256 = "sha256-qF4X/zSsbCgi/0PGswWAXd7qogv23UJz+sj96K6xHME=";
+    stripRoot = false;
   };
   meta = with lib; {
     platforms = [ "x86_64-darwin" "aarch64-darwin" ];
