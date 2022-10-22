@@ -2,7 +2,7 @@
 let
   moduleLib = builtins.fetchGit {
     url = "ssh://git@github.com/clansty/ctm-record.git";
-    rev = "3ff6613b95b1df1bdd8d3050bbae0d3a9fce45c8";
+    rev = "35039dfc9cc77696551fb03c5912e1f46f830975";
   };
 in
 {
