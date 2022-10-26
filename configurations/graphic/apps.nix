@@ -3,7 +3,8 @@
 {
   environment.systemPackages = with pkgs; with config.nur.repos; [
     gnome.gnome-tweaks
-    vscode jupyter
+    vscode jupyter kate
+    firefox
     gparted
     arduino libusb1 libusb-compat-0_1
     remmina
@@ -16,7 +17,7 @@
     rewine.landrop
     rewine.aliyunpan
   ];
-  services.udev.packages = [ 
-    pkgs.micronucleus-udev-rules 
+  services.udev.packages = with pkgs; [ 
+    micronucleus-udev-rules 
   ];
 }

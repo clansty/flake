@@ -21,6 +21,8 @@
 
   documentation.enable = false;
 
+  security.pki.certificateFiles = [ ./dotfiles/ca.crt ];
+
   system.stateVersion = if isLinux then "22.11" else 4;
 
   nixpkgs.config.permittedInsecurePackages = [
