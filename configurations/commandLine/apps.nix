@@ -15,6 +15,6 @@
     python310Packages.ipython
     pdftk
     nrb gacp
-    python3 python310Packages.pip
+    python3 nodejs
   ];
 }
