@@ -15,6 +15,7 @@
     tdesktop-x64
     rewine.landrop
     rewine.aliyunpan
+    charles
   ];
   services.udev.packages = [ 
     pkgs.micronucleus-udev-rules 

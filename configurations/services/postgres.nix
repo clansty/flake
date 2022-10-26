@@ -14,13 +14,13 @@
         host all all 192.168.194.0/24 md5
       '';
     };
-    # pgadmin = {
-    #   enable = true;
-    #   initialEmail = "i@gao4.pw";
-    #   initialPasswordFile = pkgs.writeText "qwq" "password";
-    #   settings = {
-    #     DEFAULT_SERVER = "0.0.0.0";
-    #   };
-    # };
+    pgadmin = {
+      enable = true;
+      initialEmail = "i@gao4.pw";
+      initialPasswordFile = pkgs.writeText "qwq" "password";
+      settings = {
+        DEFAULT_SERVER = "0.0.0.0";
+      };
+    };
   };
 }

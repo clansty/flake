@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.karabiner-elements.enable = true;
   programs.nix-index.enable = true;
   programs.man.enable = true;
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; with config.nur.repos; [
     openssh
     vscode
     iterm2
@@ -19,5 +19,14 @@
     balena-etcher
     yesplaymusic discord-electron
     zstd
+    (
+      let hmcl = YisuiMilena.hmcl-bin;
+      in
+      darwinHelper.wrapApplication {
+        name = "HMCL";
+        icon = "${hmcl}/share/icons/hicolor/48x48/apps/hmcl.png";
+        exec = "${hmcl}/bin/hmcl-bin";
+      }
+    )
   ];
 }
