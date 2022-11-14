@@ -35,5 +35,6 @@
         builtins.listToAttrs (map genPackage names);
       nixosConfigurations = configurations.nixos;
       darwinConfigurations = configurations.darwin;
+      homeConfigurations = configurations.home;
     };
 }

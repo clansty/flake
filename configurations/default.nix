@@ -61,6 +61,19 @@ let
       };
     };
   };
+
+  mkHome = { modules, system }: {
+    name = system;
+    value = inputs.home-manager.lib.homeManagerConfiguration
+    {
+      inherit modules;
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      extraSpecialArgs = {
+        inherit inputs;
+        flake = inputs.self;
+      };
+    };
+  };
 in
 {
   nixos = builtins.listToAttrs (map mkLinux [
@@ -94,6 +107,15 @@ in
     {
       name = "m1";
       extraModules = [ ];
+    }
+  ]);
+  home = builtins.listToAttrs (map mkHome [
+    {
+      system = "aarch64-darwin";
+      modules = [ 
+        ./users/clansty/home
+        { home.homeDirectory = "/Users/clansty"; }
+      ];
     }
   ]);
 }

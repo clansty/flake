@@ -1,11 +1,7 @@
 { config, pkgs, lib, isLinux, ... }:
 
 {
-  imports = [
-    ./git.nix
-    ./ssh.nix
-  ];
-  home-manager.users.clansty.home.stateVersion = "22.11";
+  home-manager.users.clansty = import ./home;
 
   users.users.clansty = {
     shell = pkgs.zsh;
