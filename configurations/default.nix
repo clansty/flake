@@ -62,17 +62,20 @@ let
     };
   };
 
-  mkHome = { modules, system }: {
-    name = system;
+  mkHome = { system, name, extraModules ? [ ], home }: {
+    inherit name;
     value = inputs.home-manager.lib.homeManagerConfiguration
-    {
-      inherit modules;
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
-        inherit inputs;
-        flake = inputs.self;
+      {
+        modules = [
+          ./users/clansty/home
+          { home.homeDirectory = home; }
+        ];
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = {
+          inherit inputs;
+          flake = inputs.self;
+        };
       };
-    };
   };
 in
 {
@@ -111,11 +114,24 @@ in
   ]);
   home = builtins.listToAttrs (map mkHome [
     {
+      name = "aarch64-darwin";
       system = "aarch64-darwin";
-      modules = [ 
-        ./users/clansty/home
-        { home.homeDirectory = "/Users/clansty"; }
-      ];
+      home = "/Users/clansty";
+    }
+    {
+      name = "aarch64-lima";
+      system = "aarch64-linux";
+      home = "/home/clansty.linux";
+    }
+    {
+      name = "aarch64-linux";
+      system = "aarch64-linux";
+      home = "/home/clansty";
+    }
+    {
+      name = "x86_64-linux";
+      system = "x86_64-linux";
+      home = "/home/clansty";
     }
   ]);
 }

@@ -11,6 +11,7 @@
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    os_icon
     dir                     # current directory
     vcs                     # git status
     newline                 # \n

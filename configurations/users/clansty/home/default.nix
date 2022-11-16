@@ -5,6 +5,7 @@
   imports = [
     ./git.nix
     ./ssh.nix
+    ./shell.nix
   ];
 
   home.stateVersion = "22.11";
@@ -20,8 +21,10 @@
   '';
 
   programs.home-manager.enable = true;
-  home.packages = with pkgs; [
-    coreutils
-    rnix-lsp
-  ];
+  home.packages = with pkgs; [ ] ++
+    (if pkgs.system == "aarch64-darwin" then with pkgs;[
+      coreutils
+      rnix-lsp
+      hyfetch
+    ] else [ ]);
 }
