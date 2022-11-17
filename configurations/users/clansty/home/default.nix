@@ -15,7 +15,7 @@
     flake.overlays.clansty
   ];
 
-  nix.package = pkgs.nix;
+  nix.package = pkgs.lib.mkForce pkgs.nix;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

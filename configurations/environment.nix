@@ -28,5 +28,6 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"
     "electron-9.4.4"
+    "electron-17.4.1"
   ];
 }
