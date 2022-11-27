@@ -39,6 +39,11 @@ in
           sha256 = "TID8r5M4bCLg3d7J8nb7/hDRMj1U1FbGjccu1PdKJRg=";
           stripRoot = false;
         } + "/";
+        "/cyberchef/".alias = pkgs.fetchzip {
+          url = "https://github.com/gchq/CyberChef/releases/download/v9.49.0/CyberChef_v9.49.0.zip";
+          sha256 = "5cqCPxyH4O4TzAIwRR2oyWMzIl5Hi5YcdOKdpl518zw=";
+          stripRoot = false;
+        } + "/";
         "/adminer/" = {
           alias = pkgs.adminer + "/";
           extraConfig = enablePhp;
