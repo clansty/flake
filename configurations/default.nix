@@ -90,6 +90,7 @@ in
         ./services/nginx-pc.nix
         ./emulation/riscv.nix
         ./services/samba-home.nix
+        ./services/pkgbuilder-host.nix
       ];
     }
     {
