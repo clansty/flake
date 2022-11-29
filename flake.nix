@@ -7,7 +7,7 @@
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:xremap/nix-flake";
     superstar-checkin.url = "github:clansty/superstar-checkin";
-    q2tg.url = "github:clansty/Q2TG/f1fb1275c8e8c06867ec44b4e71dcd3e3c4234d4";
+    q2tg.url = "github:clansty/Q2TG/acdd27aebec09cf7b9da7c5b72063473e033384e";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +16,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs:
@@ -23,12 +24,12 @@
       configurations = import ./configurations inputs;
     in
     {
-      overlays.clansty = self: super:
+      overlays.clansty = final: prev:
         let
           dirContents = builtins.readDir ./packages;
           genPackage = name: {
             inherit name;
-            value = self.callPackage (./packages + "/${name}") { };
+            value = final.callPackage (./packages + "/${name}") { };
           };
           names = builtins.attrNames dirContents;
         in
@@ -36,5 +37,6 @@
       nixosConfigurations = configurations.nixos;
       darwinConfigurations = configurations.darwin;
       homeConfigurations = configurations.home;
+      deploy = import ./configurations/servers.nix inputs;
     };
 }

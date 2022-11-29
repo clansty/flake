@@ -1,13 +1,11 @@
 inputs:
 let
   basicModules = [
-    ./boot.nix
     ./environment.nix
     ./services/openssh.nix
     ./commandLine
     ./i18n.nix
     ./users
-    ./nfsClient.nix
     ./networking.nix
   ];
 
@@ -21,9 +19,10 @@ let
 
   desktopModules = [
     ./graphic
+    ./nfsClient.nix
   ];
 
-  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ] }: {
+  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], boot ? true }: {
     name = "clansty-${name}";
     value = inputs.nixpkgs.lib.nixosSystem {
       system = "${arch}-linux";
@@ -32,7 +31,11 @@ let
         inputs.nur.nixosModules.nur
         inputs.home-manager.nixosModules.home-manager
         { networking.hostName = "clansty-${name}"; }
-      ] ++ basicModules ++ (if desktop then desktopModules else [ ]) ++ extraModules;
+      ] ++
+      basicModules ++
+      (if desktop then desktopModules else [ ]) ++
+      extraModules ++
+      (if boot then [ ./boot.nix ] else [ ]);
       specialArgs = {
         inherit inputs arch;
         flake = inputs.self;
@@ -105,6 +108,7 @@ in
         ./services/q2tg.nix
         ./services/ctm-record.nix
       ];
+      boot = false;
     }
   ]);
   darwin = builtins.listToAttrs (map mkDarwin [

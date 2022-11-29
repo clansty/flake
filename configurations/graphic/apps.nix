@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+  virtualisation.docker.enable = true;
   environment.systemPackages = with pkgs; with config.nur.repos; [
     gnome.gnome-tweaks
     vscode jupyter kate

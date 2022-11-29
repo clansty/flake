@@ -1,21 +1,24 @@
 { config, pkgs, lib, modulesPath, inputs, flake, isLinux, ... }:
 
 {
-  nix = {
-    settings.substituters = [
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"
-      config.nur.repos.xddxdd._binaryCache.url
-    ];
-    settings.trusted-public-keys = [
-      config.nur.repos.xddxdd._binaryCache.publicKey
-    ];
-    extraOptions = "experimental-features = nix-command flakes";
-  };
+  nix =
+    let
+      substituters = [
+        "https://mirrors.bfsu.edu.cn/nix-channels/store/"
+        "https://cache.nixos.org"
+      ];
+    in
+    {
+      settings.substituters = substituters;
+      settings.trusted-substituters = substituters ++ [ "<local-substituter>" ];
+      extraOptions = "experimental-features = nix-command flakes";
+    };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     inputs.sauricat.overlays.sauricat
     flake.overlays.clansty
+    inputs.deploy-rs.overlay
   ];
   nixpkgs.config.allowBroken = true;
 
