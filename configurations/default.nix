@@ -20,6 +20,7 @@ let
   desktopModules = [
     ./graphic
     ./nfsClient.nix
+    ./commandLine-desktop
   ];
 
   mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], boot ? true }: {

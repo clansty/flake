@@ -34,9 +34,9 @@
 
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
-    deploy-rs.deploy-rs
   ] ++
   (if pkgs.system == "aarch64-darwin" then with pkgs;[
+    deploy-rs.deploy-rs
     coreutils
     rnix-lsp
     hyfetch
