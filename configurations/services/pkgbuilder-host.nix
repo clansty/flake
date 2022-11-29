@@ -1,7 +1,6 @@
 { ... }:
 {
   users.users.builder = {
-    uid = 100999;
     home = "/nohome";
     isNormalUser = true;
     extraGroups = [ "docker" ];

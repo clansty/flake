@@ -1,25 +1,25 @@
-{ config, ... }:
+{ baseDir, ... }:
 {
   fileSystems = {
-    "/run/media/clansty/shares" = {
+    "${baseDir}/shares" = {
       device = "172.16.0.70:/mnt/data/shares";
       fsType = "nfs";
       options = [ "nfsvers=4.2" "nofail" ];
     };
 
-    "/run/media/clansty/backups" = {
+    "${baseDir}/backups" = {
       device = "172.16.0.70:/mnt/data/backups";
       fsType = "nfs";
       options = [ "nfsvers=4.2" "nofail" ];
     };
 
-    "/run/media/clansty/clansty" = {
+    "${baseDir}/clansty" = {
       device = "//172.16.0.70/clansty";
       fsType = "cifs";
       options = [ "nofail" "credentials=${(import utils/secrets.nix).smbSecrets}" "uid=1000" "gid=100" "vers=3" ];
     };
 
-    "/run/media/clansty/saeziae" = {
+    "${baseDir}/saeziae" = {
       device = "172.22.2.1:/srv/nfs4/shares";
       fsType = "nfs";
       options = [ "nfsvers=4.2" "nofail" ];

@@ -14,7 +14,7 @@ let
   };
 in
 {
-  sshUser = "root";
+  sshUser = "clansty";
   user = "root";
   autoRollback = false;
   magicRollback = false;
@@ -23,6 +23,10 @@ in
     {
       name = "nixserver";
       host = "nixsrv";
+    }
+    {
+      name = "nextcloud";
+      host = "clansty-nextcloud.net.men.ci";
     }
   ]);
 }

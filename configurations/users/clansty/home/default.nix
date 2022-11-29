@@ -33,12 +33,11 @@
     };
 
   programs.home-manager.enable = true;
-  home.packages = with pkgs; [
-  ] ++
-  (if pkgs.system == "aarch64-darwin" then with pkgs;[
-    deploy-rs.deploy-rs
-    coreutils
-    rnix-lsp
-    hyfetch
-  ] else [ ]);
+  home.packages = with pkgs; [ ] ++
+    (if pkgs.system == "aarch64-darwin" then with pkgs;[
+      deploy-rs.deploy-rs
+      coreutils
+      rnix-lsp
+      hyfetch
+    ] else [ ]);
 }

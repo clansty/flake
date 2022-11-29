@@ -19,16 +19,17 @@ let
 
   desktopModules = [
     ./graphic
-    ./nfsClient.nix
+    (import ./nfsClient.nix { baseDir = "/run/media/clansty"; })
     ./commandLine-desktop
   ];
 
-  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], boot ? true }: {
+  secrets = import ./utils/secrets.nix;
+
+  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false }: {
     name = "clansty-${name}";
     value = inputs.nixpkgs.lib.nixosSystem {
       system = "${arch}-linux";
       modules = [
-        ./machines/${name}.nix
         inputs.nur.nixosModules.nur
         inputs.home-manager.nixosModules.home-manager
         { networking.hostName = "clansty-${name}"; }
@@ -36,9 +37,9 @@ let
       basicModules ++
       (if desktop then desktopModules else [ ]) ++
       extraModules ++
-      (if boot then [ ./boot.nix ] else [ ]);
+      (if lxc then [ ./machines/lxc.nix ] else [ ./boot.nix ./machines/${name}.nix ]);
       specialArgs = {
-        inherit inputs arch;
+        inherit inputs arch secrets;
         flake = inputs.self;
         isLinux = true;
       };
@@ -89,17 +90,12 @@ in
       desktop = true;
       arch = "aarch64";
       extraModules = [
-        ./graphic/xremap.nix
         ./services/code-server.nix
         ./services/nginx-pc.nix
         ./emulation/riscv.nix
         ./services/samba-home.nix
         ./services/pkgbuilder-host.nix
       ];
-    }
-    {
-      name = "x1c";
-      desktop = true;
     }
     {
       name = "nixserver";
@@ -109,7 +105,14 @@ in
         ./services/q2tg.nix
         ./services/ctm-record.nix
       ];
-      boot = false;
+      lxc = true;
+    }
+    {
+      name = "nextcloud";
+      extraModules = [
+        ./services/nextcloud.nix
+      ];
+      lxc = true;
     }
   ]);
   darwin = builtins.listToAttrs (map mkDarwin [
