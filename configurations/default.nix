@@ -119,6 +119,7 @@ in
       name = "repo-dispatcher";
       extraModules = [
         ./services/pkgbuilder-nfs.nix
+        ./services/pkgbuilder-dispatcher.nix
       ];
       lxc = true;
     }

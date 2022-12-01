@@ -19,7 +19,7 @@
   nix =
     let
       substituters = [
-        "https://mirrors.bfsu.edu.cn/nix-channels/store/"
+        # "https://mirrors.bfsu.edu.cn/nix-channels/store/"
         "https://cache.nixos.org"
       ];
     in
