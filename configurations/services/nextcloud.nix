@@ -26,6 +26,10 @@
     autoUpdateApps.enable = true;
   };
 
+  systemd.services.phpfpm-nextcloud.after = [
+    "mnt-data-nextcloud-data.mount"
+  ];
+
   services.nginx.package = pkgs.nginxQuic;
   services.nginx.virtualHosts."clansty-nextcloud.net.men.ci" = {
     kTLS = true;

@@ -94,6 +94,7 @@ in
         ./services/nginx-pc.nix
         ./emulation/riscv.nix
         ./services/samba-home.nix
+        ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-host.nix
       ];
     }
@@ -111,6 +112,28 @@ in
       name = "nextcloud";
       extraModules = [
         ./services/nextcloud.nix
+      ];
+      lxc = true;
+    }
+    {
+      name = "repo-dispatcher";
+      extraModules = [
+        ./services/pkgbuilder-nfs.nix
+      ];
+      lxc = true;
+    }
+    {
+      name = "repo-builder";
+      extraModules = [
+        ./services/pkgbuilder-nfs.nix
+        ./services/pkgbuilder-host.nix
+      ];
+      lxc = true;
+    }
+    {
+      name = "nas-services";
+      extraModules = [
+        ./services/alist.nix
       ];
       lxc = true;
     }

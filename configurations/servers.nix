@@ -14,7 +14,7 @@ let
   };
 in
 {
-  sshUser = "clansty";
+  sshUser = "root";
   user = "root";
   autoRollback = false;
   magicRollback = false;
@@ -27,6 +27,18 @@ in
     {
       name = "nextcloud";
       host = "clansty-nextcloud.net.men.ci";
+    }
+    {
+      name = "repo-dispatcher";
+      host = "repo-dispatcher.net.men.ci";
+    }
+    {
+      name = "repo-builder";
+      host = "172.16.0.87";
+    }
+    {
+      name = "nas-services";
+      host = "172.16.0.83";
     }
   ]);
 }

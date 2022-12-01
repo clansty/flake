@@ -1,5 +1,5 @@
-{ ... }:
 {
+  virtualisation.docker.enable = true;
   users.users.builder = {
     home = "/nohome";
     isNormalUser = true;
