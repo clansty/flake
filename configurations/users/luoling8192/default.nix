@@ -9,7 +9,6 @@
   } // lib.attrsets.optionalAttrs isLinux {
     isNormalUser = true;
     extraGroups = [
-      "wheel"
       "docker"
       "networkmanager"
       "libvirt"

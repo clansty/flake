@@ -120,6 +120,7 @@ in
       extraModules = [
         ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-dispatcher.nix
+        ./services/repo-server.nix
       ];
       lxc = true;
     }

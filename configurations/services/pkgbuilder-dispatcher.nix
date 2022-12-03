@@ -2,14 +2,21 @@
 let
   repo = builtins.fetchGit {
     url = "https://github.com/Clansty/Needy-Builder-Overdose.git";
-    rev = "bc1d672dfa8ab063272a3c0e2485d505fb66a3cd";
+    rev = "b232705fd6af8cddf4322f5c758402cbde739a5a";
   };
   program = pkgs.callPackage "${repo}/dispatcher" { };
   pacman-fix = pkgs.pacman.overrideAttrs (attrs: {
     postInstall = with pkgs;''
       installShellCompletion --bash scripts/pacman --zsh scripts/_pacman
       wrapProgram $out/bin/makepkg \
-        --prefix PATH : ${lib.makeBinPath [ binutils coreutils git ]}
+        --prefix PATH : ${lib.makeBinPath [ 
+          binutils 
+          coreutils 
+          git 
+          autoconf
+          automake
+          curl
+        ]}
       wrapProgram $out/bin/pacman-key \
         --prefix PATH : ${lib.makeBinPath [
           "${placeholder "out"}"
@@ -27,6 +34,7 @@ in
     users.dispatcher = {
       isNormalUser = true;
       group = "dispatcher";
+      uid = 6666;
     };
     groups.dispatcher = { };
   };

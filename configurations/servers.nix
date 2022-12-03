@@ -40,9 +40,9 @@ in
       name = "nas-services";
       host = "172.16.0.83";
     }
-    # {
-    #   name = "w510";
-    #   host = "w510";
-    # }
+    {
+      name = "w510";
+      host = "w510";
+    }
   ]);
 }
