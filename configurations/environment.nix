@@ -24,7 +24,10 @@
 
   documentation.enable = false;
 
-  security.pki.certificateFiles = [ ./dotfiles/ca.crt ];
+  security.pki.certificateFiles = [
+    ./dotfiles/ca.crt
+    ./dotfiles/menci-network-ca.pem
+  ];
 
   system.stateVersion = if isLinux then "22.11" else 4;
 

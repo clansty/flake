@@ -1,5 +1,5 @@
 { fetchurl
-, electron_17
+, electron_21
 , lib
 , makeDesktopItem
 , system
@@ -7,24 +7,24 @@
 } @ args:
 
 let
-  version = "2.7.2";
+  version = "2.7.7";
 
   srcs = { 
     aarch64-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-arm64.asar";
-      sha256 = "164falqiya10wr9hzc415s5nlzp1sy5815kcmip8qac9hxf7bgqd";
+      sha256 = "1632prgzm75nx43cy866ji4nspyazfvkk317jlmy64lk700dz6za";
     };
     x86_64-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-x86_64.asar";
-      sha256 = "04dz01bbni4yyczsr112knmnxan5q6gw3a2bmqa1mzci4x8iqs5n";
+      sha256 = "19j7izpq3khxa6qn15a0jknavzf6f7xmq7pk12jicls4y93whkf8";
     };
     i686-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-ia32.asar";
-      sha256 = "13aw08zsqp1zc878w6yzfm7lg6i6n3cr2abgpkj7f3rxzx3cpx09";
+      sha256 = "0zmlhp3i2mlpcvpbli5x0g16q93c0g6j29qm66nf4d8p4gm79pfg";
     };
     armv7l-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-armv7l.asar";
-      sha256 = "1bl1lbagwgp3lpzi21jwkqw5f17psl5k0qd7kz0ss3kisvyjbxvc";
+      sha256 = "119bbndvcmyin6x34jfmavjmpvw4hv1w68zs34sz7xqfcpjkylm0";
     };
   };
 
@@ -37,7 +37,7 @@ let
 in
 makeDesktopItem {
   name = "icalingua++";
-  exec = "${electron_17}/bin/electron ${app}";
+  exec = "${electron_21}/bin/electron ${app}";
   comment = "A Linux client for QQ and more";
   desktopName = "Icalingua++";
   categories = [ "Network" "Chat" ];

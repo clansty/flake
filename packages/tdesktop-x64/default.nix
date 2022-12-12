@@ -1,12 +1,10 @@
 { darwinHelper, lib, stdenvNoCC, tdesktop, fetchFromGitHub }:
 let
-  version = "1.0.53";
+  version = "1.0.57";
   pname = "TDesktop-x64";
 in
 if stdenvNoCC.isLinux then
-  (tdesktop.override {
-    qtwayland = null;
-  }).overrideAttrs
+  tdesktop.overrideAttrs
     (oldAttrs: {
       inherit pname version;
       src = fetchFromGitHub {
@@ -14,11 +12,11 @@ if stdenvNoCC.isLinux then
         repo = "tdesktop";
         rev = "v${version}";
         fetchSubmodules = true;
-        sha256 = "dddf0phBSdf/5SturXDFSfSXyzxENSQMMu/4n8nEfaY=";
+        sha256 = "jU8K89Spgqnh0VFPNFX6VkbFpl/c3v8/Q2Opklu16fg=";
       };
-      cmakeFlags = oldAttrs.cmakeFlags ++ [
-        "-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON"
-      ];
+      # cmakeFlags = oldAttrs.cmakeFlags ++ [
+      #   "-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON"
+      # ];
     })
 else
   darwinHelper.packCommonMacApp {

@@ -8,6 +8,7 @@
     userName = "clansty";
     deviceName = "HOLTEK USB-HID AP";
     config = {
+      virtual_modifiers = [ "CapsLock" ];
       modmap = [
         {
           name = "Global";
@@ -22,7 +23,6 @@
           application.not = "org.gnome.Console";
         }
       ];
-      virtual_modifiers = [ "CapsLock" ];
       keymap = [
         {
           name = "Terminal";
@@ -41,14 +41,8 @@
             CapsLock-7 = "Alt-7";
             CapsLock-Shift-s = "Ctrl-Shift-s";
           };
+          # application.only = "Chromium-browser";
           application.only = "org.gnome.Console";
-        }
-        {
-          name = "Applications launch shortcut";
-          remap = {
-            Win-e.launch = [ "nautilus" ];
-            Win-c.launch = [ "telegram-desktop" ];
-          };
         }
       ];
     };
