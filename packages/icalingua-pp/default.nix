@@ -7,24 +7,20 @@
 } @ args:
 
 let
-  version = "2.7.7";
+  version = "2.7.8";
 
   srcs = { 
     aarch64-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-arm64.asar";
-      sha256 = "1632prgzm75nx43cy866ji4nspyazfvkk317jlmy64lk700dz6za";
+      sha256 = "1l0i3s43dvxfh7js24jycsg484nlffbynmabzwmpaj3awiw8dza7";
     };
     x86_64-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-x86_64.asar";
-      sha256 = "19j7izpq3khxa6qn15a0jknavzf6f7xmq7pk12jicls4y93whkf8";
-    };
-    i686-linux = {
-      url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-ia32.asar";
-      sha256 = "0zmlhp3i2mlpcvpbli5x0g16q93c0g6j29qm66nf4d8p4gm79pfg";
+      sha256 = "1wcscs94s471i7bv1ah8g74lws7qi0ldxnhnf008xha3aii402p3";
     };
     armv7l-linux = {
       url = "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v${version}/app-armv7l.asar";
-      sha256 = "119bbndvcmyin6x34jfmavjmpvw4hv1w68zs34sz7xqfcpjkylm0";
+      sha256 = "10psyglarrn2r75vlpdj8hmhv99r9nn6qnbzbxby3a786gngm05a";
     };
   };
 
