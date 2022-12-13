@@ -96,6 +96,7 @@ in
         ./services/samba-home.nix
         ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-host.nix
+        ./services/temperature2mqtt.nix
       ];
     }
     {
