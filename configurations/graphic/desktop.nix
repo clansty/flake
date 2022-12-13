@@ -25,7 +25,7 @@
   environment.systemPackages = (with pkgs.gnomeExtensions; [
     appindicator
     dash-to-dock
-    system-monitor-next
+    system-monitor
     xremap
   ]) ++ (with pkgs; [
     arc-theme

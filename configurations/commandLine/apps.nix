@@ -6,6 +6,5 @@
     unrar unzip
     duf gdu
     hyfetch
-    openssl
   ];
 }

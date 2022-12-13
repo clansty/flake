@@ -12,5 +12,7 @@
     nrb gacp
     python3 nodejs
     deploy-rs.deploy-rs
+    openssl
+    ffmpeg
   ];
 }
