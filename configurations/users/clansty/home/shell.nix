@@ -20,26 +20,24 @@
       '' + (if pkgs.system == "aarch64-darwin" then ''
         eval $(/opt/homebrew/bin/brew shellenv)
       '' else "");
-    localVariables = {
+    localVariables = with pkgs;{
       ZSH_AUTOSUGGEST_STRATEGY = "history completion";
+      EDITOR = "${neovim}/bin/nvim";
     };
   };
 
   programs.fish.enable = true;
 
-  home = {
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
+  home = with pkgs;{
     shellAliases = {
       ":q" = "exit";
       ":wq" = "exit";
-      ls = "${pkgs.exa}/bin/exa --color-scale --group-directories-first --time-style iso -bH";
+      ls = "${exa}/bin/exa --color-scale --group-directories-first --time-style iso -bH";
       l = "ls -l";
       ll = "l";
       la = "l -a";
-      vi = "nvim";
-      svi = "sudo nvim";
+      vi = "$EDITOR";
+      svi = "sudo $EDITOR";
       nrbu = "nrb --recreate-lock-file";
     } // (if pkgs.system == "aarch64-darwin" then {
       lsblk = "diskutil list";

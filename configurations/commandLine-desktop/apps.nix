@@ -14,5 +14,7 @@
     deploy-rs.deploy-rs
     openssl
     ffmpeg
+    binwalk squashfsTools
+    pacman
   ];
 }

@@ -4,7 +4,7 @@
     neovim direnv
     wget file tree htop
     unrar unzip
-    duf gdu
+    duf gdu ripgrep
     hyfetch
   ];
 }
