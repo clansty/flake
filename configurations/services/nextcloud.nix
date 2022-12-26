@@ -1,13 +1,5 @@
 { secrets, pkgs, ... }:
 {
-  fileSystems = {
-    "/mnt/data/nextcloud/data" = {
-      device = "172.16.0.70:/mnt/data/nextcloud";
-      fsType = "nfs";
-      options = [ "nfsvers=4.2" ];
-    };
-  } // (import ../nfsClient.nix { baseDir = "/mnt/data"; }).fileSystems;
-
   services.nextcloud = {
     enable = true;
     https = true;
@@ -25,10 +17,6 @@
     maxUploadSize = "40960M";
     autoUpdateApps.enable = true;
   };
-
-  systemd.services.phpfpm-nextcloud.after = [
-    "mnt-data-nextcloud-data.mount"
-  ];
 
   services.nginx.package = pkgs.nginxQuic;
   services.nginx.virtualHosts."clansty-nextcloud.net.men.ci" = {

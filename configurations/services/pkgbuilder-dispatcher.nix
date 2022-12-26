@@ -2,7 +2,7 @@
 let
   repo = builtins.fetchGit {
     url = "https://github.com/Clansty/Needy-Builder-Overdose.git";
-    rev = "b232705fd6af8cddf4322f5c758402cbde739a5a";
+    rev = "781dbb0444518f70ad689ec031b5449a486bde91";
   };
   program = pkgs.callPackage "${repo}/dispatcher" { };
   pacman-fix = pkgs.pacman.overrideAttrs (attrs: {
@@ -45,6 +45,7 @@ in
     description = "dispatcher service";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
+    requires = [ "pkgbuilder\\x2dwork-repo.mount" "pkgbuilder\\x2dwork.mount" "pkgbuilder\\x2dwork-logs.mount" ];
     path = with pkgs;[ pacman-fix openssh git bash coreutils-full ];
     environment = {
       CONFIG = "/pkgbuilder-work/config.yaml";
