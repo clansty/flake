@@ -17,6 +17,7 @@
     rewine.landrop
     rewine.aliyunpan
     charles
+    nextcloud-client
   ];
   services.udev.packages = with pkgs; [ 
     micronucleus-udev-rules 

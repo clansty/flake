@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
+    hercules-ci = {
+      url = "github:hercules-ci/nixflk";
+      inputs.nixos.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

@@ -1,7 +1,6 @@
 {
   virtualisation.docker.enable = true;
   users.users.builder = {
-    home = "/nohome";
     isNormalUser = true;
     extraGroups = [ "docker" ];
     openssh.authorizedKeys.keys = [
