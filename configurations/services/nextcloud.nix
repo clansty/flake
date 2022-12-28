@@ -7,7 +7,7 @@
     hostName = "clansty-nextcloud.net.men.ci";
     config = {
       dbtype = "pgsql";
-      dbhost = "172.16.0.72";
+      dbhost = "172.16.0.82";
       dbpassFile = "${pkgs.writeText "passwd" secrets.nextcloudDbPasswd}";
       adminuser = "ncadmin1";
       adminpassFile = "${pkgs.writeText "passwd" secrets.nextcloudDbPasswd}";

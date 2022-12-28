@@ -2,19 +2,13 @@
 {
   fileSystems = {
     "${baseDir}/shares" = {
-      device = "172.16.0.70:/mnt/data/shares";
-      fsType = "nfs";
-      options = [ "nfsvers=4.2" "nofail" ];
+      device = "//172.16.0.70/shares";
+      fsType = "cifs";
+      options = [ "nofail" "credentials=${(import utils/secrets.nix).smbSecrets}" "uid=1000" "gid=100" "vers=3" ];
     };
 
     "${baseDir}/backups" = {
-      device = "172.16.0.70:/mnt/data/backups";
-      fsType = "nfs";
-      options = [ "nfsvers=4.2" "nofail" ];
-    };
-
-    "${baseDir}/clansty" = {
-      device = "//172.16.0.70/clansty";
+      device = "//172.16.0.70/backups";
       fsType = "cifs";
       options = [ "nofail" "credentials=${(import utils/secrets.nix).smbSecrets}" "uid=1000" "gid=100" "vers=3" ];
     };

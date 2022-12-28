@@ -94,7 +94,7 @@ in
         ./services/nginx-pc.nix
         ./emulation/riscv.nix
         ./services/samba-home.nix
-        ./services/pkgbuilder-nfs.nix
+        # ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-host.nix
         ./services/temperature2mqtt.nix
       ];
@@ -102,10 +102,16 @@ in
     {
       name = "nixserver";
       extraModules = [
-        ./services/postgres.nix
         ./services/superstar-checkin.nix
         ./services/q2tg.nix
         ./services/ctm-record.nix
+      ];
+      lxc = true;
+    }
+    {
+      name = "pgsql";
+      extraModules = [
+        ./services/postgres.nix
       ];
       lxc = true;
     }
@@ -134,9 +140,16 @@ in
       lxc = true;
     }
     {
-      name = "nas-services";
+      name = "nas";
       extraModules = [
-        ./services/alist.nix
+        ./services/nas
+      ];
+      lxc = true;
+    }
+    {
+      name = "repo-legacy-server";
+      extraModules = [
+        ./services/repo-legacy-server.nix
       ];
       lxc = true;
     }

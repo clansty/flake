@@ -29,6 +29,10 @@ in
       host = "clansty-nextcloud.net.men.ci";
     }
     {
+      name = "repo-legacy-server";
+      host = "clansty-repo.net.men.ci";
+    }
+    {
       name = "repo-dispatcher";
       host = "repo-dispatcher.net.men.ci";
     }
@@ -37,8 +41,12 @@ in
       host = "172.16.0.87";
     }
     {
-      name = "nas-services";
-      host = "172.16.0.83";
+      name = "nas";
+      host = "172.16.0.70";
+    }
+    {
+      name = "pgsql";
+      host = "172.16.0.82";
     }
     # {
     #   name = "w510";

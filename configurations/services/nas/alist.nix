@@ -30,4 +30,4 @@ in
       AmbientCapabilities = "cap_net_bind_service";
     };
   };
-} // import ../nfsClient.nix { baseDir = "/mnt"; }
+}
