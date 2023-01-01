@@ -94,7 +94,7 @@ in
         ./services/nginx-pc.nix
         ./emulation/riscv.nix
         ./services/samba-home.nix
-        # ./services/pkgbuilder-nfs.nix
+        ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-host.nix
         # ./services/temperature2mqtt.nix
       ];
@@ -125,17 +125,8 @@ in
     {
       name = "repo-dispatcher";
       extraModules = [
-        ./services/pkgbuilder-nfs.nix
         ./services/pkgbuilder-dispatcher.nix
         ./services/repo-server.nix
-      ];
-      lxc = true;
-    }
-    {
-      name = "repo-builder";
-      extraModules = [
-        ./services/pkgbuilder-nfs.nix
-        ./services/pkgbuilder-host.nix
       ];
       lxc = true;
     }

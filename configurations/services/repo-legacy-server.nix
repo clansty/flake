@@ -26,8 +26,8 @@
     };
   };
   systemd.targets.sync-repo = {
-    wants = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" ];
-    after = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" ];
+    wants = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
+    after = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
   };
   systemd.services.sync-repo-archlinux = {
     serviceConfig.Type = "oneshot";
@@ -45,6 +45,12 @@
     serviceConfig.Type = "oneshot";
     script = ''
       ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://archriscv.felixc.at/archriscv/ /mnt/mirrors/archriscv/
+    '';
+  };
+  systemd.services.sync-repo-loongarchlinux = {
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://mirrors.wsyu.edu.cn/loongarch/archlinux /mnt/mirrors/loongarchlinux/
     '';
   };
   systemd.timers.sync-repo = {

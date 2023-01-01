@@ -45,7 +45,6 @@ in
     description = "dispatcher service";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
-    requires = [ "pkgbuilder\\x2dwork-repo.mount" "pkgbuilder\\x2dwork.mount" "pkgbuilder\\x2dwork-logs.mount" ];
     path = with pkgs;[ pacman-fix openssh git bash coreutils-full ];
     environment = {
       CONFIG = "/pkgbuilder-work/config.yaml";
