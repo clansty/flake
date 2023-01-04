@@ -1,0 +1,10 @@
+set nu
+set cursorline
+set autoindent
+set tabstop=4
+set expandtab
+set softtabstop=4
+set mouse=a
+syntax on
+set showmode
+set showcmd

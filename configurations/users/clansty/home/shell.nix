@@ -36,8 +36,6 @@
       l = "ls -l";
       ll = "l";
       la = "l -a";
-      vi = "$EDITOR";
-      svi = "sudo $EDITOR";
       nrbu = "nrb --recreate-lock-file";
     } // (if pkgs.system == "aarch64-darwin" then {
       lsblk = "diskutil list";

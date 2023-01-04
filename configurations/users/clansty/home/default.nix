@@ -6,6 +6,7 @@
     ./git.nix
     ./ssh.nix
     ./shell.nix
+    ./nvim.nix
   ];
 
   home.stateVersion = "22.11";
