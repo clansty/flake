@@ -18,7 +18,7 @@
       api16.hostname = "api16.lwqwq.com";
       repo.hostname = "repo.lwqwq.com";
       nas.hostname = "172.16.0.70";
-      nasc.hostname = "172.16.0.75";
+      dev-vm.hostname = "172.16.0.80";
       w510.hostname = "172.16.0.81";
       loong.hostname = "172.16.0.73";
       nixsrv.hostname = "172.16.0.72";

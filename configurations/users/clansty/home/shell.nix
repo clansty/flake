@@ -41,6 +41,7 @@
       lsblk = "diskutil list";
       finder = "ofd";
       docker = "lima nerdctl";
+      vm = "ssh dev-vm";
     } else { });
   };
 }

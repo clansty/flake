@@ -55,7 +55,7 @@
   };
   systemd.timers.sync-repo = {
     wantedBy = [ "timers.target" ];
-    partOf = [ "sync-repo.target" ];
+    partOf = [ "sync-repo.target" "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
     timerConfig = {
       OnCalendar = "*-*-* 02,14:00:00";
       Unit = "sync-repo.target";
