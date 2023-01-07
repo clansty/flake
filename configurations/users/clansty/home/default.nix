@@ -1,4 +1,4 @@
-{ inputs, flake, pkgs, config, ... }:
+{ inputs, flake, pkgs, config, homeOnly ? false, ... }:
 {
   home.username = "clansty";
 
@@ -36,9 +36,11 @@
   programs.home-manager.enable = true;
   home.packages = with pkgs; [ ] ++
     (if pkgs.system == "aarch64-darwin" then with pkgs;[
-      deploy-rs.deploy-rs
       coreutils
-      rnix-lsp
       hyfetch
+    ] else [ ]) ++
+    (if homeOnly then with pkgs;[
+      deploy-rs.deploy-rs
+      rnix-lsp
     ] else [ ]);
 }

@@ -42,6 +42,7 @@ let
         inherit inputs arch secrets;
         flake = inputs.self;
         isLinux = true;
+        homeOnly = false;
       };
     };
   };
@@ -63,6 +64,7 @@ let
         inherit inputs arch;
         flake = inputs.self;
         isLinux = false;
+        homeOnly = false;
       };
     };
   };
@@ -79,6 +81,7 @@ let
         extraSpecialArgs = {
           inherit inputs;
           flake = inputs.self;
+          homeOnly = true;
         };
       };
   };

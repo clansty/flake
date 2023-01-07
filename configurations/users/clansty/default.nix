@@ -1,7 +1,7 @@
-{ config, pkgs, lib, isLinux, ... }:
+{ config, pkgs, lib, isLinux, ... }@args:
 
 {
-  home-manager.users.clansty = import ./home;
+  home-manager.users.clansty = import ./home args;
 
   users.users.clansty = {
     shell = pkgs.zsh;
