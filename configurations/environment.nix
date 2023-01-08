@@ -11,6 +11,7 @@
     {
       settings.substituters = substituters;
       settings.trusted-substituters = substituters ++ [ "<local-substituter>" ];
+      settings.trusted-users = [ "@wheel" "clansty" ];
       extraOptions = "experimental-features = nix-command flakes";
     };
 

@@ -1,6 +1,6 @@
 { deploy-rs, self, ... }@inputs:
 let
-  mkNode = { name, host, remoteBuild ? true }: {
+  mkNode = { name, host, remoteBuild ? false }: {
     inherit name;
     value = {
       hostname = host;
@@ -35,10 +35,6 @@ in
     {
       name = "repo-dispatcher";
       host = "repo-dispatcher.net.men.ci";
-    }
-    {
-      name = "repo-builder";
-      host = "172.16.0.87";
     }
     {
       name = "nas";

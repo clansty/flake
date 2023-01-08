@@ -42,5 +42,7 @@
     (if homeOnly then with pkgs;[
       deploy-rs.deploy-rs
       rnix-lsp
+      direnv
+      gacp
     ] else [ ]);
 }

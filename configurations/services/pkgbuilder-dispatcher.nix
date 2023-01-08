@@ -2,7 +2,7 @@
 let
   repo = builtins.fetchGit {
     url = "https://github.com/Clansty/Needy-Builder-Overdose.git";
-    rev = "4fe51953e36d1dbed24881ca9fc929a30ca17c1d";
+    rev = "deef384c9575e5067b12d49f19b429550e783b98";
     ref = "main";
   };
   program = pkgs.callPackage "${repo}/dispatcher" { };

@@ -105,9 +105,9 @@ in
     {
       name = "nixserver";
       extraModules = [
-        ./services/superstar-checkin.nix
+        # ./services/superstar-checkin.nix
         ./services/q2tg.nix
-        ./services/ctm-record.nix
+        # ./services/ctm-record.nix
       ];
       lxc = true;
     }

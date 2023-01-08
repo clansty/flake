@@ -809,17 +809,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1672028144,
-        "narHash": "sha256-RryXvabCv/k+hevEZdBhv75fGRetXx1DBwnOfWzW8D8=",
+        "lastModified": 1673147343,
+        "narHash": "sha256-Arq9eTXvCXYKA78g/UyJf6I32FXSFep8kEDxKRUDN4w=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "64c9fdd7a99eac54b255760c4966b53cbdf044b4",
+        "rev": "20853552a5e909644216080d3c55ab05a0cb15ac",
         "type": "github"
       },
       "original": {
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "64c9fdd7a99eac54b255760c4966b53cbdf044b4",
+        "rev": "20853552a5e909644216080d3c55ab05a0cb15ac",
         "type": "github"
       }
     },
