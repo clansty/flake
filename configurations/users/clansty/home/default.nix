@@ -7,6 +7,7 @@
     ./ssh.nix
     ./shell.nix
     ./nvim.nix
+    ./tmux.nix
   ];
 
   home.stateVersion = "22.11";
