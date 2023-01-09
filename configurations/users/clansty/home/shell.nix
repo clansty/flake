@@ -42,7 +42,7 @@
       lsblk = "diskutil list";
       finder = "ofd";
       docker = "lima nerdctl";
-      vm = "ssh dev-vm -- tmux a -t dev";
+      vm = "ssh dev-vm -t -- tmux a";
     } else { });
   };
 }
