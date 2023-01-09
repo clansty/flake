@@ -35,9 +35,18 @@ let
         { networking.hostName = "clansty-${name}"; }
       ] ++
       basicModules ++
-      (if desktop then desktopModules else [ ]) ++
+      (if desktop then desktopModules ++ [
+        (import ./backup.nix name)
+      ] else [ ]) ++
       extraModules ++
-      (if lxc then [ ./machines/lxc.nix ] else [ ./boot.nix ./machines/${name}.nix ]);
+      (if lxc then [ ./machines/lxc.nix ] else [ ./boot.nix ./machines/${name}.nix ]) ++
+      (if arch == "x86_64" then [{
+        # nixpkgs.localSystem = {
+        #   gcc.arch = "znver3";
+        #   gcc.tune = "znver3";
+        #   system = "x86_64-linux";
+        # };
+      }] else [ ]);
       specialArgs = {
         inherit inputs arch secrets;
         flake = inputs.self;

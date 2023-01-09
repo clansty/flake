@@ -25,10 +25,6 @@
       email = "i@gao4.pw";
     };
   };
-  systemd.targets.sync-repo = {
-    wants = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
-    after = [ "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
-  };
   systemd.services.sync-repo-archlinux = {
     serviceConfig.Type = "oneshot";
     script = ''
@@ -53,12 +49,45 @@
       ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://mirrors.wsyu.edu.cn/loongarch/archlinux /mnt/mirrors/loongarchlinux/
     '';
   };
-  systemd.timers.sync-repo = {
+  systemd.services.sync-repo-alhp = {
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://alhp.harting.dev/alhp /mnt/mirrors/alhp/
+    '';
+  };
+  systemd.timers.sync-repo-archlinux = {
     wantedBy = [ "timers.target" ];
-    partOf = [ "sync-repo.target" "sync-repo-archlinux.service" "sync-repo-archlinuxarm.service" "sync-repo-archriscv.service" "sync-repo-loongarchlinux.service" ];
     timerConfig = {
       OnCalendar = "*-*-* 02,14:00:00";
-      Unit = "sync-repo.target";
+      Unit = "sync-repo-archlinux.service";
+    };
+  };
+  systemd.timers.sync-repo-archlinuxarm = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 02,14:10:00";
+      Unit = "sync-repo-archlinuxarm.service";
+    };
+  };
+  systemd.timers.sync-repo-archriscv = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 02,14:20:00";
+      Unit = "sync-repo-archriscv.service";
+    };
+  };
+  systemd.timers.sync-repo-loongarchlinux = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 02,14:30:00";
+      Unit = "sync-repo-loongarchlinux.service";
+    };
+  };
+  systemd.timers.sync-repo-alhp = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 02,14:40:00";
+      Unit = "sync-repo-alhp.service";
     };
   };
 }

@@ -23,6 +23,7 @@
     localVariables = with pkgs;{
       ZSH_AUTOSUGGEST_STRATEGY = "history completion";
       EDITOR = "${neovim}/bin/nvim";
+      SUDO_EDITOR = "${neovim}/bin/nvim";
     };
   };
 

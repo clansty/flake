@@ -30,10 +30,10 @@ in
       sslCertificate = pkgs.concatText "caBundle" [ ../dotfiles/w510.crt ../dotfiles/ca.crt ];
       sslCertificateKey = secrets.w510Key;
       locations = {
-        "/maimai-xck/".alias = builtins.fetchGit {
-          url = "ssh://git@github.com/clansty/maimai-xck.git";
-          rev = "815a27f107abfa03ee89e610d864c761607c9455";
-        } + "/";
+        # "/maimai-xck/".alias = builtins.fetchGit {
+        #   url = "ssh://git@github.com/clansty/maimai-xck.git";
+        #   rev = "815a27f107abfa03ee89e610d864c761607c9455";
+        # } + "/";
         "/ariang/".alias = pkgs.fetchzip {
           url = "https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip";
           sha256 = "TID8r5M4bCLg3d7J8nb7/hDRMj1U1FbGjccu1PdKJRg=";
@@ -48,10 +48,10 @@ in
           alias = pkgs.adminer + "/";
           extraConfig = enablePhp;
         };
-        "/nuist/".alias = builtins.fetchGit {
-          url = "https://github.com/clansty/nuist-goout-v2.git";
-          rev = "280c0ccac197b83c133423413b9637ea22877b51";
-        } + "/";
+        # "/nuist/".alias = builtins.fetchGit {
+        #   url = "https://github.com/clansty/nuist-goout-v2.git";
+        #   rev = "280c0ccac197b83c133423413b9637ea22877b51";
+        # } + "/";
         "/admin/service/registration/validateDevice".extraConfig = ''
           default_type application/json;
           return 200 '{"cacheExpirationDays": 7,"message": "Device Valid","resultCode": "GOOD"}';
