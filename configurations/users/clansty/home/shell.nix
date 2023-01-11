@@ -17,6 +17,10 @@
         bindkey '^[[1;3C' forward-word
         zstyle ':completion:*' matcher-list ''' 'm:{a-zA-Z-_}={A-Za-z_-}'
         eval "$(${direnv}/bin/direnv hook zsh)"
+        # Tmux ssh fix
+        if test "$SSH_AUTH_SOCK" ; then
+            export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
+        fi
       '' + (if pkgs.system == "aarch64-darwin" then ''
         eval $(/opt/homebrew/bin/brew shellenv)
       '' else "");

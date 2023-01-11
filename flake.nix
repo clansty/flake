@@ -21,6 +21,7 @@
       url = "github:hercules-ci/nixflk";
       inputs.nixos.follows = "nixpkgs";
     };
+    netease-music-sync.url = "/home/clansty/Projects/netease-music-sync";
   };
 
   outputs = inputs:
