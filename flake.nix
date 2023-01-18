@@ -7,7 +7,7 @@
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:xremap/nix-flake/5f3c5668c11d004b2b0d5f6bafdbd70da431b9a0";
     superstar-checkin.url = "github:clansty/superstar-checkin";
-    q2tg.url = "github:clansty/Q2TG/20853552a5e909644216080d3c55ab05a0cb15ac";
+    q2tg.url = "github:clansty/Q2TG/8f65eeb";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +21,8 @@
       url = "github:hercules-ci/nixflk";
       inputs.nixos.follows = "nixpkgs";
     };
-    netease-music-sync.url = "/home/clansty/Projects/netease-music-sync";
+    netease-music-sync.url = "github:clansty/netease-music-sync";
+    microsoft-store-sync.url = "/home/clansty/Projects/microsoft-store-sync";
   };
 
   outputs = inputs:
