@@ -2,13 +2,13 @@
 {
   fileSystems = {
     "${baseDir}/shares" = {
-      device = "//172.16.0.70/shares";
+      device = "//11.11.1.3/shares";
       fsType = "cifs";
       options = [ "nofail" "credentials=${(import utils/secrets.nix).smbSecrets}" "uid=1000" "gid=100" "vers=3" ];
     };
 
     "${baseDir}/backups" = {
-      device = "//172.16.0.70/backups";
+      device = "//11.11.1.3/backups";
       fsType = "cifs";
       options = [ "nofail" "credentials=${(import utils/secrets.nix).smbSecrets}" "uid=1000" "gid=100" "vers=3" ];
     };

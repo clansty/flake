@@ -18,7 +18,7 @@
         zstyle ':completion:*' matcher-list ''' 'm:{a-zA-Z-_}={A-Za-z_-}'
         eval "$(${direnv}/bin/direnv hook zsh)"
         # Tmux ssh fix
-        if test "$SSH_AUTH_SOCK" ; then
+        if test "$SSH_CLIENT" ; then
             export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
         fi
       '' + (if pkgs.system == "aarch64-darwin" then ''
@@ -42,11 +42,11 @@
       ll = "l";
       la = "l -a";
       nrbu = "nrb --recreate-lock-file";
+      vm = "ssh dev-vm -t -- tmux a";
     } // (if pkgs.system == "aarch64-darwin" then {
       lsblk = "diskutil list";
       finder = "ofd";
       docker = "lima nerdctl";
-      vm = "ssh dev-vm -t -- tmux a";
     } else { });
   };
 }

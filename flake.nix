@@ -22,7 +22,7 @@
       inputs.nixos.follows = "nixpkgs";
     };
     netease-music-sync.url = "github:clansty/netease-music-sync";
-    microsoft-store-sync.url = "/home/clansty/Projects/microsoft-store-sync";
+    microsoft-store-sync.url = "github:clansty/microsoft-store-sync";
   };
 
   outputs = inputs:
