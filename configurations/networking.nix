@@ -9,7 +9,6 @@
   services.avahi = {
     enable = true;
     nssmdns = true;
-    reflector = true;
     publish = {
       enable = true;
       addresses = true;

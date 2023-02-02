@@ -26,19 +26,19 @@ in
     }
     {
       name = "nextcloud";
-      host = "clansty-nextcloud.net.men.ci";
+      host = "11.11.1.10";
     }
     {
       name = "repo-legacy-server";
-      host = "clansty-repo.net.men.ci";
+      host = "11.11.1.32";
     }
     {
       name = "repo-dispatcher";
-      host = "repo-dispatcher.net.men.ci";
+      host = "11.11.1.30";
     }
     {
       name = "nas";
-      host = "172.16.0.70";
+      host = "11.11.1.3";
     }
     {
       name = "pgsql";
