@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.ssh = {
     enable = true;
@@ -17,10 +16,10 @@
       api13.hostname = "api13.lwqwq.com";
       api16.hostname = "api16.lwqwq.com";
       repo.hostname = "repo.lwqwq.com";
-      nas.hostname = "172.16.0.70";
-      dev-vm.hostname = "172.16.0.80";
-      w510.hostname = "172.16.0.81";
-      loong.hostname = "172.16.0.73";
+      nas.hostname = "11.11.1.3";
+      dev-vm.hostname = "11.11.1.2";
+      w510.hostname = "11.11.1.50";
+      loong.hostname = "11.11.1.6";
       nixsrv.hostname = "172.16.0.72";
       nj-router.hostname = "172.16.2.1";
       nj-box.hostname = "172.16.2.10";
@@ -28,6 +27,8 @@
       nc-router.user = "root";
       nc-pve.hostname = "172.16.1.5";
       nc-pve.user = "root";
+      pve.hostname = "11.11.1.5";
+      pve.user = "root";
     };
   };
 }

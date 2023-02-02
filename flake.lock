@@ -500,15 +500,15 @@
       "locked": {
         "lastModified": 1673662349,
         "narHash": "sha256-yK0M+HrnbYrECd8FTiL4reggjF1CyiL/irULp9tr3ks=",
-        "ref": "main",
+        "owner": "clansty",
+        "repo": "microsoft-store-sync",
         "rev": "0f81af5d5c1e21035997a774fea8dd7b8cb55660",
-        "revCount": 5,
-        "type": "git",
-        "url": "file:///home/clansty/Projects/microsoft-store-sync"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/clansty/Projects/microsoft-store-sync"
+        "owner": "clansty",
+        "repo": "microsoft-store-sync",
+        "type": "github"
       }
     },
     "naersk": {

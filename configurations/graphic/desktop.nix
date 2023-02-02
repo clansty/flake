@@ -27,9 +27,11 @@
     dash-to-dock
     system-monitor
     xremap
+    blur-my-shell
   ]) ++ (with pkgs; [
     arc-theme
     tela-icon-theme
+    adw-gtk3
   ]);
 
   sound.enable = true;
