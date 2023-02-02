@@ -16,5 +16,6 @@
     ffmpeg
     binwalk squashfsTools
     pacman
+    kanidm
   ];
 }
