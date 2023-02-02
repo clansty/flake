@@ -5,6 +5,27 @@ let
     clansty = clansty@qq.com
     luoling8192 = rbxin2003@outlook.com
   '';
+
+  mkSimpleShare = path: {
+    inherit path;
+    # "access based share enum" = "yes";
+    "read only" = "no";
+    "guest ok" = "yes";
+    "nfs4:chown" = true;
+    "ea support" = false;
+    "smbd max xattr size" = 2097152;
+    "vfs objects" = "fruit streams_xattr shadow_copy2";
+    "fruit:resource" = "stream";
+    "strict locking" = "yes";
+    "posix locking" = "yes";
+    "level2 oplocks" = "no";
+    "oplocks" = "no";
+    "shadow: snapdir" = ".zfs/snapshot";
+    "shadow: sort" = "desc";
+    "shadow: format" = "-%Y-%m-%d-%H%M";
+    "shadow: snapprefix" = "^zfs-auto-snap_\\(frequent\\)\\{0,1\\}\\(hourly\\)\\{0,1\\}\\(daily\\)\\{0,1\\}\\(monthly\\)\\{0,1\\}";
+    "shadow: delimiter" = "-20";
+  };
 in
 {
   services.samba = {
@@ -24,51 +45,22 @@ in
       fruit:model = MacSamba
     '';
     shares = {
-      timemachine = {
-        "path" = "/mnt/timemachine/%U";
-        "access based share enum" = "yes";
-        "read only" = "no";
+      timemachine = (mkSimpleShare "/mnt/timemachine/%U") // {
         "guest ok" = "no";
         "kernel oplocks" = "no";
         "kernel share modes" = "no";
         "posix locking" = "no";
-        "nfs4:chown" = true;
-        "ea support" = false;
-        "smbd max xattr size" = 2097152;
-        "vfs objects" = "catia fruit streams_xattr";
+        "vfs objects" = "catia fruit streams_xattr shadow_copy2";
         "fruit:metadata" = "stream";
-        "fruit:resource" = "stream";
         "fruit:time machine" = "yes";
         "fruit:locking" = "none";
         "valid users" = "clansty luoling8192";
       };
-      backups = {
-        "path" = "/mnt/backups";
-        "read only" = "no";
-        "guest ok" = "yes";
-        "nfs4:chown" = true;
-        "ea support" = false;
-        "smbd max xattr size" = 2097152;
-        "vfs objects" = "fruit streams_xattr";
-        "fruit:resource" = "stream";
-        "strict locking" = "yes";
-        "posix locking" = "yes";
-        "level2 oplocks" = "no";
-        "oplocks" = "no";
-      };
-      shares = {
-        "path" = "/mnt/shares";
-        "read only" = "no";
-        "guest ok" = "yes";
-        "nfs4:chown" = true;
-        "ea support" = false;
-        "smbd max xattr size" = 2097152;
-        "vfs objects" = "fruit streams_xattr";
-        "fruit:resource" = "stream";
-        "strict locking" = "yes";
-        "posix locking" = "yes";
-        "level2 oplocks" = "no";
-        "oplocks" = "no";
+      backups = mkSimpleShare "/mnt/backups";
+      shares = mkSimpleShare "/mnt/shares";
+      windows-backup = mkSimpleShare "/mnt/windows-backup/%U" // {
+        "guest ok" = "no";
+        "valid users" = "clansty luoling8192";
       };
     };
   };
