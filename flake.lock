@@ -959,17 +959,17 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1673855639,
-        "narHash": "sha256-UaBCekEnfKEQ9cnvD6CWOGsl3+PBjWWGzMBNkLcNrjo=",
+        "lastModified": 1676006948,
+        "narHash": "sha256-9ne3gIJGxAOL3b69OJDde71Ct9OtzkE7Ou3ficn2Rnc=",
         "owner": "clansty",
         "repo": "Q2TG",
-        "rev": "8f65eebf4e5fc2eb2b98a9b64324ffd2152ee732",
+        "rev": "8678a497eac3afc26c441b9ca2640eb72500c4e9",
         "type": "github"
       },
       "original": {
         "owner": "clansty",
-        "ref": "8f65eeb",
         "repo": "Q2TG",
+        "rev": "8678a497eac3afc26c441b9ca2640eb72500c4e9",
         "type": "github"
       }
     },

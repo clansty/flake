@@ -45,13 +45,20 @@ in
       fruit:model = MacSamba
     '';
     shares = {
-      timemachine = (mkSimpleShare "/mnt/timemachine/%U") // {
+      timemachine = {
+        "path" = "/mnt/timemachine/%U";
+        "access based share enum" = "yes";
+        "read only" = "no";
         "guest ok" = "no";
         "kernel oplocks" = "no";
         "kernel share modes" = "no";
         "posix locking" = "no";
-        "vfs objects" = "catia fruit streams_xattr shadow_copy2";
+        "nfs4:chown" = true;
+        "ea support" = false;
+        "smbd max xattr size" = 2097152;
+        "vfs objects" = "catia fruit streams_xattr";
         "fruit:metadata" = "stream";
+        "fruit:resource" = "stream";
         "fruit:time machine" = "yes";
         "fruit:locking" = "none";
         "valid users" = "clansty luoling8192";

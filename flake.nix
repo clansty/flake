@@ -7,7 +7,7 @@
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:xremap/nix-flake/5f3c5668c11d004b2b0d5f6bafdbd70da431b9a0";
     superstar-checkin.url = "github:clansty/superstar-checkin";
-    q2tg.url = "github:clansty/Q2TG/8f65eeb";
+    q2tg.url = "github:clansty/Q2TG/8678a497eac3afc26c441b9ca2640eb72500c4e9";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
