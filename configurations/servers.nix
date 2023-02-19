@@ -32,10 +32,10 @@ in
       name = "repo-legacy-server";
       host = "11.11.1.32";
     }
-    {
-      name = "repo-dispatcher";
-      host = "11.11.1.30";
-    }
+    # {
+    #   name = "repo-dispatcher";
+    #   host = "11.11.1.30";
+    # }
     {
       name = "nas";
       host = "11.11.1.3";

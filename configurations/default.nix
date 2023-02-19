@@ -33,6 +33,7 @@ let
         inputs.nur.nixosModules.nur
         inputs.home-manager.nixosModules.home-manager
         { networking.hostName = "clansty-${name}"; }
+        (import ./services/promtail.nix name)
       ] ++
       basicModules ++
       (if desktop then desktopModules ++ [
