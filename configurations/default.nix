@@ -170,9 +170,9 @@ in
       home = "/Users/clansty";
     }
     {
-      name = "aarch64-lima";
+      name = "termux";
       system = "aarch64-linux";
-      home = "/home/clansty.linux";
+      home = "/data/data/com.termux/files/home";
     }
     {
       name = "aarch64-linux";

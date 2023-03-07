@@ -38,10 +38,12 @@
   home.packages = with pkgs; [ ] ++
     (if pkgs.system == "aarch64-darwin" then with pkgs;[
       coreutils
-      hyfetch
+    ] else [ ]) ++
+    (if pkgs.system == "x86_64-linux" && homeOnly then with pkgs;[
+      deploy-rs.deploy-rs
     ] else [ ]) ++
     (if homeOnly then with pkgs;[
-      deploy-rs.deploy-rs
+      hyfetch
       rnix-lsp
       direnv
       gacp

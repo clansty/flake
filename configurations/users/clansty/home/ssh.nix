@@ -18,8 +18,8 @@
       repo.hostname = "repo.lwqwq.com";
       nas.hostname = "11.11.1.3";
       dev-vm.hostname = "11.11.1.2";
-      w510.hostname = "11.11.1.50";
       loong.hostname = "11.11.1.6";
+      rv.hostname = "11.11.1.9";
       nixsrv.hostname = "172.16.0.72";
       nj-router.hostname = "172.16.2.1";
       nj-box.hostname = "172.16.2.10";
@@ -29,6 +29,10 @@
       nc-pve.user = "root";
       pve.hostname = "11.11.1.5";
       pve.user = "root";
+      docker-host.hostname = "11.11.1.13";
+      router.hostname = "11.11.1.1";
+      gamming.hostname = "11.11.1.40";
+      gamming.user = "clans";
     };
   };
 }
