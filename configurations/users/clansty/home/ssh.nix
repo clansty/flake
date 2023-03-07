@@ -7,9 +7,10 @@
     forwardAgent = true;
     serverAliveCountMax = 10;
     serverAliveInterval = 30;
-    extraConfig = ''
-      TCPKeepAlive yes
-    '';
+    extraOptionOverrides = {
+      TCPKeepAlive = "yes";
+      User = "clansty";
+    };
     matchBlocks = {
       api7.hostname = "api7.lwqwq.com";
       api10.hostname = "api10.lwqwq.com";
