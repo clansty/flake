@@ -35,6 +35,7 @@
     sessionVariables = {
       EDITOR = "${neovim}/bin/nvim";
       SUDO_EDITOR = "${neovim}/bin/nvim";
+      LOCALE_ARCHIVE_2_27 = "${glibcLocales}/lib/locale/locale-archive";
     };
     shellAliases = {
       ":q" = "exit";
