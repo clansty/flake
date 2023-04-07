@@ -12,6 +12,7 @@
         host all all ::1/128 trust
         host all all 172.16.0.0/12 md5
         host all all 192.168.194.0/24 md5
+        host all all 192.168.192.0/24 md5
         host all all 11.11.0.0/16 md5
       '';
     };

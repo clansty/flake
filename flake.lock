@@ -536,17 +536,14 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1673416829,
-        "narHash": "sha256-l1aAmZxKlsn8Gtwncq7XbGcFElL02JhQ0S/fhvLGDz8=",
-        "owner": "clansty",
-        "repo": "netease-music-sync",
-        "rev": "a36c5b7da96878f9a4ad99bad5173b2b139ae074",
-        "type": "github"
+        "lastModified": 1679384759,
+        "narHash": "sha256-HW7VWYTpsAuDycn4PCu7gi6tH2zQWquSCnHLWbjZRFY=",
+        "path": "/home/clansty/Projects/netease-music-sync",
+        "type": "path"
       },
       "original": {
-        "owner": "clansty",
-        "repo": "netease-music-sync",
-        "type": "github"
+        "path": "/home/clansty/Projects/netease-music-sync",
+        "type": "path"
       }
     },
     "nix2container": {

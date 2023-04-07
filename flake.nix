@@ -21,7 +21,7 @@
       url = "github:hercules-ci/nixflk";
       inputs.nixos.follows = "nixpkgs";
     };
-    netease-music-sync.url = "github:clansty/netease-music-sync";
+    netease-music-sync.url = "path:/home/clansty/Projects/netease-music-sync";
     microsoft-store-sync.url = "github:clansty/microsoft-store-sync";
   };
 

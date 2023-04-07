@@ -69,6 +69,11 @@ in
         "guest ok" = "no";
         "valid users" = "clansty luoling8192";
       };
+      clansty-home = mkSimpleShare "/mnt/clansty-home" // {
+        "guest ok" = "no";
+        "valid users" = "clansty";
+        "access based share enum" = "yes";
+      };
     };
   };
   services.samba-wsdd = {
