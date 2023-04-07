@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, profile, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -35,9 +35,9 @@
     sessionVariables = {
       EDITOR = "${neovim}/bin/nvim";
       SUDO_EDITOR = "${neovim}/bin/nvim";
-    } // (if glibcLocales then {
+    } // (mkIf (profile == "termux") {
       LOCALE_ARCHIVE_2_27 = "${glibcLocales}/lib/locale/locale-archive";
-    } else { });
+    });
     shellAliases = {
       ":q" = "exit";
       ":wq" = "exit";
@@ -47,10 +47,10 @@
       la = "l -a";
       nrbu = "nrb --recreate-lock-file";
       vm = "ssh dev-vm -t -- tmux a";
-    } // (if pkgs.system == "aarch64-darwin" then {
+    } // (mkIf (pkgs.system == "aarch64-darwin") {
       lsblk = "diskutil list";
       finder = "ofd";
       docker = "lima nerdctl";
-    } else { });
+    });
   };
 }

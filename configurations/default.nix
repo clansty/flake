@@ -53,6 +53,7 @@ let
         flake = inputs.self;
         isLinux = true;
         homeOnly = false;
+        profile = "nixos";
       };
     };
   };
@@ -75,6 +76,7 @@ let
         flake = inputs.self;
         isLinux = false;
         homeOnly = false;
+        profile = "darwin";
       };
     };
   };
@@ -92,6 +94,7 @@ let
           inherit inputs;
           flake = inputs.self;
           homeOnly = true;
+          profile = name;
         };
       };
   };
