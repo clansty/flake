@@ -1,4 +1,4 @@
-{ pkgs, profile, ... }:
+{ pkgs, profile, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -35,7 +35,7 @@
     sessionVariables = {
       EDITOR = "${neovim}/bin/nvim";
       SUDO_EDITOR = "${neovim}/bin/nvim";
-    } // (mkIf (profile == "termux") {
+    } // (lib.mkIf (profile == "termux") {
       LOCALE_ARCHIVE_2_27 = "${glibcLocales}/lib/locale/locale-archive";
     });
     shellAliases = {
@@ -47,7 +47,7 @@
       la = "l -a";
       nrbu = "nrb --recreate-lock-file";
       vm = "ssh dev-vm -t -- tmux a";
-    } // (mkIf (pkgs.system == "aarch64-darwin") {
+    } // (lib.mkIf (pkgs.system == "aarch64-darwin") {
       lsblk = "diskutil list";
       finder = "ofd";
       docker = "lima nerdctl";
