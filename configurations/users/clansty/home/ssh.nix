@@ -7,33 +7,33 @@
     forwardAgent = true;
     serverAliveCountMax = 10;
     serverAliveInterval = 30;
-    extraOptionOverrides = {
-      TCPKeepAlive = "yes";
-      User = "clansty";
-    };
+    extraConfig = ''
+      TCPKeepAlive yes
+      User clansty
+    '';
     matchBlocks = {
       api7.hostname = "api7.lwqwq.com";
-      api10.hostname = "api10.lwqwq.com";
-      api13.hostname = "api13.lwqwq.com";
-      api16.hostname = "api16.lwqwq.com";
       repo.hostname = "repo.lwqwq.com";
-      nas.hostname = "11.11.1.3";
-      dev-vm.hostname = "11.11.1.2";
+      nas.hostname = "nas.c5y.moe";
+      dev-vm.hostname = "dev-vm.c5y.moe";
       loong.hostname = "11.11.1.6";
-      rv.hostname = "11.11.1.9";
-      nixsrv.hostname = "172.16.0.72";
+      sv2.hostname = "11.11.1.9";
       nj-router.hostname = "172.16.2.1";
       nj-box.hostname = "172.16.2.10";
       nc-router.hostname = "172.16.1.1";
       nc-router.user = "root";
       nc-pve.hostname = "172.16.1.5";
       nc-pve.user = "root";
-      pve.hostname = "11.11.1.5";
+      pve.hostname = "pve.c5y.moe";
       pve.user = "root";
-      docker-host.hostname = "11.11.1.13";
-      router.hostname = "11.11.1.1";
-      gamming.hostname = "11.11.1.40";
+      docker-host.hostname = "docker-host.c5y.moe";
+      router.hostname = "router.c5y.moe";
+      gamming.hostname = "gamming-windows.c5y.moe";
       gamming.user = "clans";
+      # QEMU RISC-V
+      rv.hostname = "172.17.0.3";
+      rv.proxyJump = "dev-vm";
+      rv.user = "root";
     };
   };
 }
