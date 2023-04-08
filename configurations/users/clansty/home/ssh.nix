@@ -2,7 +2,7 @@
   programs.ssh = {
     enable = true;
     compression = true;
-    controlMaster = "auto";
+    # controlMaster = "auto";
     controlPersist = "4h";
     forwardAgent = true;
     serverAliveCountMax = 10;
