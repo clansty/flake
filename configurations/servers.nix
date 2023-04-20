@@ -21,10 +21,6 @@ in
   checks = [];
   nodes = builtins.listToAttrs (map mkNode [
     {
-      name = "nixserver";
-      host = "nixsrv";
-    }
-    {
       name = "nextcloud";
       host = "11.11.1.10";
     }
@@ -44,9 +40,5 @@ in
       name = "pgsql";
       host = "172.16.0.82";
     }
-    # {
-    #   name = "w510";
-    #   host = "w510";
-    # }
   ]);
 }

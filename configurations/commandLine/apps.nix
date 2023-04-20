@@ -15,4 +15,6 @@
     viAlias = true;
     configure.customRC = lib.fileContents ../dotfiles/init.vim;
   };
+
+  programs.zsh.enable = true;
 }

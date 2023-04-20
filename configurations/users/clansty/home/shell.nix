@@ -1,4 +1,4 @@
-{ pkgs, profile, ... }:
+{ pkgs, profileName, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -35,7 +35,7 @@
     sessionVariables = {
       EDITOR = "${neovim}/bin/nvim";
       SUDO_EDITOR = "${neovim}/bin/nvim";
-    } // (if profile == "termux" then {
+    } // (if profileName == "termux" then {
       LOCALE_ARCHIVE_2_27 = "${glibcLocales}/lib/locale/locale-archive";
     } else { });
     shellAliases = {

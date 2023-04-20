@@ -1,7 +1,12 @@
 { config, pkgs, lib, isLinux, ... }@args:
 
 {
-  home-manager.users.clansty = import ./home args;
+  home-manager.extraSpecialArgs = with args;{
+    inherit inputs flake;
+    homeOnly = false;
+    profileName = "nixos";
+  };
+  home-manager.users.clansty = import ./home;
 
   users.users.clansty = {
     shell = pkgs.zsh;

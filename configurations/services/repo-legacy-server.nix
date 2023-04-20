@@ -52,7 +52,7 @@
   systemd.services.sync-repo-alhp = {
     serviceConfig.Type = "oneshot";
     script = ''
-      ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://alhp.harting.dev/alhp /mnt/mirrors/alhp/
+      ${pkgs.rsync}/bin/rsync -rlptHP --safe-links --delete-delay --delay-updates rsync://alhp.dev/alhp /mnt/mirrors/alhp/
     '';
   };
   systemd.timers.sync-repo-archlinux = {
