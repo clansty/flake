@@ -15,6 +15,9 @@
         host all all 192.168.192.0/24 md5
         host all all 11.11.0.0/16 md5
       '';
+      settings = {
+        max_connections = 10000;
+      };
     };
     pgadmin = {
       enable = true;

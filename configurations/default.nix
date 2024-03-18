@@ -116,14 +116,6 @@ in
       ];
     }
     {
-      name = "nixserver";
-      extraModules = [
-        ./services/q2tg.nix
-        # ./services/ctm-record.nix
-      ];
-      lxc = true;
-    }
-    {
       name = "pgsql";
       extraModules = [
         ./services/postgres.nix
@@ -134,28 +126,6 @@ in
       name = "nextcloud";
       extraModules = [
         ./services/nextcloud.nix
-      ];
-      lxc = true;
-    }
-    {
-      name = "repo-dispatcher";
-      extraModules = [
-        ./services/pkgbuilder-dispatcher.nix
-        ./services/repo-server.nix
-      ];
-      lxc = true;
-    }
-    {
-      name = "nas";
-      extraModules = [
-        ./services/nas
-      ];
-      lxc = true;
-    }
-    {
-      name = "repo-legacy-server";
-      extraModules = [
-        ./services/repo-legacy-server.nix
       ];
       lxc = true;
     }

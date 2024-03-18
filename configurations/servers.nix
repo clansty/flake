@@ -1,6 +1,6 @@
 { deploy-rs, self, ... }@inputs:
 let
-  mkNode = { name, host, remoteBuild ? false }: {
+  mkNode = { name, host, remoteBuild ? true }: {
     inherit name;
     value = {
       hostname = host;
@@ -21,24 +21,8 @@ in
   checks = [];
   nodes = builtins.listToAttrs (map mkNode [
     {
-      name = "nextcloud";
-      host = "11.11.1.10";
-    }
-    {
-      name = "repo-legacy-server";
-      host = "11.11.1.32";
-    }
-    # {
-    #   name = "repo-dispatcher";
-    #   host = "11.11.1.30";
-    # }
-    {
-      name = "nas";
-      host = "11.11.1.3";
-    }
-    {
       name = "pgsql";
-      host = "172.16.0.82";
+      host = "11.11.1.4";
     }
   ]);
 }
