@@ -3,11 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    sauricat.url = "github:sauricat/flakes/main";
     nur.url = github:nix-community/NUR;
     xremap-flake.url = "github:xremap/nix-flake/5f3c5668c11d004b2b0d5f6bafdbd70da431b9a0";
-    superstar-checkin.url = "github:clansty/superstar-checkin";
-    q2tg.url = "github:clansty/Q2TG/8678a497eac3afc26c441b9ca2640eb72500c4e9";
+    # superstar-checkin.url = "github:clansty/superstar-checkin";
+    # q2tg.url = "github:clansty/Q2TG/8678a497eac3afc26c441b9ca2640eb72500c4e9";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,8 +20,12 @@
       url = "github:hercules-ci/nixflk";
       inputs.nixos.follows = "nixpkgs";
     };
-    netease-music-sync.url = "path:/home/clansty/Projects/netease-music-sync";
+    # netease-music-sync.url = "path:/home/clansty/Projects/netease-music-sync";
     microsoft-store-sync.url = "github:clansty/microsoft-store-sync";
+    wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixos.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

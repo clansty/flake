@@ -17,7 +17,6 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
-    inputs.sauricat.overlays.sauricat
     flake.overlays.clansty
     inputs.deploy-rs.overlay
   ];

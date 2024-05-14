@@ -41,7 +41,7 @@
     shellAliases = {
       ":q" = "exit";
       ":wq" = "exit";
-      ls = "${exa}/bin/exa --color-scale --group-directories-first --time-style iso -bH";
+      ls = "${eza}/bin/eza --color-scale --group-directories-first --time-style iso -bH";
       l = "ls -l";
       ll = "l";
       la = "l -a";

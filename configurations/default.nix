@@ -2,7 +2,6 @@ inputs:
 let
   basicModules = [
     ./environment.nix
-    ./services/openssh.nix
     ./commandLine
     ./i18n.nix
     ./users
@@ -25,22 +24,24 @@ let
 
   secrets = import ./utils/secrets.nix;
 
-  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false }: {
-    name = "clansty-${name}";
+  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false, sshd ? false, boot ? true }: {
+    name = "${name}";
     value = inputs.nixpkgs.lib.nixosSystem {
       system = "${arch}-linux";
       modules = [
         inputs.nur.nixosModules.nur
         inputs.home-manager.nixosModules.home-manager
-        { networking.hostName = "clansty-${name}"; }
-        (import ./services/promtail.nix name)
+        { networking.hostName = "${name}"; }
       ] ++
       basicModules ++
       (if desktop then desktopModules ++ [
-        (import ./backup.nix name)
-      ] else [ ]) ++
+        (import ./backup.nix name) ] else [ ]) ++
+      (if sshd then [
+        ./services/openssh.nix ] else [ ]) ++
+      (if boot then [
+        ./boot.nix ] else [ ]) ++
       extraModules ++
-      (if lxc then [ ./machines/lxc.nix ] else [ ./boot.nix ./machines/${name}.nix ]) ++
+      (if lxc then [ ./machines/lxc.nix ] else [ ./machines/${name}.nix ]) ++
       (if arch == "x86_64" then [{
         # nixpkgs.localSystem = {
         #   gcc.arch = "znver3";
@@ -102,20 +103,6 @@ in
 {
   nixos = builtins.listToAttrs (map mkLinux [
     {
-      name = "w510";
-      desktop = true;
-      arch = "aarch64";
-      extraModules = [
-        ./services/code-server.nix
-        ./services/nginx-pc.nix
-        ./emulation/riscv.nix
-        ./services/samba-home.nix
-        ./services/pkgbuilder-nfs.nix
-        ./services/pkgbuilder-host.nix
-        # ./services/temperature2mqtt.nix
-      ];
-    }
-    {
       name = "pgsql";
       extraModules = [
         ./services/postgres.nix
@@ -123,11 +110,11 @@ in
       lxc = true;
     }
     {
-      name = "nextcloud";
+      name = "wsl";
       extraModules = [
-        ./services/nextcloud.nix
+        inputs.wsl.nixosModules.default
       ];
-      lxc = true;
+      boot = false;
     }
   ]);
   darwin = builtins.listToAttrs (map mkDarwin [
