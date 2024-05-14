@@ -14,7 +14,6 @@
 
   nixpkgs.overlays = [
     flake.overlays.clansty
-    inputs.deploy-rs.overlay
   ];
 
   nix =
@@ -39,12 +38,13 @@
       coreutils
     ] else [ ]) ++
     (if pkgs.system == "x86_64-linux" && homeOnly then with pkgs;[
-      deploy-rs.deploy-rs
+      deploy-rs
     ] else [ ]) ++
     (if homeOnly then with pkgs;[
       hyfetch
-      rnix-lsp
+      nil
       direnv
       gacp
+      nix-output-monitor
     ] else [ ]);
 }

@@ -113,6 +113,7 @@ in
       name = "wsl";
       extraModules = [
         inputs.wsl.nixosModules.default
+        ./commandLine-desktop
       ];
       boot = false;
     }

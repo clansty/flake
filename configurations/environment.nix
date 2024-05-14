@@ -18,7 +18,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     flake.overlays.clansty
-    inputs.deploy-rs.overlay
   ];
   nixpkgs.config.allowBroken = true;
 

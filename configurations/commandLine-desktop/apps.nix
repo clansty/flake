@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     nmap nali
     rclone clansty-pb
-    rnix-lsp
+    nil
     picocom
     nodePackages.http-server nodePackages.asar
     azure-cli wrangler
@@ -11,11 +11,12 @@
     pdftk
     nrb gacp
     python3 nodejs
-    deploy-rs.deploy-rs
+    deploy-rs
     openssl
     ffmpeg
     binwalk squashfsTools
     pacman
     kanidm
+    nix-output-monitor
   ];
 }
