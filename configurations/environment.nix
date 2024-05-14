@@ -28,7 +28,7 @@
     ./dotfiles/menci-network-ca.pem
   ];
 
-  system.stateVersion = if isLinux then "22.11" else 4;
+  system.stateVersion = if isLinux then "24.05" else 4;
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"

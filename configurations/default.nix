@@ -24,7 +24,7 @@ let
 
   secrets = import ./utils/secrets.nix;
 
-  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false, sshd ? false, boot ? true }: {
+  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false, sshd ? false, boot ? !lxc }: {
     name = "${name}";
     value = inputs.nixpkgs.lib.nixosSystem {
       system = "${arch}-linux";

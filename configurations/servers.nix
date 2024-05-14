@@ -1,13 +1,13 @@
 { deploy-rs, self, ... }@inputs:
 let
-  mkNode = { name, host, remoteBuild ? true }: {
+  mkNode = { name, host, remoteBuild ? false }: {
     inherit name;
     value = {
       hostname = host;
       inherit remoteBuild;
       profiles.system = {
         path =
-          let config = self.nixosConfigurations."clansty-${name}";
+          let config = self.nixosConfigurations.${name};
           in deploy-rs.lib.${config.pkgs.system}.activate.nixos config;
       };
     };

@@ -6,6 +6,7 @@
     unrar unzip
     duf gdu ripgrep
     hyfetch
+    socat
   ];
 
   programs.neovim = {
