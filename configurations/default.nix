@@ -18,11 +18,12 @@ let
 
   desktopModules = [
     ./graphic
-    (import ./nfsClient.nix { baseDir = "/run/media/clansty"; })
+    # (import ./nfsClient.nix { baseDir = "/run/media/clansty"; })
     ./commandLine-desktop
+    inputs.sddm-sugar-candy-nix.nixosModules.default
   ];
 
-  secrets = import ./utils/secrets.nix;
+  #secrets = import ./utils/secrets.nix;
 
   mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false, sshd ? false, boot ? !lxc }: {
     name = "${name}";
@@ -35,7 +36,7 @@ let
       ] ++
       basicModules ++
       (if desktop then desktopModules ++ [
-        (import ./backup.nix name) ] else [ ]) ++
+      ] else [ ]) ++
       (if sshd then [
         ./services/openssh.nix ] else [ ]) ++
       (if boot then [
@@ -50,7 +51,7 @@ let
         # };
       }] else [ ]);
       specialArgs = {
-        inherit inputs arch secrets;
+        inherit inputs arch ;
         flake = inputs.self;
         isLinux = true;
         homeOnly = false;
@@ -116,6 +117,10 @@ in
         ./commandLine-desktop
       ];
       boot = false;
+    }
+    {
+      name = "laptop";
+      desktop = true;
     }
   ]);
   darwin = builtins.listToAttrs (map mkDarwin [

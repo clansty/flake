@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nur.url = github:nix-community/NUR;
-    xremap-flake.url = "github:xremap/nix-flake/5f3c5668c11d004b2b0d5f6bafdbd70da431b9a0";
+    nur.url = "github:nix-community/NUR";
+    xremap-flake.url = "github:xremap/nix-flake";
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +19,11 @@
       inputs.nixos.follows = "nixpkgs";
     };
     wsl.url = "github:nix-community/NixOS-WSL";
+sddm-sugar-candy-nix = {
+    url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
+    # Optional, by default this flake follows nixpkgs-unstable.
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
   outputs = inputs:

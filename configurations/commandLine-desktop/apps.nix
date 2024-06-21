@@ -17,6 +17,8 @@
     binwalk squashfsTools
     pacman
     kanidm
-    nix-output-monitor
+    gnupg
+    nix-output-monitor nixpkgs-fmt
+    nix-prefetch-github nix-prefetch-git
   ];
 }

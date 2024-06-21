@@ -4,7 +4,7 @@
   nix =
     let
       substituters = [
-        # "https://mirrors.bfsu.edu.cn/nix-channels/store/"
+        "https://mirrors.bfsu.edu.cn/nix-channels/store/"
         "https://cache.nixos.org"
       ];
     in
@@ -18,6 +18,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     flake.overlays.clansty
+    inputs.sddm-sugar-candy-nix.overlays.default
   ];
   nixpkgs.config.allowBroken = true;
 
@@ -32,7 +33,6 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"
-    "electron-9.4.4"
     "electron-17.4.1"
   ];
 }

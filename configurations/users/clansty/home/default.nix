@@ -8,6 +8,7 @@
     ./shell.nix
     ./nvim.nix
     ./tmux.nix
+    ./gnupg.nix
   ];
 
   home.stateVersion = "22.11";
@@ -19,7 +20,7 @@
   nix =
     let
       substituters = [
-        # "https://mirrors.bfsu.edu.cn/nix-channels/store/"
+        "https://mirrors.bfsu.edu.cn/nix-channels/store/"
         "https://cache.nixos.org"
       ];
     in

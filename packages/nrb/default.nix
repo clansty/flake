@@ -2,15 +2,14 @@
 , git
 , writeScriptBin
 , stdenv
+, pkgs
 , ...
 }:
 if stdenv.isLinux then
   writeScriptBin "nrb"
     ''
       #!${bash}/bin/bash
-      cd /etc/nixos
-      ${git}/bin/git add .
-      sudo nixos-rebuild switch -v -L $*
+      sudo nixos-rebuild switch --flake path:$HOME/nixos --log-format internal-json -v -L $* |& ${pkgs.nix-output-monitor}/bin/nom --json
     ''
 else
   writeScriptBin "nrb"

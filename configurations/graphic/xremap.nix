@@ -6,17 +6,9 @@
     withGnome = true;
     watch = true;
     userName = "clansty";
-    deviceName = "HOLTEK USB-HID AP";
     config = {
       virtual_modifiers = [ "CapsLock" ];
       modmap = [
-        {
-          name = "Global";
-          remap = {
-            Alt_L = "Win_L";
-            Win_L = "Alt_L";
-          };
-        }
         {
           name = "CapsLock in apps other then terminal";
           remap.CapsLock = "Ctrl_L";

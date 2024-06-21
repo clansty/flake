@@ -28,10 +28,12 @@
     system-monitor
     xremap
     blur-my-shell
+    kimpanel
   ]) ++ (with pkgs; [
     arc-theme
     tela-icon-theme
     adw-gtk3
+    gnome-extension-manager
   ]);
 
   sound.enable = true;

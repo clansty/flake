@@ -1,12 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  # boot.tmpOnTmpfs = true;
+  boot.tmpOnTmpfs = false;
   boot.kernelParams = [ "systemd.show_status=1" ];
   boot.loader = {
     systemd-boot.enable = true;
-    systemd-boot.consoleMode = "max";
     systemd-boot.configurationLimit = 3;
-    efi.canTouchEfiVariables = false;
+    efi.canTouchEfiVariables = true;
   };
 }
