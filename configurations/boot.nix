@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  boot.tmpOnTmpfs = false;
+  boot.tmp.cleanOnBoot = true;
   boot.kernelParams = [ "systemd.show_status=1" ];
   boot.loader = {
     systemd-boot.enable = true;

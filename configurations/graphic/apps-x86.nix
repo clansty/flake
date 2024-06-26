@@ -3,10 +3,9 @@
 {
   programs.steam.enable = true;
   environment.systemPackages = (with pkgs; [
+    xivlauncher-cn
     jetbrains.webstorm
     google-chrome
-#    red-alert2 cncnet-yr-mo minecraft
-#    navicat
   ]) ++ (with config.nur.repos; [
   ]);
 }
