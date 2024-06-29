@@ -1,31 +1,6 @@
 inputs:
 let
-  basicModules = [
-    ./environment.nix
-    ./commandLine
-    ./i18n.nix
-    ./users
-    ./networking.nix
-  ];
-
-  darwinModules = [
-    ./environment.nix
-    ./commandLine
-    ./darwin
-    ./users
-    ./graphic/fonts.nix
-  ];
-
-  desktopModules = [
-    ./graphic
-    # (import ./nfsClient.nix { baseDir = "/run/media/clansty"; })
-    ./commandLine-desktop
-    inputs.sddm-sugar-candy-nix.nixosModules.default
-  ];
-
-  #secrets = import ./utils/secrets.nix;
-
-  mkLinux = { name, desktop ? false, arch ? "x86_64", extraModules ? [ ], lxc ? false, sshd ? false, boot ? !lxc }: {
+  mkLinux = { name, arch ? "x86_64", modules ? [ ] }: {
     name = "${name}";
     value = inputs.nixpkgs.lib.nixosSystem {
       system = "${arch}-linux";
@@ -34,51 +9,15 @@ let
         inputs.home-manager.nixosModules.home-manager
         { networking.hostName = "${name}"; }
       ] ++
-      basicModules ++
-      (if desktop then desktopModules ++ [
-      ] else [ ]) ++
-      (if sshd then [
-        ./services/openssh.nix ] else [ ]) ++
-      (if boot then [
-        ./boot.nix ] else [ ]) ++
-      extraModules ++
-      (if lxc then [ ./machines/lxc.nix ] else [ ./machines/${name}.nix ]) ++
-      (if arch == "x86_64" then [{
-        # nixpkgs.localSystem = {
-        #   gcc.arch = "znver3";
-        #   gcc.tune = "znver3";
-        #   system = "x86_64-linux";
-        # };
-      }] else [ ]);
+      map (name: import ./defaultModules/${name}) (builtins.attrNames (builtins.readDir ./defaultModules)) ++
+      modules;
+
       specialArgs = {
-        inherit inputs arch ;
+        inherit inputs arch;
         flake = inputs.self;
         isLinux = true;
         homeOnly = false;
         profileName = "nixos";
-      };
-    };
-  };
-
-  mkDarwin = { name, arch ? "aarch64", extraModules ? [ ] }: {
-    name = "clansty-${name}";
-    value = inputs.darwin.lib.darwinSystem {
-      system = "${arch}-darwin";
-      modules = [
-        inputs.nur.nixosModules.nur
-        inputs.home-manager.darwinModules.home-manager
-        {
-          networking.hostName = "clansty-${name}";
-          networking.localHostName = "clansty-${name}";
-          services.nix-daemon.enable = true;
-        }
-      ] ++ darwinModules ++ extraModules;
-      specialArgs = {
-        inherit inputs arch;
-        flake = inputs.self;
-        isLinux = false;
-        homeOnly = false;
-        profileName = "darwin";
       };
     };
   };
@@ -102,33 +41,13 @@ let
   };
 in
 {
-  nixos = builtins.listToAttrs (map mkLinux [
-    {
-      name = "pgsql";
-      extraModules = [
-        ./services/postgres.nix
-      ];
-      lxc = true;
-    }
-    {
-      name = "wsl";
-      extraModules = [
-        inputs.wsl.nixosModules.default
-        ./commandLine-desktop
-      ];
-      boot = false;
-    }
-    {
-      name = "laptop";
-      desktop = true;
-    }
-  ]);
-  darwin = builtins.listToAttrs (map mkDarwin [
-    {
-      name = "m1";
-      extraModules = [ ];
-    }
-  ]);
+  nixos =
+    let
+      dirContents = builtins.readDir ./machines;
+      mkLinuxFromName = name: mkLinux ((import ./machines/${name} inputs) // { name = name; });
+      names = builtins.attrNames dirContents;
+    in
+    builtins.listToAttrs (map (mkLinuxFromName) names);
   home = builtins.listToAttrs (map mkHome [
     {
       name = "aarch64-darwin";

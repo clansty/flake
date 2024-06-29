@@ -19,11 +19,10 @@
       inputs.nixos.follows = "nixpkgs";
     };
     wsl.url = "github:nix-community/NixOS-WSL";
-sddm-sugar-candy-nix = {
-    url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-    # Optional, by default this flake follows nixpkgs-unstable.
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+    sddm-sugar-candy-nix = {
+      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -42,7 +41,6 @@ sddm-sugar-candy-nix = {
         in
         builtins.listToAttrs (map genPackage names);
       nixosConfigurations = configurations.nixos;
-      darwinConfigurations = configurations.darwin;
       homeConfigurations = configurations.home;
       deploy = import ./configurations/servers.nix inputs;
     };

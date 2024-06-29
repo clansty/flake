@@ -8,7 +8,6 @@
       ./apps.nix
       ./fonts.nix
       ./ime.nix
-      ./fingerprint.nix
       ./xremap.nix
     ] ++ (lib.lists.optionals (arch == "x86_64") [
       ./apps-x86.nix
