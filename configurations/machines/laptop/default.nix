@@ -5,5 +5,6 @@ inputs: {
     ../../boot.nix
     ../../commandLine-desktop
     ../../graphic
+    ../../remote-build.nix
   ];
 }

@@ -4,7 +4,6 @@
 
   imports = [
     ./git.nix
-    ./ssh.nix
     ./tmux.nix
     ./gnupg.nix
     ./nu.nix
