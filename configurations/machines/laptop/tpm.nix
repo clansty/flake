@@ -6,5 +6,8 @@
 
   environment.systemPackages = with pkgs;[ tpm2-tools ];
 
-  programs.ssh.extraConfig = "PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so";
+  programs.ssh.extraConfig = ''
+    Host *
+      PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+  '';
 }
