@@ -6,7 +6,7 @@
     nil
     picocom
     nodePackages.http-server nodePackages.asar
-    azure-cli wrangler
+    azure-cli
     python310Packages.ipython
     pdftk
     nrb gacp
