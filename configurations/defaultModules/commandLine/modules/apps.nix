@@ -4,7 +4,7 @@
     direnv
     wget file tree htop
     unrar unzip
-    duf gdu ripgrep
+    duf gdu ripgrep fd
     hyfetch
     socat
   ];
