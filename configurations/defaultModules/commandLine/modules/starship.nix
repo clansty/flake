@@ -12,14 +12,19 @@ in
     enable = true;
     settings = {
       character = {
-        success_symbol = "[➜ ](bold green)";
-        error_symbol = "[➜ ](bold red)";
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
       };
       add_newline = true;
-      time.disabled = false;
+      time = {
+        disabled = false;
+        format = "[$time]($style)";
+      };
       status.disabled = false;
       shell.disabled = false;
       fill.symbol = " ";
+      hostname.ssh_only = false;
+      right_format = "[nya~](flamingo)";
       format = lib.concatStrings [
         "$username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$fill"
         "$all$time$line_break"
