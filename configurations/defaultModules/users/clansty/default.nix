@@ -9,7 +9,7 @@
   home-manager.users.clansty = import ../../../home;
 
   users.users.clansty = {
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
     description = "Clansty Icaria";
     isNormalUser = true;
     extraGroups = [

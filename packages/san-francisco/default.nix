@@ -4,7 +4,7 @@
 , ...
 } @ args:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "san-francisco";
   version = "53ffbe571bb83dbb4835a010b4a49ebb9a32fc55";
   src = fetchFromGitHub ({
