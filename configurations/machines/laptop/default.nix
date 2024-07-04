@@ -6,5 +6,6 @@ inputs: {
     ../../commandLine-desktop
     ../../graphic
     ../../remote-build.nix
+    ./umaf.nix
   ];
 }
