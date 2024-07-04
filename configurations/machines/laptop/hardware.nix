@@ -36,21 +36,16 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B2F8-0FB5";
+    { device = "/dev/disk/by-uuid/ECCA-4384";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  fileSystems."/boot/esp" =
-    { device = "/dev/disk/by-uuid/4239-69A9";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0077" "dmask=0077" "nofail" ];
     };
 
   swapDevices = [ 
     { 
-      device = "/dev/disk/by-uuid/f6d70160-c141-49e4-a531-c29fbe281a51"; 
+      device = "/dev/disk/by-uuid/fe012083-ac1b-41b8-ab21-8cb5ad283d72"; 
       discardPolicy = "once";
+      options = [ "nofail" ];
     }
   ];
 
@@ -64,6 +59,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   networking.hostId = "28901080";
-  boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
-  boot.loader.efi.efiSysMountPoint = "/boot/esp";
+  boot.loader.efi.efiSysMountPoint = "/boot";
 }
