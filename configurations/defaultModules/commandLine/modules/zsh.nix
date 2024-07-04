@@ -10,7 +10,7 @@
     autosuggestions.enable = true;
   };
 
-  environment.etc.zlogin.text = with pkgs;
+  environment.etc.zshrc.text = with pkgs;
     # zsh-fast-syntax-highlighting 必须在主题之后加载，不然会变鬼畜
     ''
       # source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
