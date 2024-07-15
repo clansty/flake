@@ -1,0 +1,537 @@
+From 7856ff8a2f9b44a5cac58d3e7cdcaa7414fb0af1 Mon Sep 17 00:00:00 2001
+From: Rob Norris <robn@despairlabs.com>
+Date: Mon, 27 May 2024 21:32:07 -0400
+Subject: [PATCH 1/3] Linux 6.10: rework queue limits setup
+
+Linux has started moving to a model where instead of applying block
+queue limits through individual modification functions, a complete
+limits structure is built up and applied atomically, either when the
+block device or open, or some time afterwards. As of 6.10 this
+transition appears only partly completed.
+
+This commit matches that model within OpenZFS in a way that should work
+for past and future kernels. We set up a queue limits structure with any
+limits that have had their modification functions removed. For newer
+kernels that can have limits applied at block device open
+(HAVE_BLK_ALLOC_DISK_2ARG), we have a conversion function to turn the
+OpenZFS queue limits structure into Linux's queue_limits structure,
+which can then be passed in. For older kernels, we provide an
+application function that just calls the old functions for each limit in
+the structure.
+
+Signed-off-by: Rob Norris <robn@despairlabs.com>
+Sponsored-by: https://despairlabs.com/sponsor/
+---
+ config/kernel-blk-queue.m4    |   4 +-
+ module/os/linux/zfs/zvol_os.c | 186 +++++++++++++++++++++-------------
+ 2 files changed, 118 insertions(+), 72 deletions(-)
+
+diff --git a/config/kernel-blk-queue.m4 b/config/kernel-blk-queue.m4
+index 15dbe1c7dff0..2f0b386e6637 100644
+--- a/config/kernel-blk-queue.m4
++++ b/config/kernel-blk-queue.m4
+@@ -332,7 +332,7 @@ AC_DEFUN([ZFS_AC_KERNEL_BLK_QUEUE_MAX_HW_SECTORS], [
+ 	ZFS_LINUX_TEST_RESULT([blk_queue_max_hw_sectors], [
+ 		AC_MSG_RESULT(yes)
+ 	],[
+-		ZFS_LINUX_TEST_ERROR([blk_queue_max_hw_sectors])
++		AC_MSG_RESULT(no)
+ 	])
+ ])
+ 
+@@ -355,7 +355,7 @@ AC_DEFUN([ZFS_AC_KERNEL_BLK_QUEUE_MAX_SEGMENTS], [
+ 	ZFS_LINUX_TEST_RESULT([blk_queue_max_segments], [
+ 		AC_MSG_RESULT(yes)
+ 	], [
+-		ZFS_LINUX_TEST_ERROR([blk_queue_max_segments])
++		AC_MSG_RESULT(no)
+ 	])
+ ])
+ 
+diff --git a/module/os/linux/zfs/zvol_os.c b/module/os/linux/zfs/zvol_os.c
+index 3e020e532263..1982c234e9d5 100644
+--- a/module/os/linux/zfs/zvol_os.c
++++ b/module/os/linux/zfs/zvol_os.c
+@@ -1074,8 +1074,106 @@ static const struct block_device_operations zvol_ops = {
+ #endif
+ };
+ 
++typedef struct zvol_queue_limits {
++	unsigned int	zql_max_hw_sectors;
++	unsigned short	zql_max_segments;
++	unsigned int	zql_max_segment_size;
++	unsigned int	zql_io_opt;
++} zvol_queue_limits_t;
++
++static void
++zvol_queue_limits_init(zvol_queue_limits_t *limits, zvol_state_t *zv,
++    boolean_t use_blk_mq)
++{
++	limits->zql_max_hw_sectors = (DMU_MAX_ACCESS / 4) >> 9;
++
++	if (use_blk_mq) {
++		/*
++		 * IO requests can be really big (1MB).  When an IO request
++		 * comes in, it is passed off to zvol_read() or zvol_write()
++		 * in a new thread, where it is chunked up into 'volblocksize'
++		 * sized pieces and processed.  So for example, if the request
++		 * is a 1MB write and your volblocksize is 128k, one zvol_write
++		 * thread will take that request and sequentially do ten 128k
++		 * IOs.  This is due to the fact that the thread needs to lock
++		 * each volblocksize sized block.  So you might be wondering:
++		 * "instead of passing the whole 1MB request to one thread,
++		 * why not pass ten individual 128k chunks to ten threads and
++		 * process the whole write in parallel?"  The short answer is
++		 * that there's a sweet spot number of chunks that balances
++		 * the greater parallelism with the added overhead of more
++		 * threads. The sweet spot can be different depending on if you
++		 * have a read or write  heavy workload.  Writes typically want
++		 * high chunk counts while reads typically want lower ones.  On
++		 * a test pool with 6 NVMe drives in a 3x 2-disk mirror
++		 * configuration, with volblocksize=8k, the sweet spot for good
++		 * sequential reads and writes was at 8 chunks.
++		 */
++
++		/*
++		 * Below we tell the kernel how big we want our requests
++		 * to be.  You would think that blk_queue_io_opt() would be
++		 * used to do this since it is used to "set optimal request
++		 * size for the queue", but that doesn't seem to do
++		 * anything - the kernel still gives you huge requests
++		 * with tons of little PAGE_SIZE segments contained within it.
++		 *
++		 * Knowing that the kernel will just give you PAGE_SIZE segments
++		 * no matter what, you can say "ok, I want PAGE_SIZE byte
++		 * segments, and I want 'N' of them per request", where N is
++		 * the correct number of segments for the volblocksize and
++		 * number of chunks you want.
++		 */
++#ifdef HAVE_BLK_MQ
++		if (zvol_blk_mq_blocks_per_thread != 0) {
++			unsigned int chunks;
++			chunks = MIN(zvol_blk_mq_blocks_per_thread, UINT16_MAX);
++
++			limits->zql_max_segment_size = PAGE_SIZE;
++			limits->zql_max_segments =
++			    (zv->zv_volblocksize * chunks) / PAGE_SIZE;
++		} else {
++			/*
++			 * Special case: zvol_blk_mq_blocks_per_thread = 0
++			 * Max everything out.
++			 */
++			limits->zql_max_segments = UINT16_MAX;
++			limits->zql_max_segment_size = UINT_MAX;
++		}
++	} else {
++#endif
++		limits->zql_max_segments = UINT16_MAX;
++		limits->zql_max_segment_size = UINT_MAX;
++	}
++
++	limits->zql_io_opt = zv->zv_volblocksize;
++}
++
++#ifdef HAVE_BLK_ALLOC_DISK_2ARG
++static void
++zvol_queue_limits_convert(zvol_queue_limits_t *limits,
++    struct queue_limits *qlimits)
++{
++	memset(qlimits, 0, sizeof (struct queue_limits));
++	qlimits->max_hw_sectors = limits->zql_max_hw_sectors;
++	qlimits->max_segments = limits->zql_max_segments;
++	qlimits->max_segment_size = limits->zql_max_segment_size;
++	qlimits->io_opt = limits->zql_io_opt;
++}
++#else
++static void
++zvol_queue_limits_apply(zvol_queue_limits_t *limits,
++    struct request_queue *queue)
++{
++	blk_queue_max_hw_sectors(queue, limits->zql_max_hw_sectors);
++	blk_queue_max_segments(queue, limits->zql_max_segments);
++	blk_queue_max_segment_size(queue, limits->zql_max_segment_size);
++	blk_queue_io_opt(queue, limits->zql_io_opt);
++}
++#endif
++
+ static int
+-zvol_alloc_non_blk_mq(struct zvol_state_os *zso)
++zvol_alloc_non_blk_mq(struct zvol_state_os *zso, zvol_queue_limits_t *limits)
+ {
+ #if defined(HAVE_SUBMIT_BIO_IN_BLOCK_DEVICE_OPERATIONS)
+ #if defined(HAVE_BLK_ALLOC_DISK)
+@@ -1085,8 +1183,11 @@ zvol_alloc_non_blk_mq(struct zvol_state_os *zso)
+ 
+ 	zso->zvo_disk->minors = ZVOL_MINORS;
+ 	zso->zvo_queue = zso->zvo_disk->queue;
++	zvol_queue_limits_apply(limits, zso->zvo_queue);
+ #elif defined(HAVE_BLK_ALLOC_DISK_2ARG)
+-	struct gendisk *disk = blk_alloc_disk(NULL, NUMA_NO_NODE);
++	struct queue_limits qlimits;
++	zvol_queue_limits_convert(limits, &qlimits);
++	struct gendisk *disk = blk_alloc_disk(&qlimits, NUMA_NO_NODE);
+ 	if (IS_ERR(disk)) {
+ 		zso->zvo_disk = NULL;
+ 		return (1);
+@@ -1107,6 +1208,7 @@ zvol_alloc_non_blk_mq(struct zvol_state_os *zso)
+ 	}
+ 
+ 	zso->zvo_disk->queue = zso->zvo_queue;
++	zvol_queue_limits_apply(limits, zso->zvo_queue);
+ #endif /* HAVE_BLK_ALLOC_DISK */
+ #else
+ 	zso->zvo_queue = blk_generic_alloc_queue(zvol_request, NUMA_NO_NODE);
+@@ -1120,13 +1222,14 @@ zvol_alloc_non_blk_mq(struct zvol_state_os *zso)
+ 	}
+ 
+ 	zso->zvo_disk->queue = zso->zvo_queue;
++	zvol_queue_limits_apply(limits, zso->zvo_queue);
+ #endif /* HAVE_SUBMIT_BIO_IN_BLOCK_DEVICE_OPERATIONS */
+ 	return (0);
+ 
+ }
+ 
+ static int
+-zvol_alloc_blk_mq(zvol_state_t *zv)
++zvol_alloc_blk_mq(zvol_state_t *zv, zvol_queue_limits_t *limits)
+ {
+ #ifdef HAVE_BLK_MQ
+ 	struct zvol_state_os *zso = zv->zv_zso;
+@@ -1142,9 +1245,12 @@ zvol_alloc_blk_mq(zvol_state_t *zv)
+ 		return (1);
+ 	}
+ 	zso->zvo_queue = zso->zvo_disk->queue;
++	zvol_queue_limits_apply(limits, zso->zvo_queue);
+ 	zso->zvo_disk->minors = ZVOL_MINORS;
+ #elif defined(HAVE_BLK_ALLOC_DISK_2ARG)
+-	struct gendisk *disk = blk_mq_alloc_disk(&zso->tag_set, NULL, zv);
++	struct queue_limits qlimits;
++	zvol_queue_limits_convert(limits, &qlimits);
++	struct gendisk *disk = blk_mq_alloc_disk(&zso->tag_set, &qlimits, zv);
+ 	if (IS_ERR(disk)) {
+ 		zso->zvo_disk = NULL;
+ 		blk_mq_free_tag_set(&zso->tag_set);
+@@ -1170,6 +1276,7 @@ zvol_alloc_blk_mq(zvol_state_t *zv)
+ 
+ 	/* Our queue is now created, assign it to our disk */
+ 	zso->zvo_disk->queue = zso->zvo_queue;
++	zvol_queue_limits_apply(limits, zso->zvo_queue);
+ 
+ #endif
+ #endif
+@@ -1209,6 +1316,9 @@ zvol_alloc(dev_t dev, const char *name)
+ 	zv->zv_zso->use_blk_mq = zvol_use_blk_mq;
+ #endif
+ 
++	zvol_queue_limits_t limits;
++	zvol_queue_limits_init(&limits, zv, zv->zv_zso->use_blk_mq);
++
+ 	/*
+ 	 * The block layer has 3 interfaces for getting BIOs:
+ 	 *
+@@ -1225,10 +1335,10 @@ zvol_alloc(dev_t dev, const char *name)
+ 	 *    disk and the queue separately. (5.13 kernel or older)
+ 	 */
+ 	if (zv->zv_zso->use_blk_mq) {
+-		ret = zvol_alloc_blk_mq(zv);
++		ret = zvol_alloc_blk_mq(zv, &limits);
+ 		zso->zvo_disk->fops = &zvol_ops_blk_mq;
+ 	} else {
+-		ret = zvol_alloc_non_blk_mq(zso);
++		ret = zvol_alloc_non_blk_mq(zso, &limits);
+ 		zso->zvo_disk->fops = &zvol_ops;
+ 	}
+ 	if (ret != 0)
+@@ -1417,74 +1527,10 @@ zvol_os_create_minor(const char *name)
+ 
+ 	set_capacity(zv->zv_zso->zvo_disk, zv->zv_volsize >> 9);
+ 
+-	blk_queue_max_hw_sectors(zv->zv_zso->zvo_queue,
+-	    (DMU_MAX_ACCESS / 4) >> 9);
+ 
+-	if (zv->zv_zso->use_blk_mq) {
+-		/*
+-		 * IO requests can be really big (1MB).  When an IO request
+-		 * comes in, it is passed off to zvol_read() or zvol_write()
+-		 * in a new thread, where it is chunked up into 'volblocksize'
+-		 * sized pieces and processed.  So for example, if the request
+-		 * is a 1MB write and your volblocksize is 128k, one zvol_write
+-		 * thread will take that request and sequentially do ten 128k
+-		 * IOs.  This is due to the fact that the thread needs to lock
+-		 * each volblocksize sized block.  So you might be wondering:
+-		 * "instead of passing the whole 1MB request to one thread,
+-		 * why not pass ten individual 128k chunks to ten threads and
+-		 * process the whole write in parallel?"  The short answer is
+-		 * that there's a sweet spot number of chunks that balances
+-		 * the greater parallelism with the added overhead of more
+-		 * threads. The sweet spot can be different depending on if you
+-		 * have a read or write  heavy workload.  Writes typically want
+-		 * high chunk counts while reads typically want lower ones.  On
+-		 * a test pool with 6 NVMe drives in a 3x 2-disk mirror
+-		 * configuration, with volblocksize=8k, the sweet spot for good
+-		 * sequential reads and writes was at 8 chunks.
+-		 */
+-
+-		/*
+-		 * Below we tell the kernel how big we want our requests
+-		 * to be.  You would think that blk_queue_io_opt() would be
+-		 * used to do this since it is used to "set optimal request
+-		 * size for the queue", but that doesn't seem to do
+-		 * anything - the kernel still gives you huge requests
+-		 * with tons of little PAGE_SIZE segments contained within it.
+-		 *
+-		 * Knowing that the kernel will just give you PAGE_SIZE segments
+-		 * no matter what, you can say "ok, I want PAGE_SIZE byte
+-		 * segments, and I want 'N' of them per request", where N is
+-		 * the correct number of segments for the volblocksize and
+-		 * number of chunks you want.
+-		 */
+-#ifdef HAVE_BLK_MQ
+-		if (zvol_blk_mq_blocks_per_thread != 0) {
+-			unsigned int chunks;
+-			chunks = MIN(zvol_blk_mq_blocks_per_thread, UINT16_MAX);
+-
+-			blk_queue_max_segment_size(zv->zv_zso->zvo_queue,
+-			    PAGE_SIZE);
+-			blk_queue_max_segments(zv->zv_zso->zvo_queue,
+-			    (zv->zv_volblocksize * chunks) / PAGE_SIZE);
+-		} else {
+-			/*
+-			 * Special case: zvol_blk_mq_blocks_per_thread = 0
+-			 * Max everything out.
+-			 */
+-			blk_queue_max_segments(zv->zv_zso->zvo_queue,
+-			    UINT16_MAX);
+-			blk_queue_max_segment_size(zv->zv_zso->zvo_queue,
+-			    UINT_MAX);
+-		}
+-#endif
+-	} else {
+-		blk_queue_max_segments(zv->zv_zso->zvo_queue, UINT16_MAX);
+-		blk_queue_max_segment_size(zv->zv_zso->zvo_queue, UINT_MAX);
+-	}
+ 
+ 	blk_queue_physical_block_size(zv->zv_zso->zvo_queue,
+ 	    zv->zv_volblocksize);
+-	blk_queue_io_opt(zv->zv_zso->zvo_queue, zv->zv_volblocksize);
+ 	blk_queue_max_discard_sectors(zv->zv_zso->zvo_queue,
+ 	    (zvol_max_discard_blocks * zv->zv_volblocksize) >> 9);
+ 	blk_queue_discard_granularity(zv->zv_zso->zvo_queue,
+
+From 82c70e43c4899c2eb8994e0682067ed57cc5aac5 Mon Sep 17 00:00:00 2001
+From: Rob Norris <robn@despairlabs.com>
+Date: Tue, 28 May 2024 11:56:41 -0400
+Subject: [PATCH 2/3] Linux 6.10: work harder to avoid kmem_cache_alloc reuse
+
+Linux 6.10 change kmem_cache_alloc to be a macro, rather than a
+function, such that the old #undef for it in spl-kmem-cache.c would
+remove its definition completely, breaking the build.
+
+This inverts the model used before. Rather than always defining the
+kmem_cache_* macro, then undefining then inside spl-kmem-cache.c,
+instead we make a special tag to indicate we're currently inside
+spl-kmem-cache.c, and not defining those in macros in the first place,
+so we can use the kernel-supplied kmem_cache_* functions to implement
+spl_kmem_cache_*, as we expect.
+
+For all other callers, we create the macros as normal and remove access
+to the kernel's own conflicting names.
+
+Signed-off-by: Rob Norris <robn@despairlabs.com>
+Sponsored-by: https://despairlabs.com/sponsor/
+---
+ include/os/linux/spl/sys/kmem_cache.h | 19 +++++++++++--------
+ module/os/linux/spl/spl-kmem-cache.c  | 12 ++----------
+ 2 files changed, 13 insertions(+), 18 deletions(-)
+
+diff --git a/include/os/linux/spl/sys/kmem_cache.h b/include/os/linux/spl/sys/kmem_cache.h
+index b159bb52d111..905ff57a1434 100644
+--- a/include/os/linux/spl/sys/kmem_cache.h
++++ b/include/os/linux/spl/sys/kmem_cache.h
+@@ -192,22 +192,25 @@ extern void spl_kmem_reap(void);
+ extern uint64_t spl_kmem_cache_inuse(kmem_cache_t *cache);
+ extern uint64_t spl_kmem_cache_entry_size(kmem_cache_t *cache);
+ 
++#ifndef	SPL_KMEM_CACHE_IMPLEMENTING
++/*
++ * Macros for the kmem_cache_* API expected by ZFS and SPL clients. We don't
++ * define them inside spl-kmem-cache.c, as that uses the kernel's incompatible
++ * kmem_cache_* facilities to implement ours.
++ */
++
++/* Avoid conflicts with kernel names that might be implemented as macros. */
++#undef	kmem_cache_alloc
++
+ #define	kmem_cache_create(name, size, align, ctor, dtor, rclm, priv, vmp, fl) \
+     spl_kmem_cache_create(name, size, align, ctor, dtor, rclm, priv, vmp, fl)
+ #define	kmem_cache_set_move(skc, move)	spl_kmem_cache_set_move(skc, move)
+ #define	kmem_cache_destroy(skc)		spl_kmem_cache_destroy(skc)
+-/*
+- * This is necessary to be compatible with other kernel modules
+- * or in-tree filesystem that may define kmem_cache_alloc,
+- * like bcachefs does it now.
+- */
+-#ifdef kmem_cache_alloc
+-#undef kmem_cache_alloc
+-#endif
+ #define	kmem_cache_alloc(skc, flags)	spl_kmem_cache_alloc(skc, flags)
+ #define	kmem_cache_free(skc, obj)	spl_kmem_cache_free(skc, obj)
+ #define	kmem_cache_reap_now(skc)	spl_kmem_cache_reap_now(skc)
+ #define	kmem_reap()			spl_kmem_reap()
++#endif
+ 
+ /*
+  * The following functions are only available for internal use.
+diff --git a/module/os/linux/spl/spl-kmem-cache.c b/module/os/linux/spl/spl-kmem-cache.c
+index 42821ad60256..737c2e063f71 100644
+--- a/module/os/linux/spl/spl-kmem-cache.c
++++ b/module/os/linux/spl/spl-kmem-cache.c
+@@ -21,6 +21,8 @@
+  *  with the SPL.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#define	SPL_KMEM_CACHE_IMPLEMENTING
++
+ #include <linux/percpu_compat.h>
+ #include <sys/kmem.h>
+ #include <sys/kmem_cache.h>
+@@ -33,16 +35,6 @@
+ #include <linux/swap.h>
+ #include <linux/prefetch.h>
+ 
+-/*
+- * Within the scope of spl-kmem.c file the kmem_cache_* definitions
+- * are removed to allow access to the real Linux slab allocator.
+- */
+-#undef kmem_cache_destroy
+-#undef kmem_cache_create
+-#undef kmem_cache_alloc
+-#undef kmem_cache_free
+-
+-
+ /*
+  * Linux 3.16 replaced smp_mb__{before,after}_{atomic,clear}_{dec,inc,bit}()
+  * with smp_mb__{before,after}_atomic() because they were redundant. This is
+
+From 55c7aa518284572330bffd97897f9937a980ab8b Mon Sep 17 00:00:00 2001
+From: Rob Norris <robn@despairlabs.com>
+Date: Tue, 28 May 2024 16:16:28 -0400
+Subject: [PATCH 3/3] Linux 5.16: use bdev_nr_bytes() to get device capacity
+
+This helper was introduced long ago, in 5.16. Since 6.10, bd_inode no
+longer exists, but the helper has been updated, so detect it and use it
+in all versions where it is available.
+
+Signed-off-by: Rob Norris <robn@despairlabs.com>
+Sponsored-by: https://despairlabs.com/sponsor/
+---
+ config/kernel-blkdev.m4         | 26 ++++++++++++++++++++++++++
+ module/os/linux/zfs/vdev_disk.c | 14 +++++++++-----
+ 2 files changed, 35 insertions(+), 5 deletions(-)
+
+diff --git a/config/kernel-blkdev.m4 b/config/kernel-blkdev.m4
+index b6ce1e1cf083..4f60f96acb56 100644
+--- a/config/kernel-blkdev.m4
++++ b/config/kernel-blkdev.m4
+@@ -534,6 +534,30 @@ AC_DEFUN([ZFS_AC_KERNEL_BLKDEV_BDEV_WHOLE], [
+ 	])
+ ])
+ 
++dnl #
++dnl # 5.16 API change
++dnl # Added bdev_nr_bytes() helper.
++dnl #
++AC_DEFUN([ZFS_AC_KERNEL_SRC_BLKDEV_BDEV_NR_BYTES], [
++	ZFS_LINUX_TEST_SRC([bdev_nr_bytes], [
++		#include <linux/blkdev.h>
++	],[
++		struct block_device *bdev = NULL;
++		loff_t nr_bytes __attribute__ ((unused)) = 0;
++		nr_bytes = bdev_nr_bytes(bdev);
++	])
++])
++
++AC_DEFUN([ZFS_AC_KERNEL_BLKDEV_BDEV_NR_BYTES], [
++	AC_MSG_CHECKING([whether bdev_nr_bytes() is available])
++	ZFS_LINUX_TEST_RESULT([bdev_nr_bytes], [
++		AC_MSG_RESULT(yes)
++		AC_DEFINE(HAVE_BDEV_NR_BYTES, 1, [bdev_nr_bytes() is available])
++	],[
++		AC_MSG_RESULT(no)
++	])
++])
++
+ dnl #
+ dnl # 5.20 API change,
+ dnl # Removed bdevname(), snprintf(.., %pg) should be used.
+@@ -747,6 +771,7 @@ AC_DEFUN([ZFS_AC_KERNEL_SRC_BLKDEV], [
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_CHECK_DISK_CHANGE
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_BDEV_CHECK_MEDIA_CHANGE
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_BDEV_WHOLE
++	ZFS_AC_KERNEL_SRC_BLKDEV_BDEV_NR_BYTES
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_BDEVNAME
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_ISSUE_DISCARD
+ 	ZFS_AC_KERNEL_SRC_BLKDEV_BDEV_KOBJ
+@@ -767,6 +792,7 @@ AC_DEFUN([ZFS_AC_KERNEL_BLKDEV], [
+ 	ZFS_AC_KERNEL_BLKDEV_CHECK_DISK_CHANGE
+ 	ZFS_AC_KERNEL_BLKDEV_BDEV_CHECK_MEDIA_CHANGE
+ 	ZFS_AC_KERNEL_BLKDEV_BDEV_WHOLE
++	ZFS_AC_KERNEL_BLKDEV_BDEV_NR_BYTES
+ 	ZFS_AC_KERNEL_BLKDEV_BDEVNAME
+ 	ZFS_AC_KERNEL_BLKDEV_GET_ERESTARTSYS
+ 	ZFS_AC_KERNEL_BLKDEV_ISSUE_DISCARD
+diff --git a/module/os/linux/zfs/vdev_disk.c b/module/os/linux/zfs/vdev_disk.c
+index 7284b922b3bf..e69c5f3841ec 100644
+--- a/module/os/linux/zfs/vdev_disk.c
++++ b/module/os/linux/zfs/vdev_disk.c
+@@ -150,7 +150,11 @@ vdev_bdev_mode(spa_mode_t smode)
+ static uint64_t
+ bdev_capacity(struct block_device *bdev)
+ {
++#ifdef HAVE_BDEV_NR_BYTES
++	return (bdev_nr_bytes(bdev));
++#else
+ 	return (i_size_read(bdev->bd_inode));
++#endif
+ }
+ 
+ #if !defined(HAVE_BDEV_WHOLE)
+@@ -209,7 +213,7 @@ bdev_max_capacity(struct block_device *bdev, uint64_t wholedisk)
+ 		 * "reserved" EFI partition: in such cases return the device
+ 		 * usable capacity.
+ 		 */
+-		available = i_size_read(bdev_whole(bdev)->bd_inode) -
++		available = bdev_capacity(bdev_whole(bdev)) -
+ 		    ((EFI_MIN_RESV_SIZE + NEW_START_BLOCK +
+ 		    PARTITION_END_ALIGNMENT) << SECTOR_BITS);
+ 		psize = MAX(available, bdev_capacity(bdev));
+@@ -925,12 +929,12 @@ vdev_disk_io_rw(zio_t *zio)
+ 	/*
+ 	 * Accessing outside the block device is never allowed.
+ 	 */
+-	if (zio->io_offset + zio->io_size > bdev->bd_inode->i_size) {
++	if (zio->io_offset + zio->io_size > bdev_capacity(bdev)) {
+ 		vdev_dbgmsg(zio->io_vd,
+ 		    "Illegal access %llu size %llu, device size %llu",
+ 		    (u_longlong_t)zio->io_offset,
+ 		    (u_longlong_t)zio->io_size,
+-		    (u_longlong_t)i_size_read(bdev->bd_inode));
++		    (u_longlong_t)bdev_capacity(bdev));
+ 		return (SET_ERROR(EIO));
+ 	}
+ 
+@@ -1123,12 +1127,12 @@ vdev_classic_physio(zio_t *zio)
+ 	/*
+ 	 * Accessing outside the block device is never allowed.
+ 	 */
+-	if (io_offset + io_size > bdev->bd_inode->i_size) {
++	if (io_offset + io_size > bdev_capacity(bdev)) {
+ 		vdev_dbgmsg(zio->io_vd,
+ 		    "Illegal access %llu size %llu, device size %llu",
+ 		    (u_longlong_t)io_offset,
+ 		    (u_longlong_t)io_size,
+-		    (u_longlong_t)i_size_read(bdev->bd_inode));
++		    (u_longlong_t)bdev_capacity(bdev));
+ 		return (SET_ERROR(EIO));
+ 	}
+ 

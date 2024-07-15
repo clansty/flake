@@ -9,9 +9,9 @@ telegram-desktop.overrideAttrs
     src = fetchFromGitHub {
       owner = "clansty";
       repo = "tdesktop";
-      rev = "272cb35bb017529e300ddcd1eb74e52c92212822";
+      rev = "cad4bd8291169848d41488baac768119e23543cf";
       fetchSubmodules = true;
-      sha256 = "sha256-Z0QU/ZF9TOENpz1Drdz7EpgBdPTYjFTtLmsWM68RsPI=";
+      sha256 = "sha256-OWsvlICPQ6HI/CEzDhy8kcyUGgPmSob7fQgia1A4FwE=";
     };
 
     postInstall = ''

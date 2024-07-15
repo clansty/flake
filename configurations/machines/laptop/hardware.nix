@@ -13,7 +13,10 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-rc;
+  boot.zfs.modulePackage = config.boot.kernelPackages.zfs.overrideAttrs (oldAttrs: {
+    patches = oldAttrs.patches ++ [ ./zfs-linux-6.10.patch ];
+  });
 
   fileSystems."/" =
     { device = "rpool/nixos/root";

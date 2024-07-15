@@ -7,6 +7,7 @@ let
       modules = [
         inputs.nur.nixosModules.nur
         inputs.home-manager.nixosModules.home-manager
+        inputs.chaotic.nixosModules.default
         { networking.hostName = "${name}"; }
       ] ++
       map (name: import ./defaultModules/${name}) (builtins.attrNames (builtins.readDir ./defaultModules)) ++
