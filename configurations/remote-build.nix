@@ -6,8 +6,24 @@
         "x86_64-linux"
         "i686-linux"
       ];
-      maxJobs = 4;
+      maxJobs = 2;
       speedFactor = 2;
+      supportedFeatures = [
+        "nixos-test"
+        "ca-derivations"
+        "benchmark"
+        "big-parallel"
+      ];
+      mandatoryFeatures = [ ];
+    }
+    {
+      hostName = "pvebuilder";
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+      ];
+      maxJobs = 1;
+      speedFactor = 1;
       supportedFeatures = [
         "nixos-test"
         "ca-derivations"
@@ -24,6 +40,10 @@
   programs.ssh.extraConfig = ''
     Host wslbuilder
       Hostname 11.11.3.122
+      Port 222
+      IdentityFile /root/.ssh/id_ed25519
+    Host pvebuilder
+      Hostname 11.11.1.15
       Port 222
       IdentityFile /root/.ssh/id_ed25519
   '';
