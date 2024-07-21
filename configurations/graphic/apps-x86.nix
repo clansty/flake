@@ -5,7 +5,7 @@
   environment.systemPackages = (with pkgs; [
     xivlauncher-cn
     jetbrains.webstorm
-    google-chrome
+    microsoft-edge
   ]) ++ (with config.nur.repos; [
   ]);
 }

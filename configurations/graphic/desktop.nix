@@ -36,7 +36,6 @@
     gnome-extension-manager
   ]);
 
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
   qt5.platformTheme = "gnome";
 }
