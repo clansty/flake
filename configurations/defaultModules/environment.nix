@@ -19,10 +19,12 @@
   nixpkgs.overlays = [
     flake.overlays.clansty
     inputs.sddm-sugar-candy-nix.overlays.default
+    inputs.blurgyy.overlays.default
   ];
   nixpkgs.config.allowBroken = true;
 
   documentation.enable = false;
+  documentation.man.generateCaches = false; # too slow
 
   security.pki.certificateFiles = [];
 

@@ -16,7 +16,6 @@
     gnome-tour
     gnome-connections
     eolie
-  ]) ++ (with pkgs.gnome; [
     epiphany
   ]);
 
@@ -38,4 +37,19 @@
 
   hardware.pulseaudio.enable = true;
   qt5.platformTheme = "gnome";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  nixpkgs.overlays = [
+    (
+      final: prev: {
+        gnome = prev.gnome.overrideScope (gfinal: gprev: {
+          mutter = gprev.mutter.overrideAttrs (oldAttrs: {
+            patches = [
+              ./mutter-text-input-v1.patch
+            ];
+          });
+        });
+      }
+    )
+  ];
 }

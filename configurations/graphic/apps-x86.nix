@@ -5,7 +5,7 @@
   environment.systemPackages = (with pkgs; [
     xivlauncher-cn
     jetbrains.webstorm
-    microsoft-edge
+    (microsoft-edge.override { commandLineArgs = "--enable-wayland-ime"; })
   ]) ++ (with config.nur.repos; [
   ]);
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, isLinux, lib, ... }:
+{ config, pkgs, isLinux, lib, inputs, ... }:
 
 {
   fonts = {
@@ -23,8 +23,10 @@
       source-han-mono
       wqy_microhei
       wqy_zenhei
+      harmonyos-sans
     ]) ++ (with config.nur.repos; [
       rewine.ttf-ms-win10
+      humxc.misans
     ]) ++ (lib.lists.optionals isLinux (with pkgs; [
       san-francisco
       meslo-lg

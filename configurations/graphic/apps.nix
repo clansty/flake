@@ -2,8 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; with config.nur.repos; [
-    gnome.gnome-tweaks
-    vscode
+    gnome-tweaks
+    (vscode.override { commandLineArgs = "--disable-features=WaylandFractionalScaleV1 --enable-wayland-ime --"; })
     gparted
     arduino libusb1 libusb-compat-0_1
     remmina

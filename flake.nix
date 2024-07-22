@@ -28,6 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    blurgyy.url = "github:blurgyy/flames";
   };
 
   outputs = inputs:
