@@ -10,7 +10,7 @@
     python310Packages.ipython
     pdftk
     nrb gacp
-    python3 nodejs
+    python3 nodejs_22 bun deno corepack_22
     deploy-rs
     openssl
     ffmpeg

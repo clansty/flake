@@ -10,6 +10,8 @@
     krita gimp inkscape gwenview libsForQt5.kolourpaint
     vlc yesplaymusic obs-studio
     tdesktop-clansty
+    postman
+    mqtt-explorer
   ];
   services.udev.packages = with pkgs; [ 
     micronucleus-udev-rules 

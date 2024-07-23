@@ -10,4 +10,5 @@
   ];
 
   programs.fish.enable = true;
+  programs.nix-index-database.comma.enable = true;
 }

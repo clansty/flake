@@ -22,7 +22,7 @@
         "x86_64-linux"
         "i686-linux"
       ];
-      maxJobs = 1;
+      maxJobs = 2;
       speedFactor = 1;
       supportedFeatures = [
         "nixos-test"

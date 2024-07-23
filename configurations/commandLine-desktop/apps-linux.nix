@@ -12,4 +12,5 @@
     usbutils pciutils binutils dnsutils tcpdump
     traceroute
   ];
+  virtualisation.docker.enable = true;
 }

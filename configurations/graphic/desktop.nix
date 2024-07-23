@@ -32,7 +32,6 @@
     arc-theme
     tela-icon-theme
     adw-gtk3
-    gnome-extension-manager
   ]);
 
   hardware.pulseaudio.enable = true;

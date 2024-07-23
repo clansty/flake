@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "uas" "sd_mod" ];
@@ -19,34 +20,41 @@
   });
 
   fileSystems."/" =
-    { device = "rpool/nixos/root";
+    {
+      device = "rpool/nixos/root";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "rpool/nixos/home";
+    {
+      device = "rpool/nixos/home";
       fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "rpool/nixos/nix";
+    {
+      device = "rpool/nixos/nix";
       fsType = "zfs";
     };
 
   fileSystems."/var" =
-    { device = "rpool/nixos/var";
+    {
+      device = "rpool/nixos/var";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/ECCA-4384";
+    {
+      device = "/dev/disk/by-uuid/ECCA-4384";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" "nofail" ];
     };
 
-  swapDevices = [ 
-    { 
-      device = "/dev/disk/by-uuid/fe012083-ac1b-41b8-ab21-8cb5ad283d72"; 
+  virtualisation.docker.storageDriver = "zfs";
+  
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/fe012083-ac1b-41b8-ab21-8cb5ad283d72";
       discardPolicy = "once";
       options = [ "nofail" ];
     }

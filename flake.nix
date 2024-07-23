@@ -2,7 +2,7 @@
   description = "Clansty's Nix configurations and packages";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nur.url = "github:nix-community/NUR";
     xremap-flake.url = "github:xremap/nix-flake";
     darwin = {
@@ -29,6 +29,10 @@
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     blurgyy.url = "github:blurgyy/flames";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
