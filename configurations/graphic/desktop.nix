@@ -41,7 +41,14 @@
     NIXOS_OZONE_WL = "1";
     GDK_SCALE = "2";
     XCURSOR_SIZE = "48";
-    QT_SCALE_FACTOR = "2";
+  };
+
+  services.xserver.desktopManager.gnome = {
+    extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+    extraGSettingsOverrides = ''
+      [org.gnome.mutter]
+      experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
+    '';
   };
 
   nixpkgs.overlays = [
