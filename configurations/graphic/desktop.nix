@@ -36,7 +36,13 @@
 
   hardware.pulseaudio.enable = true;
   qt5.platformTheme = "gnome";
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GDK_SCALE = "2";
+    XCURSOR_SIZE = "48";
+    QT_SCALE_FACTOR = "2";
+  };
 
   nixpkgs.overlays = [
     (
@@ -45,6 +51,8 @@
           mutter = gprev.mutter.overrideAttrs (oldAttrs: {
             patches = [
               ./mutter-text-input-v1.patch
+              ./xwayland-scaling.patch
+              ./mutter-cursor-position-fix.patch
             ];
           });
         });
