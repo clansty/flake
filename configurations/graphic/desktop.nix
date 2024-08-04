@@ -28,6 +28,7 @@
     xremap
     blur-my-shell
     kimpanel
+    activate_gnome
   ]) ++ (with pkgs; [
     arc-theme
     tela-icon-theme
