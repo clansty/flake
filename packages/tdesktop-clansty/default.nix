@@ -1,7 +1,10 @@
-{ telegram-desktop, fetchFromGitHub }:
+{ telegram-desktop, fetchFromGitHub, callPackage }:
 let
-  version = "1.2.6";
+  version = "1.4.0";
   pname = "0wgram";
+
+  ada = callPackage ../ada-url { };
+  tg_owt = callPackage ./tg_owt.nix { };
 in
 telegram-desktop.overrideAttrs
   (oldAttrs: {
@@ -9,10 +12,13 @@ telegram-desktop.overrideAttrs
     src = fetchFromGitHub {
       owner = "clansty";
       repo = "tdesktop";
-      rev = "cad4bd8291169848d41488baac768119e23543cf";
+      rev = "1576cacb687060713733754e3952cbc27d42b93b";
       fetchSubmodules = true;
-      sha256 = "sha256-OWsvlICPQ6HI/CEzDhy8kcyUGgPmSob7fQgia1A4FwE=";
+      sha256 = "sha256-Cc+ZaoaTLEZp3g4pPWWU7SfogczdaP5WJsPVI1nnOr8=";
     };
+
+    # 似乎放在前面会优先
+    buildInputs = [ ada tg_owt ] ++ oldAttrs.buildInputs;
 
     postInstall = ''
       substituteInPlace $out/share/applications/0wgram.desktop --replace 'Icon=0wgram' 'Icon=telegram'

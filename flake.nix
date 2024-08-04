@@ -33,23 +33,41 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = inputs:
     let
       configurations = import ./configurations inputs;
+      dirContents = builtins.readDir ./packages;
+      pkgNames = builtins.attrNames dirContents;
     in
+    inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ]
+      (system:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            config.allowUnsupportedSystem = true;
+            config.allowBroken = true;
+          };
+          genPackage = name: {
+            inherit name;
+            value = pkgs.callPackage (./packages + "/${name}") { };
+          };
+        in
+        {
+          packages = builtins.listToAttrs (map genPackage pkgNames);
+        }) //
     {
       overlays.clansty = final: prev:
         let
-          dirContents = builtins.readDir ./packages;
           genPackage = name: {
             inherit name;
             value = final.callPackage (./packages + "/${name}") { };
           };
-          names = builtins.attrNames dirContents;
         in
-        builtins.listToAttrs (map genPackage names);
+        builtins.listToAttrs (map genPackage pkgNames);
       nixosConfigurations = configurations.nixos;
       homeConfigurations = configurations.home;
       deploy = import ./configurations/servers.nix inputs;
