@@ -4,7 +4,7 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "mnt-d.mount" ];
     serviceConfig = {
-      ExecStart = with pkgs;"${pkgs.socat}/bin/socat EXEC:\"/mnt/d/opt/bin/npiperelay.exe -ei -s //./pipe/ssh-pageant\" UNIX-LISTEN:/tmp/openssh-ssh-agent.socket,unlink-close,unlink-early,fork";
+      ExecStart = with pkgs;"${pkgs.socat}/bin/socat EXEC:\"/mnt/d/opt/bin/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent\" UNIX-LISTEN:/tmp/openssh-ssh-agent.socket,unlink-close,unlink-early,fork";
       UMask = 0;
     };
   };
