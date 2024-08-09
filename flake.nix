@@ -35,7 +35,7 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     workspace-config = {
-      url = "github:clansty/Clansty/5cfb787";
+      url = "github:clansty/Clansty/395781fcd6f09e1aeba027646d90ceca1880c781";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
