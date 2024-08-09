@@ -1,19 +1,10 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, inputs, ... }: {
   programs.nushell = {
     enable = true;
-    configFile.source = ./config.nu;
-    envFile.source = ./env.nu;
-    extraEnv = ''
-      let starship_cache = "${config.xdg.cacheHome}/starship"
-      if not ($starship_cache | path exists) {
-        mkdir $starship_cache
-      }
-      ${pkgs.starship}/bin/starship init nu | save --force ${config.xdg.cacheHome}/starship/init.nu
+    envFile.text = ''
+      $env.RC_DIR = "${inputs.workspace-config.rc-dir}"
+      source ${inputs.workspace-config.rc-dir}/nu/env.nu
     '';
-    extraConfig = ''
-      use ${config.xdg.cacheHome}/starship/init.nu
-    '';
+    configFile.text = "source ${inputs.workspace-config.rc-dir}/nu/config.nu";
   };
-
-  programs.carapace.enable = true;
 }

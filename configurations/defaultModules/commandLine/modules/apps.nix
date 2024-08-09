@@ -2,8 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     direnv
-    wget file tree htop
-    unrar unzip
+    file tree htop
+    unrar
     duf gdu ripgrep fd
     hyfetch
     socat

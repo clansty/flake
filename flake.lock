@@ -329,7 +329,7 @@
     },
     "devshell_2": {
       "inputs": {
-        "flake-utils": "flake-utils_10",
+        "flake-utils": "flake-utils_11",
         "nixpkgs": "nixpkgs_16"
       },
       "locked": {
@@ -502,6 +502,24 @@
     "flake-utils_10": {
       "inputs": {
         "systems": "systems_12"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_11": {
+      "inputs": {
+        "systems": "systems_13"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -844,7 +862,7 @@
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
         "nixpkgs": "nixpkgs_18",
-        "systems": "systems_13",
+        "systems": "systems_14",
         "xdph": "xdph"
       },
       "locked": {
@@ -1772,6 +1790,7 @@
         "nixpkgs": "nixpkgs_14",
         "nur": "nur_2",
         "sddm-sugar-candy-nix": "sddm-sugar-candy-nix",
+        "workspace-config": "workspace-config",
         "wsl": "wsl",
         "xremap-flake": "xremap-flake"
       }
@@ -1960,6 +1979,21 @@
       }
     },
     "systems_13": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_14": {
       "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
@@ -2173,10 +2207,32 @@
         "type": "github"
       }
     },
+    "workspace-config": {
+      "inputs": {
+        "flake-utils": "flake-utils_9",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1723215209,
+        "narHash": "sha256-oM54+CBuAJmMe3gELZ7KDIanfSYUroej/fwrNnTuX0Q=",
+        "owner": "clansty",
+        "repo": "Clansty",
+        "rev": "5cfb787e0efca05b34c438b4596b8aea1e73f9eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clansty",
+        "ref": "5cfb787",
+        "repo": "Clansty",
+        "type": "github"
+      }
+    },
     "wsl": {
       "inputs": {
         "flake-compat": "flake-compat_4",
-        "flake-utils": "flake-utils_9",
+        "flake-utils": "flake-utils_10",
         "nixpkgs": "nixpkgs_15"
       },
       "locked": {

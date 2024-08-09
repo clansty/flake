@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    nmap nali
+    nmap nali dogdns
     rclone clansty-pb
     nil
     picocom

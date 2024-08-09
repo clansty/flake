@@ -9,6 +9,8 @@ let
         inputs.home-manager.nixosModules.home-manager
         inputs.chaotic.nixosModules.default
         inputs.nix-index-database.nixosModules.nix-index
+        inputs.workspace-config.nixosModules.apps
+        inputs.workspace-config.nixosModules.starship
         { networking.hostName = "${name}"; }
       ] ++
       map (name: import ./defaultModules/${name}) (builtins.attrNames (builtins.readDir ./defaultModules)) ++

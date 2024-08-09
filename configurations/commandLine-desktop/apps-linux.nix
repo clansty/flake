@@ -9,7 +9,7 @@
   };
   services.fwupd.enable = true;
   environment.systemPackages = with pkgs; [
-    usbutils pciutils binutils dnsutils tcpdump
+    usbutils pciutils binutils tcpdump
     traceroute
   ];
   virtualisation.docker.enable = true;
