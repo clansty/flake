@@ -3,7 +3,7 @@
 {
   fonts = {
     fontDir.enable = true;
-    fonts = (with pkgs; [
+    packages = (with pkgs; [
       (nerdfonts.override {
         fonts = [ "FiraCode" "Hack" "JetBrainsMono" "UbuntuMono" ];
       })
@@ -33,7 +33,7 @@
     ]));
   } // lib.attrsets.optionalAttrs isLinux {
     enableGhostscriptFonts = true;
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       enable = true;
       defaultFonts.emoji = [ "Twemoji" "Noto Color Emoji" ];

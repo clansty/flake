@@ -3,7 +3,7 @@
 {
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb.layout = "us";
     desktopManager.gnome = {
       enable = true;
     };
@@ -36,7 +36,7 @@
   ]);
 
   hardware.pulseaudio.enable = true;
-  qt5.platformTheme = "gnome";
+  qt.platformTheme = "gnome";
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -44,11 +44,19 @@
     XCURSOR_SIZE = "48";
   };
 
+  # services.xserver.desktopManager.gnome = {
+  #   extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+  #   extraGSettingsOverrides = ''
+  #     [org.gnome.mutter]
+  #     experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
+  #   '';
+  # };
+
   services.xserver.desktopManager.gnome = {
-    extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+    extraGSettingsOverridePackages = [ pkgs.gnome-console ];
     extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
+      [org.gnome.Console]
+      shell=['${pkgs.nushell}/bin/nu']
     '';
   };
 
