@@ -6,12 +6,14 @@
       substituters = [
         "https://mirrors.bfsu.edu.cn/nix-channels/store/"
         "https://cache.nixos.org"
+        "https://cosmic.cachix.org/"
       ];
     in
     {
       settings.substituters = substituters;
       settings.trusted-substituters = substituters ++ [ "<local-substituter>" ];
       settings.trusted-users = [ "clansty" ];
+      settings.trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
       extraOptions = "experimental-features = nix-command flakes";
     };
 

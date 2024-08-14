@@ -3,8 +3,7 @@
 {
   imports =
     [
-      ./displayManager.nix
-      ./desktop.nix
+      ./gnome.nix
       ./apps.nix
       ./fonts.nix
       ./ime.nix

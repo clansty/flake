@@ -11,6 +11,7 @@ let
         inputs.nix-index-database.nixosModules.nix-index
         inputs.workspace-config.nixosModules.apps
         inputs.workspace-config.nixosModules.starship
+        inputs.nixos-cosmic.nixosModules.default
         { networking.hostName = "${name}"; }
       ] ++
       map (name: import ./defaultModules/${name}) (builtins.attrNames (builtins.readDir ./defaultModules)) ++

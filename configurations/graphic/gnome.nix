@@ -12,6 +12,11 @@
     ];
   };
 
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    autoSuspend = true;
+  };
+
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
     gnome-connections
